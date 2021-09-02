@@ -1,3 +1,5 @@
+import 'package:chat_app/ui/screens/login_screen.dart';
+import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
@@ -14,11 +16,12 @@ class OnboardingScreen extends StatelessWidget {
     // Init Size Config
     SizeConfig().init(context);
     return Scaffold(
-      body: buildBody(),
+      backgroundColor: NeutralColor().white,
+      body: buildBody(context),
     );
   }
 
-  Container buildBody() {
+  Container buildBody(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth,
       padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
@@ -49,6 +52,7 @@ class OnboardingScreen extends StatelessWidget {
           ),
           CustomButton(
             label: "Start Messaging",
+            onTap: () => CustomNavigator().startScreen(context, LoginScreen()),
           ),
           SizedBox(
             height: 30,

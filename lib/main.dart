@@ -1,3 +1,4 @@
+import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: "Mulish"
+        fontFamily: "Mulish",
+        backgroundColor: NeutralColor().white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: NeutralColor().white
+        )
       ),
       home: OnboardingScreen(),
     );
