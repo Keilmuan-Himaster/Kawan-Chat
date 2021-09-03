@@ -10,17 +10,21 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(50),
-      child: AppBar(
-      elevation: 0,
-      title: Text(label ?? ""),
-      iconTheme: IconThemeData(color: NeutralColor().active),
-      leading: GestureDetector(
-        onTap: () => CustomNavigator().closeScreen(context),
-        child: Icon(Icons.chevron_left, size: 30,)),
-      centerTitle: true,
-    )
-    );
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          elevation: 0,
+          title: Text(label ?? ""),
+          iconTheme: IconThemeData(color: NeutralColor().active),
+          leading: GestureDetector(
+              onTap: () {
+                CustomNavigator().closeScreen(context);
+              },
+              child: Icon(
+                Icons.chevron_left,
+                size: 30,
+              )),
+          centerTitle: true,
+        ));
   }
 
   @override
