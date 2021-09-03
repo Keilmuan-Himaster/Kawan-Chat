@@ -1,13 +1,16 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
+import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -113,8 +116,18 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: CustomButton(
-            label: "Continue",
-          ),
+              label: "Continue",
+              onTap: () {
+                if (phoneNumberController.text.trim().length > 0) {
+                  CustomNavigator().startScreen(
+                      context,
+                      VerificationScreen(
+                        phoneNumber: "+62" + phoneNumberController.text,
+                      ));
+                } else {
+                  CustomToast.showToast(message: "Masukan nomor dengan benar!");
+                }
+              }),
         ),
         SizedBox(
           height: 32,

@@ -9,7 +9,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -17,6 +16,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  fluttertoast: ^8.0.8
   numeric_keyboard: ^1.1.0
 
 flutter:
