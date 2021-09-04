@@ -1,5 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,8 @@ class MorePage extends StatelessWidget {
       slivers: <Widget>[
         SliverAppBar(
           elevation: 0,
-          title: Text(
-            "More",
-            style: CustomTextStyle()
-                .subHeading1
-                .copyWith(color: NeutralColor().active),
+          title: CustomAppBarTitle(
+            title: "More",
           ),
         ),
         SliverList(
@@ -25,7 +23,9 @@ class MorePage extends StatelessWidget {
             height: 8,
           ),
           buildProfileCard(),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           buildMoreListCard(
             iconName: "icon_person_black.png",
             label: "Account",
@@ -144,7 +144,8 @@ class MorePage extends StatelessWidget {
                       .copyWith(color: NeutralColor().active),
                 ),
               ],
-            )
+            ),
+            buildIconNext(),
           ],
         ));
   }

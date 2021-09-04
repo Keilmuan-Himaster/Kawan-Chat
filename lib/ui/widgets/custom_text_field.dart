@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final bool? autofocus;
   final bool? readOnly;
   final FocusNode? focusNode;
+  final Widget? prefixIcon;
 
   const CustomTextField(
       {Key? key,
@@ -27,44 +28,49 @@ class CustomTextField extends StatelessWidget {
       this.readOnly,
       this.onEditingComplete,
       this.autofocus,
+      this.prefixIcon,
       this.minLines})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-        controller: controller,
-        minLines: (minLines == null) ? 1 : minLines,
-        maxLines: (maxLines == null) ? 1 : maxLines,
-        onTap: () {
-          if (onTap != null) {
-            onTap!();
-          }
-        },
-        onChanged: (text) {
-          if (onChanged != null) {
-            onChanged!();
-          }
-        },
-        onEditingComplete: () {
-          if (onEditingComplete != null) {
-            onEditingComplete!();
-          }
-        },
-        autofocus: autofocus ?? false,
-        readOnly: readOnly ?? false,
-        focusNode: focusNode,
-        decoration: InputDecoration(
-          hintText: hintText,
-          focusedBorder: outlineInputFocusedBorder(),
-          enabledBorder: outlineInputEnableBorder(),
-          filled: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-          hintStyle:
-              CustomTextStyle().body1.copyWith(color: NeutralColor().disabled),
-          fillColor: NeutralColor().offWhite,
-          suffixText: suffixText ?? "",
-        ));
+    return SizedBox(
+      height: 36,
+      child: TextFormField(
+          controller: controller,
+          minLines: (minLines == null) ? 1 : minLines,
+          maxLines: (maxLines == null) ? 1 : maxLines,
+          onTap: () {
+            if (onTap != null) {
+              onTap!();
+            }
+          },
+          onChanged: (text) {
+            if (onChanged != null) {
+              onChanged!();
+            }
+          },
+          onEditingComplete: () {
+            if (onEditingComplete != null) {
+              onEditingComplete!();
+            }
+          },
+          autofocus: autofocus ?? false,
+          readOnly: readOnly ?? false,
+          focusNode: focusNode,
+          decoration: InputDecoration(
+            hintText: hintText,
+            prefixIcon: prefixIcon,
+            focusedBorder: outlineInputFocusedBorder(),
+            enabledBorder: outlineInputEnableBorder(),
+            filled: true,
+            contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+            hintStyle:
+                CustomTextStyle().body1.copyWith(color: NeutralColor().disabled),
+            fillColor: NeutralColor().offWhite,
+            suffixText: suffixText ?? "",
+          )),
+    );
   }
 }
 
