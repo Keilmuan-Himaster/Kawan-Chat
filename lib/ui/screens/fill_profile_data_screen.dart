@@ -1,7 +1,9 @@
 import 'package:chat_app/config/custom_color.dart';
+import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
+import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -65,6 +67,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
           Spacer(),
           CustomButton(
             label: "Save",
+            onTap: () => CustomNavigator().removeAllScreen(context, MainScreen()),
           ),
           SizedBox(
             height: 32,

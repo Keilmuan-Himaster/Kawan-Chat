@@ -41,3 +41,14 @@ flutter:
         - asset: assets/fonts/mulish/Mulish-SemiBold.ttf
           weight: 600
         - asset: assets/fonts/mulish/Mulish-Bold.ttf
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/lato/Lato-Light.ttf
+          weight: 300
+        - asset: assets/fonts/lato/Lato-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/lato/Lato-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/lato/Lato-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/lato/Lato-Bold.ttf
