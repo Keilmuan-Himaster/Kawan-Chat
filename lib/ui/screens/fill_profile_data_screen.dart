@@ -1,4 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
+import 'package:chat_app/models/api_return_value.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
@@ -6,9 +8,14 @@ import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/services/user_services.dart';
 
 class FillProfileDataScreen extends StatefulWidget {
-  const FillProfileDataScreen({Key? key}) : super(key: key);
+  const FillProfileDataScreen(
+      {Key? key, required this.uid, required this.phoneNumber})
+      : super(key: key);
+
+  final String uid, phoneNumber;
 
   @override
   _FillProfileDataScreenState createState() => _FillProfileDataScreenState();
@@ -66,9 +73,20 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
               controller: lastNameController, hintText: "Last Name (Optional)"),
           Spacer(),
           CustomButton(
-            label: "Save",
-            onTap: () => CustomNavigator().removeAllScreen(context, MainScreen()),
-          ),
+              label: "Save",
+              onTap: () async {
+                ApiReturnValue<bool> result = await UserServices.addUser(
+                    UserModel(
+                        uid: widget.uid,
+                        phoneNumber: widget.phoneNumber,
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
+                        imageUrl: ""));
+
+                if (result.isSuccess!) {
+                  CustomNavigator().removeAllScreen(context, MainScreen());
+                }
+              }),
           SizedBox(
             height: 32,
           )

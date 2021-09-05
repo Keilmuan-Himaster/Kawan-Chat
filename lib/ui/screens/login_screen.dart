@@ -1,16 +1,20 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/models/api_return_value.dart';
+import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ndialog/ndialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -35,6 +39,92 @@ class _LoginScreenState extends State<LoginScreen> {
             .substring(0, phoneNumberController.text.length - 1);
       });
     }
+  }
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    firebaseAuth.setLanguageCode("id_ID");
+    super.initState();
+  }
+
+  ApiReturnValue? result;
+
+  // TODO: Find best practice for this code
+  Future verifyPhoneNumber() async {
+    ProgressDialog progressDialog = CustomDialog.customProgressDialog(context,
+        message: "Sedang memverifikasi nomor");
+    progressDialog.show();
+    // Callback for when the user has already perviously signed in with this phone number on this device
+    // Penanganan code sms otomatis, jadi user tidak perlu memasukan manual
+    PhoneVerificationCompleted verificationCompleted =
+        (PhoneAuthCredential phoneAuthCredential) async {
+      await firebaseAuth.signInWithCredential(phoneAuthCredential);
+
+      CustomToast.showToast(
+          message: "Phone number automatically verified and user signed");
+
+      progressDialog.dismiss();
+
+      CustomNavigator().startScreen(
+          context,
+          FillProfileDataScreen(
+              uid: firebaseAuth.currentUser!.uid,
+              phoneNumber: "+62" + phoneNumberController.text));
+    };
+
+    // Listen for error with verification, such as too many attemps
+    PhoneVerificationFailed verificationFailed =
+        (FirebaseAuthException authException) {
+      String error = "";
+      print("{ authException CODE ${authException.code} }");
+
+      // TODO: Handling other authException
+      if (authException.code == 'invalid-phone-number') {
+        error = 'The provided phone number is not valid.';
+      } else if (authException.code == "too-many-requests") {
+        error = 'Too many requests on this phone number.';
+      }
+
+      progressDialog.dismiss();
+
+      CustomToast.showToast(message: error);
+    };
+
+    // Callback for when the code is sent
+    PhoneCodeSent codeSent =
+        (String verificationId, [int? forceResendingToken]) async {
+      CustomToast.showToast(
+          message: "Please check your phone for the verification code.");
+
+      progressDialog.dismiss();
+
+      CustomNavigator().startScreen(
+          context,
+          VerificationScreen(
+              phoneNumber: "+62" + phoneNumberController.text,
+              verificationId: verificationId));
+    };
+
+    PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+        (String verificationId) {
+      progressDialog.dismiss();
+
+      CustomNavigator().startScreen(
+          context,
+          VerificationScreen(
+              phoneNumber: "+62" + phoneNumberController.text,
+              verificationId: verificationId));
+    };
+
+    await firebaseAuth.verifyPhoneNumber(
+      phoneNumber: "+62" + phoneNumberController.text,
+      verificationCompleted: verificationCompleted,
+      verificationFailed: verificationFailed,
+      codeSent: codeSent,
+      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+    );
   }
 
   @override
@@ -117,13 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: CustomButton(
               label: "Continue",
-              onTap: () {
+              onTap: () async {
                 if (phoneNumberController.text.trim().length > 0) {
-                  CustomNavigator().startScreen(
-                      context,
-                      VerificationScreen(
-                        phoneNumber: "+62" + phoneNumberController.text,
-                      ));
+                  await verifyPhoneNumber();
                 } else {
                   CustomToast.showToast(message: "Masukan nomor dengan benar!");
                 }
