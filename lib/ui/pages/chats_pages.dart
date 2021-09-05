@@ -15,97 +15,140 @@ class ChatsPage extends StatefulWidget {
 class _ChatsPageState extends State<ChatsPage> {
   TextEditingController searchController = TextEditingController();
 
+  bool isSearching = false;
+
+  void hideKeyboard() {
+    setState(() {
+      isSearching = false;
+      searchController.text = "";
+    });
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          title: CustomAppBarTitle(title: "Chats"),
-          floating: true,
-          elevation: 0,
-        ),
-        SliverList(
-            delegate: SliverChildListDelegate([
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-            child: CustomTextField(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: NeutralColor().disabled,
-                ),
-                controller: searchController,
-                hintText: "Search"),
+    return GestureDetector(
+      onTap: () {
+        hideKeyboard();
+      },
+      child: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: <Widget>[
+          SliverAppBar(
+            title: CustomAppBarTitle(title: "Chats"),
+            floating: true,
+            elevation: 0,
           ),
-          SizedBox(
-            height: 16,
-          ),
-          ...List.generate(
-              20,
-              (index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      (index == 0)
-                          ? SizedBox.shrink()
-                          : Divider(
-                              color: NeutralColor().line,
-                              height: 0,
+          SliverList(
+              delegate: SliverChildListDelegate([
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomTextField(
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: NeutralColor().disabled,
+                      ),
+                      controller: searchController,
+                      hintText: "Search",
+                      onTap: () {
+                        setState(() {
+                          isSearching = true;
+                        });
+                      },
+                    ),
+                  ),
+                  (isSearching)
+                      ? Padding(
+                          padding: EdgeInsets.only(left: 5),
+                          child: GestureDetector(
+                            onTap: () {
+                              hideKeyboard();
+                            },
+                            child: Text("Cancel"),
+                          ),
+                        )
+                      : SizedBox.shrink()
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            ...List.generate(
+                20,
+                (index) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        (index == 0)
+                            ? SizedBox.shrink()
+                            : Divider(
+                                color: NeutralColor().line,
+                                height: 0,
+                              ),
+                        InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 6,
+                                horizontal: SizeConfig.defaultMargin),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/examples/avatar_1.png",
+                                      height: 48,
+                                      width: 48,
+                                    ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Athalia Putri",
+                                          style: CustomTextStyle()
+                                              .body1
+                                              .copyWith(
+                                                  color: NeutralColor().active),
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        Text(
+                                          "Good morning, did you sleep well?",
+                                          style: CustomTextStyle()
+                                              .metaData1
+                                              .copyWith(
+                                                  color:
+                                                      NeutralColor().disabled),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  "16.00",
+                                  style: CustomTextStyle()
+                                      .metaData1
+                                      .copyWith(color: NeutralColor().disabled),
+                                ),
+                              ],
                             ),
-                      InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 6,
-                              horizontal: SizeConfig.defaultMargin),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/examples/avatar_1.png",
-                                    height: 48,
-                                    width: 48,
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Athalia Putri",
-                                        style: CustomTextStyle().body1.copyWith(
-                                            color: NeutralColor().active),
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        "Good morning, did you sleep well?",
-                                        style: CustomTextStyle()
-                                            .metaData1
-                                            .copyWith(
-                                                color: NeutralColor().disabled),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Text(
-                                "16.00",
-                                style: CustomTextStyle()
-                                    .metaData1
-                                    .copyWith(color: NeutralColor().disabled),
-                              ),
-                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  )),
-        ]))
-      ],
+                      ],
+                    )),
+          ]))
+        ],
+      ),
     );
   }
 }
