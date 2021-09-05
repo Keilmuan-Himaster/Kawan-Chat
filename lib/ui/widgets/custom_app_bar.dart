@@ -1,4 +1,5 @@
 import 'package:chat_app/config/custom_color.dart';
+import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,12 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         preferredSize: Size.fromHeight(50),
         child: AppBar(
           elevation: 0,
-          title: Text(label ?? ""),
+          title: Text(
+            label ?? "",
+            style: CustomTextStyle()
+                .subHeading1
+                .copyWith(color: NeutralColor().active),
+          ),
           iconTheme: IconThemeData(color: NeutralColor().active),
           leading: GestureDetector(
               onTap: () {

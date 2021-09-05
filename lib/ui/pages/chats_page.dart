@@ -1,6 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
+import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _ChatsPageState extends State<ChatsPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        hideKeyboard();
+        // hideKeyboard();
       },
       child: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -89,61 +90,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                 color: NeutralColor().line,
                                 height: 0,
                               ),
-                        InkWell(
-                          onTap: () {},
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 6,
-                                horizontal: SizeConfig.defaultMargin),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/examples/avatar_1.png",
-                                      height: 48,
-                                      width: 48,
-                                    ),
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Athalia Putri",
-                                          style: CustomTextStyle()
-                                              .body1
-                                              .copyWith(
-                                                  color: NeutralColor().active),
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        Text(
-                                          "Good morning, did you sleep well?",
-                                          style: CustomTextStyle()
-                                              .metaData1
-                                              .copyWith(
-                                                  color:
-                                                      NeutralColor().disabled),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  "16.00",
-                                  style: CustomTextStyle()
-                                      .metaData1
-                                      .copyWith(color: NeutralColor().disabled),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        CustomListChatCard(),
                       ],
                     )),
           ]))
