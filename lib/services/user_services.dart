@@ -17,6 +17,26 @@ class UserServices {
       result = ApiReturnValue(isSuccess: false, message: "${onError.message}");
     });
 
+    print("{ ADD USER ${result.isSuccess} }");
+
+    return result;
+  }
+
+  static Future<ApiReturnValue<bool>> checkUserExists(String uid) async {
+    late ApiReturnValue<bool> result;
+    DocumentSnapshot<Object?> snapshot =
+        await userCollection.doc(uid).get().catchError((onError) {
+      result = ApiReturnValue(isSuccess: false);
+    });
+
+    if (snapshot.exists) {
+      result = ApiReturnValue(isSuccess: true);
+    } else {
+      result = ApiReturnValue(isSuccess: false);
+    }
+
+    print("{ CHECK USER ISEXISTS ${result.isSuccess} }");
+
     return result;
   }
 }

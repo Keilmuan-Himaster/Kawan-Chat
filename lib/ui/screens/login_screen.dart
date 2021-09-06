@@ -110,12 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
     PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
         (String verificationId) {
       progressDialog.dismiss();
-
-      CustomNavigator().startScreen(
-          context,
-          VerificationScreen(
-              phoneNumber: "+62" + phoneNumberController.text,
-              verificationId: verificationId));
     };
 
     await firebaseAuth.verifyPhoneNumber(

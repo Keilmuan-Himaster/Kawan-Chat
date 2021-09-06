@@ -4,11 +4,14 @@ import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
+import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/user_services.dart';
+import 'package:ndialog/ndialog.dart';
 
 class FillProfileDataScreen extends StatefulWidget {
   const FillProfileDataScreen(
@@ -75,6 +78,11 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
           CustomButton(
               label: "Save",
               onTap: () async {
+                ProgressDialog progressDialog =
+                    CustomDialog.customProgressDialog(context,
+                        message: "Sedang membuat akun");
+                progressDialog.show();
+
                 ApiReturnValue<bool> result = await UserServices.addUser(
                     UserModel(
                         uid: widget.uid,
@@ -83,8 +91,12 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                         lastName: lastNameController.text,
                         imageUrl: ""));
 
+                progressDialog.dismiss();
                 if (result.isSuccess!) {
                   CustomNavigator().removeAllScreen(context, MainScreen());
+                } else {
+                  CustomToast.showToast(
+                      message: "Gagal membuat akun, silahkan coba kembali");
                 }
               }),
           SizedBox(
