@@ -25,6 +25,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Init Size Config
+    SizeConfig().init(context);
     return Scaffold(
       body: pages[currentTab],
       backgroundColor: Colors.white,
