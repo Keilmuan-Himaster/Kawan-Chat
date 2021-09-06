@@ -13,6 +13,7 @@ class MorePage extends StatelessWidget {
       slivers: <Widget>[
         SliverAppBar(
           elevation: 0,
+          leadingWidth: 10,
           title: CustomAppBarTitle(
             title: "More",
           ),

@@ -36,6 +36,7 @@ class _ChatsPageState extends State<ChatsPage> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: <Widget>[
           SliverAppBar(
+            leadingWidth: 10,
             title: CustomAppBarTitle(title: "Chats"),
             floating: true,
             elevation: 0,
