@@ -55,9 +55,9 @@ class UserServices {
     return result;
   }
 
-  static Stream<QuerySnapshot> getListUserByName(String name) {
+  static Stream<QuerySnapshot> getListUserByName({required String name, required String myName}) {
     return userCollection
-        .where("last_name", isGreaterThanOrEqualTo: name)
+        .where("full_name", isGreaterThanOrEqualTo: name, isNotEqualTo: myName)
         .snapshots();
   }
 }
