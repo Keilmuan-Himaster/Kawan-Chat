@@ -1,6 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/cubit/user_cubit/user_cubit.dart';
 import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/services/user_services.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen(
@@ -60,9 +62,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     if (result != null) {
       if (result.isSuccess!) {
-        ApiReturnValue<bool> isUserExists =
-            await UserServices.checkUserExists(result.result!);
-        if (isUserExists.isSuccess!) {
+        ApiReturnValue<bool> userIsExists =
+            await context.read<UserCubit>().checkUserExists(result.result!);
+
+        if (userIsExists.value!) {
           CustomNavigator().removeScreen(context, MainScreen());
         } else {
           CustomNavigator().removeScreen(
