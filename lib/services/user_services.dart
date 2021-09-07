@@ -45,11 +45,19 @@ class UserServices {
   static Future<ApiReturnValue<UserModel>> getUserDetail(String uid) async {
     late ApiReturnValue<UserModel> result;
     await userCollection.doc(uid).get().then((value) {
-      result = ApiReturnValue(isSuccess: true);
+      result = ApiReturnValue(isSuccess: true, value: UserModel.fromJson(value.data() as Map<String, dynamic>));
     }).catchError((onError) {
-      result = ApiReturnValue(isSuccess: false);
+      result = ApiReturnValue(isSuccess: false, message: "");
     });
 
+    print("{ GET USER DETAIL $result }");
+
     return result;
+  }
+
+  static Stream<QuerySnapshot> getListUserByName(String name) {
+    return userCollection
+        .where("last_name", isGreaterThanOrEqualTo: name)
+        .snapshots();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/cubit/cubit.dart';
+import 'package:chat_app/helper/full_name.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/utils/size_config.dart';
@@ -135,9 +136,10 @@ class MorePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      (user?.firstName ?? "Pengguna") +
-                          " " +
-                          (user?.lastName ?? ""),
+                      fullName(
+                        firstName: user?.firstName,
+                        lastName: user?.lastName
+                      ),
                       style: CustomTextStyle()
                           .body1
                           .copyWith(color: NeutralColor().active),

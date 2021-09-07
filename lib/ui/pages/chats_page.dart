@@ -1,10 +1,17 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/cubit/cubit.dart';
+import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/services/user_services.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
+import 'package:chat_app/ui/widgets/custom_list_user_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({Key? key}) : super(key: key);
@@ -18,12 +25,25 @@ class _ChatsPageState extends State<ChatsPage> {
 
   bool isSearching = false;
 
+  // List user stream
+  Stream<QuerySnapshot>? userStream;
+
   void hideKeyboard() {
     setState(() {
       isSearching = false;
       searchController.text = "";
     });
     FocusScope.of(context).requestFocus(FocusNode());
+  }
+
+  @override
+  void initState() {
+    if (context.read<UserCubit>().state is UserInitial) {
+      context
+          .read<UserCubit>()
+          .getUserDetail(FirebaseAuth.instance.currentUser!.uid);
+    }
+    super.initState();
   }
 
   @override
@@ -56,6 +76,12 @@ class _ChatsPageState extends State<ChatsPage> {
                       ),
                       controller: searchController,
                       hintText: "Search",
+                      onChanged: () {
+                        setState(() {
+                          userStream = UserServices.getListUserByName(
+                              searchController.text);
+                        });
+                      },
                       onTap: () {
                         setState(() {
                           isSearching = true;
@@ -80,20 +106,51 @@ class _ChatsPageState extends State<ChatsPage> {
             SizedBox(
               height: 16,
             ),
-            ...List.generate(
-                20,
-                (index) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        (index == 0)
-                            ? SizedBox.shrink()
-                            : Divider(
-                                color: NeutralColor().line,
-                                height: 0,
-                              ),
-                        CustomListChatCard(),
-                      ],
-                    )),
+            BlocBuilder<UserCubit, UserState>(
+              builder: (context, state) {
+                if (state is UserLoaded) {
+                  if (isSearching) {
+                    return StreamBuilder<QuerySnapshot>(
+                        stream: userStream,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            if (snapshot.data!.docs.length > 0) {
+                              return ListView.builder(
+                                  itemCount: snapshot.data?.docs.length,
+                                  shrinkWrap: true,
+                                  itemBuilder: (_, index) {
+                                    return CustomListUserCard(
+                                      user: UserModel.fromJson(
+                                          snapshot.data?.docs[index].data()
+                                              as Map<String, dynamic>),
+                                    );
+                                  });
+                            } else {
+                              // TODO: Handle if data []
+                              return Container();
+                            }
+                          } else if (snapshot.hasError) {
+                            // TODO: Handle this error
+                            return Container();
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        });
+                  } else {
+                    return Container();
+                  }
+                } else if (state is UserLoadingFailed) {
+                  // TODO: Handle this error
+                  return Container();
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            )
           ]))
         ],
       ),
