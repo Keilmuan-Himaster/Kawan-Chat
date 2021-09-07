@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
             fontFamily: "Mulish",
             backgroundColor: NeutralColor().white,
             appBarTheme: AppBarTheme(backgroundColor: NeutralColor().white)),
-        home: OnboardingScreen(),
-        // initialRoute: (FirebaseAuth.instance.currentUser == null)
-        //     ? "onboardingScreen"
-        //     : "mainScreen",
+        // home: OnboardingScreen(),
+        initialRoute: (FirebaseAuth.instance.currentUser == null)
+            ? "onboardingScreen"
+            : "mainScreen",
         routes: {
           "onboardingScreen": (context) => OnboardingScreen(),
           "mainScreen": (context) => MainScreen()
