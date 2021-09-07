@@ -19,6 +19,16 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  Future<ApiReturnValue<bool>> addUser(UserModel user) async {
+    ApiReturnValue<bool> result = await UserServices.addUser(user);
+
+    if (result.value!) {
+      getUserDetail(result.result!);
+    }
+
+    return result;
+  }
+
   Future<ApiReturnValue<bool>> checkUserExists(String uid) async {
     ApiReturnValue<UserModel> result = await UserServices.checkUserExists(uid);
 
@@ -29,7 +39,9 @@ class UserCubit extends Cubit<UserState> {
     } else {
       emit(UserLoadingFailed(result.message!));
 
-      return ApiReturnValue(value: false,);
+      return ApiReturnValue(
+        value: false,
+      );
     }
   }
 }

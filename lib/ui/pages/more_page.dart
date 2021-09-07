@@ -123,7 +123,8 @@ class MorePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         child: FadeInImage(
                           placeholder: AssetImage(""),
-                          image: NetworkImage(user?.imageUrl ?? ""),
+                          image: NetworkImage(user?.imageUrl ?? "",),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -136,10 +137,7 @@ class MorePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      fullName(
-                        firstName: user?.firstName,
-                        lastName: user?.lastName
-                      ),
+                      user?.fullName ?? "",
                       style: CustomTextStyle()
                           .body1
                           .copyWith(color: NeutralColor().active),
