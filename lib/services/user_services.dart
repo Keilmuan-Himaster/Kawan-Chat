@@ -15,7 +15,7 @@ class UserServices {
 
   static Future<ApiReturnValue<bool>> addUser(UserModel user) async {
     late ApiReturnValue<bool> result;
-    late ApiReturnValue<bool>? uploadImageStatus;
+    ApiReturnValue<bool>? uploadImageStatus;
     if (user.imageUrl != "") {
       uploadImageStatus = await uploadImage(File(user.imageUrl));
     }
