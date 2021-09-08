@@ -138,6 +138,10 @@ class _ChatsPageState extends State<ChatsPage> {
                                   itemBuilder: (_, index) {
                                     return CustomListUserCard(
                                       onTap: () async {
+                                        // Use this as chatRoomId "${state.user.phoneNumber}-${UserModel.fromJson(snapshot.data?.docs[index].data() as Map<String, dynamic>).phoneNumber}"
+                                        // is that right?
+                                        // How about if my phone number dan receiver is reverse?
+                                        // FIXME: Fix this
                                         ApiReturnValue<bool> result =
                                             await ChatServices.createChatRoom(
                                                 chatRoomId:
@@ -152,7 +156,21 @@ class _ChatsPageState extends State<ChatsPage> {
                                                 ]));
                                         if (result.value!) {
                                           CustomNavigator().startScreen(
-                                              context, DetailChatScreen());
+                                              context,
+                                              DetailChatScreen(
+                                                myPhoneNumber:
+                                                    state.user.phoneNumber,
+                                                receiverPhoneNumber:
+                                                    UserModel.fromJson(snapshot
+                                                                .data
+                                                                ?.docs[index]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)
+                                                        .phoneNumber,
+                                                chatRoomId:
+                                                    "${state.user.phoneNumber}-${UserModel.fromJson(snapshot.data?.docs[index].data() as Map<String, dynamic>).phoneNumber}",
+                                              ));
                                         } else {
                                           CustomToast.showToast(
                                               message: result.message);
@@ -186,7 +204,7 @@ class _ChatsPageState extends State<ChatsPage> {
                             print(snapshot.data!.docs.length);
                             if (snapshot.data!.docs.length > 0) {
                               return ListView.builder(
-                                shrinkWrap: true,
+                                  shrinkWrap: true,
                                   itemCount: snapshot.data?.docs.length,
                                   itemBuilder: (_, index) {
                                     return CustomListUserCard();

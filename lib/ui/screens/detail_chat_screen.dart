@@ -1,12 +1,23 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/models/chat_model.dart';
+import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
+import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:chat_app/models/api_return_value.dart';
 
 class DetailChatScreen extends StatefulWidget {
-  const DetailChatScreen({Key? key}) : super(key: key);
+  const DetailChatScreen(
+      {Key? key,
+      required this.chatRoomId,
+      required this.myPhoneNumber,
+      required this.receiverPhoneNumber})
+      : super(key: key);
+
+  final String chatRoomId, myPhoneNumber, receiverPhoneNumber;
 
   @override
   _DetailChatScreenState createState() => _DetailChatScreenState();
@@ -49,19 +60,37 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Flexible buildListMessage() {
     return Flexible(
-        child: ListView.builder(
-            itemCount: listChats.length,
-            physics: BouncingScrollPhysics(),
-            reverse: true,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            itemBuilder: (context, index) {
-              return Padding(
-                  padding:
-                      EdgeInsets.only(top: 12, bottom: (index == 0) ? 20 : 0),
-                  child: CustomMessageCardItem(
-                    chat: listChats[index],
-                    isMyMessage: listChats[index].senderId == myId,
-                  ));
+        child: StreamBuilder<QuerySnapshot>(
+            stream: ChatServices.getListMessages(widget.chatRoomId),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data?.docs.length,
+                    physics: BouncingScrollPhysics(),
+                    reverse: true,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: EdgeInsets.only(
+                              top: 12, bottom: (index == 0) ? 20 : 0),
+                          child: CustomMessageCardItem(
+                            chat: ChatModel.fromJson(snapshot.data?.docs[index]
+                                .data() as Map<String, dynamic>),
+                            isMyMessage: ChatModel.fromJson(
+                                        snapshot.data?.docs[index].data()
+                                            as Map<String, dynamic>)
+                                    .senderPhoneNumber ==
+                                widget.myPhoneNumber,
+                          ));
+                    });
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                // TODO: Handle this error
+                return Container();
+              }
             }));
   }
 
@@ -89,7 +118,32 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
             width: 12,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              if (messageController.text.trim() != "") {
+                ApiReturnValue<bool> result = await ChatServices.sendMessage(
+                    chatRoomId: widget.chatRoomId,
+                    chat: ChatModel(
+                        content: messageController.text,
+                        timestamp:
+                            DateTime.now().millisecondsSinceEpoch.toString(),
+                        senderPhoneNumber: widget.myPhoneNumber,
+                        receiverPhoneNumber: widget.receiverPhoneNumber));
+
+                if (result.value!) {
+                  ChatServices.updateLastMessage(
+                      chatRoomId: widget.chatRoomId,
+                      chat: ChatModel(
+                          content: messageController.text,
+                          timestamp: DateTime.now()
+                              .millisecondsSinceEpoch
+                              .toString()));
+
+                  messageController.clear();
+                } else {
+                  CustomToast.showToast(message: result.message);
+                }
+              }
+            },
             child: ImageIcon(
               AssetImage("assets/icons/icon_send_message.png"),
               color: BrandColor().defaultColor,
