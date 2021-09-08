@@ -21,7 +21,6 @@ class CustomListUserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomNavigator().startScreen(context, DetailChatScreen());
         if (onTap != null) {
           onTap!();
         }

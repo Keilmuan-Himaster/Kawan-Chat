@@ -19,6 +19,7 @@ class UserModel {
 
   Map<String, dynamic> toJson() => {
         "phone_number": phoneNumber,
+        "uid": uid,
         "first_name": firstName.toLowerCase(),
         "last_name": lastName.toLowerCase(),
         "image_url": imageUrl,
