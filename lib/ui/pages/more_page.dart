@@ -4,6 +4,7 @@ import 'package:chat_app/cubit/cubit.dart';
 import 'package:chat_app/helper/full_name.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
+import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,39 +97,10 @@ class MorePage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      padding: EdgeInsets.all(13),
-                      decoration: BoxDecoration(
-                          color: NeutralColor().line, shape: BoxShape.circle),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: FadeInImage(
-                          placeholder:
-                              AssetImage("assets/icons/icon_person_black.png"),
-                          image: NetworkImage(user?.imageUrl ?? ""),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: NeutralColor().line.withOpacity(0),
-                          shape: BoxShape.circle),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: FadeInImage(
-                          placeholder: AssetImage(""),
-                          image: NetworkImage(user?.imageUrl ?? "",),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
+                CustomProfileCard(
+                  height: 50,
+                  padding: 13,
+                  imageUrl: user?.imageUrl,
                 ),
                 SizedBox(
                   width: 20,

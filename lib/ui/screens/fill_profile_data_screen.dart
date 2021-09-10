@@ -8,12 +8,12 @@ import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
+import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/services/user_services.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
@@ -61,33 +61,10 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                (selectedProfilePicture != null)
-                    ? Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: NeutralColor().offWhite,
-                          shape: BoxShape.circle,
-                        ),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.file(
-                              selectedProfilePicture!,
-                              fit: BoxFit.cover,
-                            )),
-                      )
-                    : Container(
-                        height: 100,
-                        width: 100,
-                        padding: EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                          color: NeutralColor().offWhite,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.asset(
-                          "assets/icons/icon_person_black.png",
-                        ),
-                      ),
+                CustomProfileCard(
+                    height: 100,
+                    padding: 24,
+                    imageUrl: selectedProfilePicture?.path),
                 Positioned(
                     bottom: 0,
                     right: 0,

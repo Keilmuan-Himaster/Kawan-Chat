@@ -8,7 +8,7 @@ class ChatServices {
   static final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   static final CollectionReference chatRoomsCollection =
       firebaseFirestore.collection("chat_rooms");
-  // FIXME: Fix this -> Search chat room by user phone number
+      
   static Stream<QuerySnapshot<Object?>> getChatRooms(
       {required UserModel user}) {
     return chatRoomsCollection

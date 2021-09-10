@@ -7,7 +7,7 @@ class ChatRoomModel {
   ChatRoomModel({this.lastMessage, this.timestamp, this.userReceiver});
 
   factory ChatRoomModel.fromJson(Map<String, dynamic> json) => ChatRoomModel(
-      userReceiver: json['user_receiver'],
+      userReceiver: (json['user_receiver'] == null) ? null : UserModel.fromJson(json['user_receiver']),
       lastMessage: json['last_message'] ?? "",
       timestamp: json['timestamp'] ?? "");
 

@@ -8,8 +8,8 @@ import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/services/user_services.dart';
 import 'package:chat_app/ui/screens/detail_chat_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
-import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
 import 'package:chat_app/ui/widgets/custom_list_user_card.dart';
+import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
@@ -33,6 +33,9 @@ class _ChatsPageState extends State<ChatsPage> {
 
   bool isSearching = false;
 
+  // This is make error
+  // FIXME: Find the best way to handle this
+  // Invalid number (at character 1) ^
   // List user stream
   Stream<QuerySnapshot>? userStream;
 
@@ -120,9 +123,6 @@ class _ChatsPageState extends State<ChatsPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 16,
-            ),
             BlocBuilder<UserCubit, UserState>(
               builder: (context, state) {
                 if (state is UserLoaded) {
@@ -137,6 +137,9 @@ class _ChatsPageState extends State<ChatsPage> {
                                   shrinkWrap: true,
                                   itemBuilder: (_, index) {
                                     return CustomListUserCard(
+                                      user: UserModel.fromJson(
+                                          snapshot.data?.docs[index].data()
+                                              as Map<String, dynamic>),
                                       onTap: () async {
                                         // Create database for me as sender
                                         ApiReturnValue<bool> result =
@@ -174,9 +177,6 @@ class _ChatsPageState extends State<ChatsPage> {
                                               message: result.message);
                                         }
                                       },
-                                      user: UserModel.fromJson(
-                                          snapshot.data?.docs[index].data()
-                                              as Map<String, dynamic>),
                                     );
                                   });
                             } else {
@@ -198,29 +198,39 @@ class _ChatsPageState extends State<ChatsPage> {
                         stream: ChatServices.getChatRooms(user: state.user),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            if (snapshot.data!.docs.length > 0) {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data?.docs.length,
-                                  itemBuilder: (_, index) {
-                                    return CustomListUserCard(
-                                      user: UserModel.fromJson(snapshot.data
-                                              ?.docs[index]["user_receiver"]
-                                          as Map<String, dynamic>),
-                                      onTap: () {
-                                        CustomNavigator().startScreen(
-                                            context,
-                                            DetailChatScreen(
-                                              userMe: state.user,
-                                              userReceiver: UserModel.fromJson(
-                                                  snapshot.data
-                                              ?.docs[index]["user_receiver"]
-                                                      as Map<String, dynamic>),
-                                            ));
-                                      },
-                                    );
-                                  });
+                            if (snapshot.data != null) {
+                              if (snapshot.data!.docs.length > 0) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data?.docs.length,
+                                    itemBuilder: (_, index) {
+                                      print(snapshot.data!.docs.length);
+                                      return CustomListChatCard(
+                                        chatRoom: ChatRoomModel.fromJson(
+                                            snapshot.data?.docs[index].data()
+                                                as Map<String, dynamic>),
+                                        onTap: () {
+                                          CustomNavigator().startScreen(
+                                              context,
+                                              DetailChatScreen(
+                                                userMe: state.user,
+                                                userReceiver:
+                                                    UserModel.fromJson(snapshot
+                                                                    .data?.docs[
+                                                                index]
+                                                            ["user_receiver"]
+                                                        as Map<String,
+                                                            dynamic>),
+                                              ));
+                                        },
+                                      );
+                                    });
+                              } else {
+                                // TODO: Handle if data []
+                                return Container();
+                              }
                             } else {
+                              // TODO: Handle if data null
                               return Container();
                             }
                           } else if (snapshot.connectionState ==
