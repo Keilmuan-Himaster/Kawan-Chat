@@ -1,22 +1,18 @@
 import 'package:chat_app/models/user_model.dart';
 
 class ChatRoomModel {
-  List<UserModel>? users;
+  UserModel? userReceiver;
   String? lastMessage, timestamp;
 
-  ChatRoomModel({this.lastMessage, this.timestamp, this.users});
+  ChatRoomModel({this.lastMessage, this.timestamp, this.userReceiver});
 
-  factory ChatRoomModel.fromjson(Map<String, dynamic> json) => ChatRoomModel(
-      users: (json['users'] == null)
-          ? null
-          : (json['users'] as Iterable)
-              .map((e) => UserModel.fromJson(e))
-              .toList(),
+  factory ChatRoomModel.fromJson(Map<String, dynamic> json) => ChatRoomModel(
+      userReceiver: json['user_receiver'],
       lastMessage: json['last_message'] ?? "",
       timestamp: json['timestamp'] ?? "");
 
   Map<String, dynamic> toJson() => {
-        "users": users?.map((e) => e.toJson()).toList(),
+        "user_receiver": userReceiver?.toJson(),
         "last_message": lastMessage,
         "timestamp": DateTime.now().millisecondsSinceEpoch.toString(),
       };

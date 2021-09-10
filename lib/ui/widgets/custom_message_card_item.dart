@@ -39,7 +39,7 @@ class CustomMessageCardItem extends StatelessWidget {
                 : CrossAxisAlignment.start,
             children: [
               Text(
-                chat?.content ?? "",
+                chat?.message ?? "",
                 style: CustomTextStyle().body2.copyWith(
                     color: (isMyMessage)
                         ? NeutralColor().white

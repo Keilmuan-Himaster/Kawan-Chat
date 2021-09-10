@@ -138,39 +138,37 @@ class _ChatsPageState extends State<ChatsPage> {
                                   itemBuilder: (_, index) {
                                     return CustomListUserCard(
                                       onTap: () async {
-                                        // Use this as chatRoomId "${state.user.phoneNumber}-${UserModel.fromJson(snapshot.data?.docs[index].data() as Map<String, dynamic>).phoneNumber}"
-                                        // is that right?
-                                        // How about if my phone number dan receiver is reverse?
-                                        // FIXME: Fix this
+                                        // Create database for me as sender
                                         ApiReturnValue<bool> result =
                                             await ChatServices.createChatRoom(
-                                                chatRoomId:
-                                                    "${state.user.phoneNumber}-${UserModel.fromJson(snapshot.data?.docs[index].data() as Map<String, dynamic>).phoneNumber}",
-                                                chatRoomModel:
-                                                    ChatRoomModel(users: [
-                                                  state.user,
-                                                  UserModel.fromJson(snapshot
-                                                          .data?.docs[index]
-                                                          .data()
-                                                      as Map<String, dynamic>)
-                                                ]));
+                                                user: state.user,
+                                                chatRoomModel: ChatRoomModel(
+                                                    userReceiver: UserModel
+                                                        .fromJson(snapshot.data
+                                                                ?.docs[index]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)));
                                         if (result.value!) {
                                           CustomNavigator().startScreen(
                                               context,
                                               DetailChatScreen(
-                                                myPhoneNumber:
-                                                    state.user.phoneNumber,
-                                                receiverPhoneNumber:
+                                                userMe: state.user,
+                                                userReceiver:
                                                     UserModel.fromJson(snapshot
-                                                                .data
-                                                                ?.docs[index]
-                                                                .data()
-                                                            as Map<String,
-                                                                dynamic>)
-                                                        .phoneNumber,
-                                                chatRoomId:
-                                                    "${state.user.phoneNumber}-${UserModel.fromJson(snapshot.data?.docs[index].data() as Map<String, dynamic>).phoneNumber}",
+                                                            .data?.docs[index]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>),
                                               ));
+                                          // Write data for receiver
+                                          ChatServices.createChatRoom(
+                                              user: UserModel.fromJson(snapshot
+                                                      .data?.docs[index]
+                                                      .data()
+                                                  as Map<String, dynamic>),
+                                              chatRoomModel: ChatRoomModel(
+                                                  userReceiver: state.user));
                                         } else {
                                           CustomToast.showToast(
                                               message: result.message);
@@ -197,17 +195,30 @@ class _ChatsPageState extends State<ChatsPage> {
                         });
                   } else {
                     return StreamBuilder<QuerySnapshot>(
-                        stream:
-                            ChatServices.getChatRooms(state.user.phoneNumber),
+                        stream: ChatServices.getChatRooms(user: state.user),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            print(snapshot.data!.docs.length);
                             if (snapshot.data!.docs.length > 0) {
                               return ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: snapshot.data?.docs.length,
                                   itemBuilder: (_, index) {
-                                    return CustomListUserCard();
+                                    return CustomListUserCard(
+                                      user: UserModel.fromJson(snapshot.data
+                                              ?.docs[index]["user_receiver"]
+                                          as Map<String, dynamic>),
+                                      onTap: () {
+                                        CustomNavigator().startScreen(
+                                            context,
+                                            DetailChatScreen(
+                                              userMe: state.user,
+                                              userReceiver: UserModel.fromJson(
+                                                  snapshot.data
+                                              ?.docs[index]["user_receiver"]
+                                                      as Map<String, dynamic>),
+                                            ));
+                                      },
+                                    );
                                   });
                             } else {
                               return Container();

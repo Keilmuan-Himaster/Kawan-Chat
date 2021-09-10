@@ -1,105 +1,25 @@
-class ChatModel {
-  String? content, timestamp, receiverPhoneNumber, senderPhoneNumber;
+import 'package:chat_app/models/chat_room_model.dart';
+import 'package:chat_app/models/message_reply_model.dart';
+import 'package:chat_app/models/user_model.dart';
 
-  ChatModel(
-      {this.senderPhoneNumber,
-      this.content,
-      this.receiverPhoneNumber,
-      this.timestamp});
+class ChatModel {
+  MessageReplyModel? messageReply;
+  String? message, timestamp, uidSender, uidReceiver;
+
+  ChatModel({this.message, this.timestamp, this.messageReply, this.uidSender, this.uidReceiver});
 
   factory ChatModel.fromJson(Map<String, dynamic> json) => ChatModel(
-      senderPhoneNumber: json['sender_phone_number'],
-      receiverPhoneNumber: json['receiver_phone_number'],
-      timestamp: json['timestamp'],
-      content: json['content']);
+      messageReply: json['message_reply'],
+      message: json['message'] ?? "",
+      uidReceiver: json['uid_receiver'],
+      uidSender: json['uid_sender'],
+      timestamp: json['timestamp'] ?? "");
 
   Map<String, dynamic> toJson() => {
-        "sender_phone_number": senderPhoneNumber,
-        "receiver_phone_number": receiverPhoneNumber,
-        "timestamp": timestamp,
-        "content": content
+        "message_reply": messageReply?.toJson(),
+        "message": message,
+        "uid_sender": uidSender,
+        "uid_receiver": uidReceiver,
+        "timestamp": DateTime.now().millisecondsSinceEpoch.toString(),
       };
 }
-
-// final List<ChatModel> listChats = [
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625949197055"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang 2 kali",
-//       timestamp: "1625949204372"),
-//   ChatModel(
-//       receiverId: 1,
-//       senderId: 30,
-//       content: "Makan Bang",
-//       timestamp: "1625950341280"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625950433135"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625949197055"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang 2 kali",
-//       timestamp: "1625949204372"),
-//   ChatModel(
-//       receiverId: 1,
-//       senderId: 30,
-//       content: "Makan Bang",
-//       timestamp: "1625950341280"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625950433135"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625949197055"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang 2 kali",
-//       timestamp: "1625949204372"),
-//   ChatModel(
-//       receiverId: 1,
-//       senderId: 30,
-//       content: "Makan Bang",
-//       timestamp: "1625950341280"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625950433135"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625949197055"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang 2 kali",
-//       timestamp: "1625949204372"),
-//   ChatModel(
-//       receiverId: 1,
-//       senderId: 30,
-//       content: "Makan Bang",
-//       timestamp: "1625950341280"),
-//   ChatModel(
-//       receiverId: 30,
-//       senderId: 1,
-//       content: "Makan Bang",
-//       timestamp: "1625950433135"),
-// ];
