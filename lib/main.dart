@@ -23,20 +23,24 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => UserCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ThemeCubit(),
         )
       ],
-      child: MaterialApp(
-        theme: ThemeData(
-            fontFamily: "Mulish",
-            backgroundColor: NeutralColor().white,
-            appBarTheme: AppBarTheme(backgroundColor: NeutralColor().white)),
-        // home: OnboardingScreen(),
-        initialRoute: (FirebaseAuth.instance.currentUser == null)
-            ? "onboardingScreen"
-            : "mainScreen",
-        routes: {
-          "onboardingScreen": (context) => OnboardingScreen(),
-          "mainScreen": (context) => MainScreen()
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme: state.themeData,
+            // home: OnboardingScreen(),
+            initialRoute: (FirebaseAuth.instance.currentUser == null)
+                ? "onboardingScreen"
+                : "mainScreen",
+            routes: {
+              "onboardingScreen": (context) => OnboardingScreen(),
+              "mainScreen": (context) => MainScreen()
+            },
+          );
         },
       ),
     );

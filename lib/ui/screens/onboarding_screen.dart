@@ -16,7 +16,7 @@ class OnboardingScreen extends StatelessWidget {
     // Init Size Config
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: NeutralColor().white,
+      // backgroundColor: NeutralColor().white,
       body: buildBody(context),
     );
   }
@@ -30,7 +30,7 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           Spacer(),
           Image.asset(
-            "assets/images/illustration_splash.png",
+            Theme.of(context).scaffoldBackgroundColor == NeutralColor().white ? "assets/images/illustration_splash_light.png" : "assets/images/illustration_splash_dark.png",
             height: 271,
           ),
           SizedBox(
@@ -40,18 +40,19 @@ class OnboardingScreen extends StatelessWidget {
             CustomLabel().splashLabel,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().heading2.copyWith(color: NeutralColor().dark),
+                Theme.of(context).textTheme.headline2,
           ),
           Spacer(),
           Text(
             "Terms & Privacy Policy",
-            style: CustomTextStyle().body1.copyWith(color: NeutralColor().dark),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           SizedBox(
             height: 18,
           ),
           CustomButton(
             label: "Start Messaging",
+            textStyle: Theme.of(context).textTheme.subtitle2,
             onTap: () => CustomNavigator().startScreen(context, LoginScreen()),
           ),
           SizedBox(

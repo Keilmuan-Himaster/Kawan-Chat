@@ -10,18 +10,20 @@ class CustomButton extends StatelessWidget {
     this.onTap,
     this.labelColor,
     this.backgroundColor,
+    this.textStyle
   }) : super(key: key);
 
   final String? label;
   final Function? onTap;
   final Color? labelColor, backgroundColor;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        primary: Colors.white,
+        // primary: Colors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
@@ -34,7 +36,7 @@ class CustomButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 12),
           width: SizeConfig.screenWidth,
           decoration: BoxDecoration(
-            color: backgroundColor ?? BrandColor().defaultColor,
+            // color: backgroundColor ?? BrandColor().defaultColor,
             borderRadius: BorderRadius.circular(100),
           ),
           child: Row(
@@ -42,9 +44,7 @@ class CustomButton extends StatelessWidget {
             children: [
               Text(
                 "$label",
-                style: CustomTextStyle()
-                    .subHeading2
-                    .copyWith(color: labelColor ?? NeutralColor().white),
+                style: textStyle
               )
             ],
           )),
