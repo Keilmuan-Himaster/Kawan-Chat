@@ -65,9 +65,15 @@ class CustomTextField extends StatelessWidget {
             enabledBorder: outlineInputEnableBorder(),
             filled: true,
             contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            hintStyle:
-                CustomTextStyle().body1.copyWith(color: NeutralColor().disabled),
-            fillColor: NeutralColor().offWhite,
+            hintStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
+                color: (Theme.of(context).scaffoldBackgroundColor ==
+                        NeutralColor().white)
+                    ? NeutralColor().disabled
+                    : NeutralColor().offWhite),
+            fillColor: (Theme.of(context).scaffoldBackgroundColor ==
+                    NeutralColor().white)
+                ? NeutralColor().offWhite
+                : NeutralColor().dark,
             suffixText: suffixText ?? "",
           )),
     );

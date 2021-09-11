@@ -52,7 +52,6 @@ class OnboardingScreen extends StatelessWidget {
           ),
           CustomButton(
             label: "Start Messaging",
-            textStyle: Theme.of(context).textTheme.subtitle2,
             onTap: () => CustomNavigator().startScreen(context, LoginScreen()),
           ),
           SizedBox(

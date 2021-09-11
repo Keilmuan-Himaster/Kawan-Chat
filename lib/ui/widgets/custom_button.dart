@@ -10,13 +10,11 @@ class CustomButton extends StatelessWidget {
     this.onTap,
     this.labelColor,
     this.backgroundColor,
-    this.textStyle
   }) : super(key: key);
 
   final String? label;
   final Function? onTap;
   final Color? labelColor, backgroundColor;
-  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,7 @@ class CustomButton extends StatelessWidget {
             children: [
               Text(
                 "$label",
-                style: textStyle
+                style: Theme.of(context).textTheme.subtitle2,
               )
             ],
           )),

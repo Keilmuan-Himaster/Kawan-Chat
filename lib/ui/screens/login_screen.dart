@@ -43,12 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  @override
-  void initState() {
-    firebaseAuth.setLanguageCode("id_ID");
-    super.initState();
-  }
-
   ApiReturnValue? result;
 
   // TODO: Find best practice for this code
@@ -139,9 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             CustomLabel().loginLabel,
             textAlign: TextAlign.center,
-            style: CustomTextStyle()
-                .heading2
-                .copyWith(color: NeutralColor().active),
+            style: Theme.of(context).textTheme.headline2,
           ),
         ),
         SizedBox(
@@ -152,8 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             CustomLabel().loginDescription,
             textAlign: TextAlign.center,
-            style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor().active),
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
         SizedBox(
@@ -167,7 +158,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
-                    color: NeutralColor().offWhite,
+                    color: (Theme.of(context).scaffoldBackgroundColor ==
+                            NeutralColor().white)
+                        ? NeutralColor().offWhite
+                        : NeutralColor().dark,
                     borderRadius: BorderRadius.circular(4)),
                 child: Row(
                   children: [
@@ -175,12 +169,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: 8,
                     ),
-                    Text(
-                      "+62",
-                      style: CustomTextStyle()
-                          .body1
-                          .copyWith(color: NeutralColor().disabled),
-                    )
+                    Text("+62",
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: (Theme.of(context).scaffoldBackgroundColor ==
+                                    NeutralColor().white)
+                                ? NeutralColor().disabled
+                                : NeutralColor().offWhite))
                   ],
                 ),
               ),
@@ -216,11 +210,17 @@ class _LoginScreenState extends State<LoginScreen> {
           color: NeutralColor().offWhite,
           child: NumericKeyboard(
               onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor().active,
+              textColor: (Theme.of(context).scaffoldBackgroundColor ==
+                      NeutralColor().white)
+                  ? NeutralColor().active
+                  : NeutralColor().offWhite,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightIcon: Icon(
                 Icons.backspace,
-                color: NeutralColor().active,
+                color: (Theme.of(context).scaffoldBackgroundColor ==
+                        NeutralColor().white)
+                    ? NeutralColor().active
+                    : NeutralColor().offWhite,
               ),
               rightButtonFn: () => _onKeyboardBackspaceTap()),
         )

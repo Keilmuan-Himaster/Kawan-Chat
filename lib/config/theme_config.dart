@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // [heading] change to [headline]
 // [subheading] change to [subtitle]
+// [body] change to [bodytext]
 // [headline1] change to [headline4]
 class ThemeConfig {
   static final ThemeData lightTheme = ThemeData(
@@ -34,7 +35,7 @@ class ThemeConfig {
       iconTheme: IconThemeData(color: NeutralColor().active),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().defaultColor)));
-  
+
   static final ThemeData darkTheme = ThemeData(
       fontFamily: "Mulish",
       appBarTheme: AppBarTheme(backgroundColor: NeutralColor().active),
@@ -45,20 +46,25 @@ class ThemeConfig {
         headline2: CustomTextStyle().heading2.copyWith(
               color: NeutralColor().offWhite,
             ),
-        subtitle1:
-            CustomTextStyle().subHeading1.copyWith(color: NeutralColor().offWhite),
-        subtitle2:
-            CustomTextStyle().subHeading2.copyWith(color: NeutralColor().offWhite),
+        subtitle1: CustomTextStyle()
+            .subHeading1
+            .copyWith(color: NeutralColor().offWhite),
+        subtitle2: CustomTextStyle()
+            .subHeading2
+            .copyWith(color: NeutralColor().offWhite),
         bodyText1:
             CustomTextStyle().body1.copyWith(color: NeutralColor().offWhite),
         bodyText2:
             CustomTextStyle().body2.copyWith(color: NeutralColor().offWhite),
-        headline4:
-            CustomTextStyle().metaData1.copyWith(color: NeutralColor().offWhite),
-        headline5:
-            CustomTextStyle().metaData2.copyWith(color: NeutralColor().offWhite),
-        headline6:
-            CustomTextStyle().metaData3.copyWith(color: NeutralColor().offWhite),
+        headline4: CustomTextStyle()
+            .metaData1
+            .copyWith(color: NeutralColor().offWhite),
+        headline5: CustomTextStyle()
+            .metaData2
+            .copyWith(color: NeutralColor().offWhite),
+        headline6: CustomTextStyle()
+            .metaData3
+            .copyWith(color: NeutralColor().offWhite),
       ),
       iconTheme: IconThemeData(color: NeutralColor().offWhite),
       elevatedButtonTheme: ElevatedButtonThemeData(
