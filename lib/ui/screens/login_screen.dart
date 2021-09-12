@@ -119,7 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor().white,
       body: buildBody(),
     );
   }
@@ -207,7 +206,10 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 32,
         ),
         Container(
-          color: NeutralColor().offWhite,
+          color: (Theme.of(context).scaffoldBackgroundColor ==
+                      NeutralColor().white)
+                  ? NeutralColor().offWhite
+                  : NeutralColor().dark,
           child: NumericKeyboard(
               onKeyboardTap: _onKeyboardTap,
               textColor: (Theme.of(context).scaffoldBackgroundColor ==

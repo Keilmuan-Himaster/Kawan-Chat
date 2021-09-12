@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 class ThemeConfig {
   static final ThemeData lightTheme = ThemeData(
       fontFamily: "Mulish",
-      appBarTheme: AppBarTheme(backgroundColor: NeutralColor().white),
+      appBarTheme: AppBarTheme(
+          backgroundColor: NeutralColor().white,
+          iconTheme: IconThemeData(color: NeutralColor().active)),
       scaffoldBackgroundColor: NeutralColor().white,
       textTheme: TextTheme(
         headline1:
@@ -17,10 +19,12 @@ class ThemeConfig {
         headline2: CustomTextStyle().heading2.copyWith(
               color: NeutralColor().active,
             ),
-        subtitle1:
-            CustomTextStyle().subHeading1.copyWith(color: NeutralColor().white),
-        subtitle2:
-            CustomTextStyle().subHeading2.copyWith(color: NeutralColor().white),
+        subtitle1: CustomTextStyle()
+            .subHeading1
+            .copyWith(color: NeutralColor().active),
+        subtitle2: CustomTextStyle()
+            .subHeading2
+            .copyWith(color: NeutralColor().active),
         bodyText1:
             CustomTextStyle().body1.copyWith(color: NeutralColor().active),
         bodyText2:
@@ -38,7 +42,9 @@ class ThemeConfig {
 
   static final ThemeData darkTheme = ThemeData(
       fontFamily: "Mulish",
-      appBarTheme: AppBarTheme(backgroundColor: NeutralColor().active),
+      appBarTheme: AppBarTheme(
+          backgroundColor: NeutralColor().active,
+          iconTheme: IconThemeData(color: NeutralColor().offWhite)),
       scaffoldBackgroundColor: NeutralColor().active,
       textTheme: TextTheme(
         headline1:

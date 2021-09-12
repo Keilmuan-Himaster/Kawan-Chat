@@ -21,7 +21,6 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        // primary: Colors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
@@ -33,16 +32,14 @@ class CustomButton extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 12),
           width: SizeConfig.screenWidth,
-          decoration: BoxDecoration(
-            // color: backgroundColor ?? BrandColor().defaultColor,
-            borderRadius: BorderRadius.circular(100),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "$label",
-                style: Theme.of(context).textTheme.subtitle2,
+                style: Theme.of(context).textTheme.subtitle2?.copyWith(color: NeutralColor().offWhite),
               )
             ],
           )),

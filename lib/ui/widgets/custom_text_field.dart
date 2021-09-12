@@ -61,8 +61,24 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             prefixIcon: prefixIcon,
-            focusedBorder: outlineInputFocusedBorder(),
-            enabledBorder: outlineInputEnableBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderSide: BorderSide(
+                color: (Theme.of(context).scaffoldBackgroundColor ==
+                        NeutralColor().white)
+                    ? NeutralColor().offWhite
+                    : NeutralColor().dark,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderSide: BorderSide(
+                color: (Theme.of(context).scaffoldBackgroundColor ==
+                        NeutralColor().white)
+                    ? NeutralColor().offWhite
+                    : NeutralColor().dark,
+              ),
+            ),
             filled: true,
             contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             hintStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
@@ -79,17 +95,3 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
-
-InputBorder? outlineInputFocusedBorder() => OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
-      borderSide: BorderSide(
-        color: NeutralColor().offWhite,
-      ),
-    );
-
-InputBorder? outlineInputEnableBorder() => OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
-      borderSide: BorderSide(
-        color: NeutralColor().offWhite,
-      ),
-    );
