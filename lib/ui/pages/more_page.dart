@@ -31,9 +31,9 @@ class MorePage extends StatelessWidget {
           BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
               if (state is UserLoaded) {
-                return buildProfileCard(user: state.user);
+                return buildProfileCard(context: context,user: state.user);
               } else if (state is UserLoadingFailed) {
-                return buildProfileCard();
+                return buildProfileCard(context: context,);
               } else {
                 return SizedBox(
                   height: 60,
@@ -48,40 +48,48 @@ class MorePage extends StatelessWidget {
             height: 10,
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_person_black.png",
             label: "Account",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_chat.png",
             label: "Chats",
           ),
           Divider(
-            color: NeutralColor().line,
+            color: Theme.of(context).accentColor,
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_apperance.png",
             label: "Apperance",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_notification.png",
             label: "Notification",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_privacy.png",
             label: "Privacy",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_data_usage.png",
             label: "Data Usage",
           ),
           Divider(
-            color: NeutralColor().line,
+            color: Theme.of(context).accentColor,
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_help.png",
             label: "Help",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_email.png",
             label: "Invite Your Friends",
           ),
@@ -90,7 +98,7 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  InkWell buildProfileCard({UserModel? user}) {
+  InkWell buildProfileCard({UserModel? user, required BuildContext context}) {
     return buildContainerCard(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,9 +118,7 @@ class MorePage extends StatelessWidget {
                   children: [
                     Text(
                       user?.fullName ?? "",
-                      style: CustomTextStyle()
-                          .body1
-                          .copyWith(color: NeutralColor().active),
+                      style: Theme.of(context).textTheme.bodyText1
                     ),
                     SizedBox(
                       height: 2,
@@ -127,14 +133,17 @@ class MorePage extends StatelessWidget {
                 )
               ],
             ),
-            buildIconNext(),
+            buildIconNext(context),
           ],
         ),
         onTap: () {});
   }
 
   InkWell buildMoreListCard(
-      {required String iconName, required String label, Function? onTap}) {
+      {required String iconName,
+      required String label,
+      Function? onTap,
+      required BuildContext context}) {
     return buildContainerCard(
         onTap: () {
           if (onTap != null) {
@@ -151,19 +160,18 @@ class MorePage extends StatelessWidget {
                     "assets/icons/$iconName",
                   ),
                   size: 24,
+                  color: Theme.of(context).iconTheme.color,
                 ),
                 SizedBox(
                   width: 6,
                 ),
                 Text(
                   label,
-                  style: CustomTextStyle()
-                      .body1
-                      .copyWith(color: NeutralColor().active),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
             ),
-            buildIconNext(),
+            buildIconNext(context),
           ],
         ));
   }
@@ -182,8 +190,8 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  Icon buildIconNext() => Icon(
+  Icon buildIconNext(BuildContext context) => Icon(
         Icons.chevron_right,
-        color: NeutralColor().active,
+        color: Theme.of(context).iconTheme.color
       );
 }
