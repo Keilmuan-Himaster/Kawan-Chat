@@ -37,6 +37,9 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   List<String?> codeVerification = [null, null, null, null, null, null];
 
+  // change value [isExpired] from the result of signInWithPhoneNumber
+  bool isExpired = false;
+
   // TODO: Find best practices for this code
   void _onKeyboardTap(String value) async {
     int index = codeVerification.indexOf(null);
@@ -113,6 +116,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
       return ApiReturnValue(isSuccess: true, result: user.uid);
     } catch (e) {
       // TODO: Find how to handle error message code
+      // session-expired -> for message if [code verification] is expired
+      if (e.toString().contains("session-expired")) {
+        setState(() {
+          isExpired = true;
+        });
+      }
       return ApiReturnValue(isSuccess: false, message: e.toString());
     }
   }
@@ -180,21 +189,31 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Spacer(),
         Padding(
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-            child: Text(
-              "Resend Code",
-              style: CustomTextStyle().subHeading2.copyWith(
-                  color: (Theme.of(context).scaffoldBackgroundColor ==
-                          NeutralColor().white)
-                      ? BrandColor().defaultColor
-                      : NeutralColor().offWhite),
+            child: TextButton(
+              onPressed: () {
+                // TODO: Find the best way to handle this
+                if (isExpired) {
+                  // Code expired
+                  CustomNavigator().closeScreen(context);
+                }
+              },
+              child: Text(
+                "Resend Code",
+                style: CustomTextStyle().subHeading2.copyWith(
+                    color: (Theme.of(context).scaffoldBackgroundColor ==
+                            NeutralColor().white)
+                        ? BrandColor().defaultColor
+                        : NeutralColor().offWhite),
+              ),
             )),
         SizedBox(
-          height: 32,
+          height: 20,
         ),
         CustomNumericalKeyboard(
           onKeyboardTap: _onKeyboardTap,
           rightButtonFn: _onKeyboardBackspaceTap,
-        )],
+        )
+      ],
     );
   }
 }
