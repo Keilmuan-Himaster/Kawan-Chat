@@ -70,7 +70,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             await context.read<UserCubit>().checkUserExists(result.result!);
 
         if (userIsExists.value!) {
-          CustomNavigator().removeScreen(context, MainScreen());
+          CustomNavigator().removeAllScreen(context, MainScreen());
         } else {
           CustomNavigator().removeScreen(
               context,

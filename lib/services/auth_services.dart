@@ -28,7 +28,7 @@ class AuthServices {
 
       progressDialog.dismiss();
 
-      CustomNavigator().startScreen(
+      CustomNavigator().removeAllScreen(
           context,
           FillProfileDataScreen(
               uid: firebaseAuth.currentUser!.uid,
@@ -64,7 +64,7 @@ class AuthServices {
       CustomNavigator().startScreen(
           context,
           VerificationScreen(
-              phoneNumber: "+62" + phoneNumber,
+              phoneNumber: phoneNumber,
               verificationId: verificationId));
     };
 
