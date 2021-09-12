@@ -43,79 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
-  ApiReturnValue? result;
-
-  // // TODO: Find best practice for this code
-  // Future verifyPhoneNumber() async {
-  //   ProgressDialog progressDialog = CustomDialog.customProgressDialog(context,
-  //       message: "Sedang memverifikasi nomor");
-  //   progressDialog.show();
-  //   // Callback for when the user has already perviously signed in with this phone number on this device
-  //   // Penanganan code sms otomatis, jadi user tidak perlu memasukan manual
-  //   PhoneVerificationCompleted verificationCompleted =
-  //       (PhoneAuthCredential phoneAuthCredential) async {
-  //     await firebaseAuth.signInWithCredential(phoneAuthCredential);
-
-  //     CustomToast.showToast(
-  //         message: "Phone number automatically verified and user signed");
-
-  //     progressDialog.dismiss();
-
-  //     CustomNavigator().startScreen(
-  //         context,
-  //         FillProfileDataScreen(
-  //             uid: firebaseAuth.currentUser!.uid,
-  //             phoneNumber: "+62" + phoneNumberController.text));
-  //   };
-
-  //   // Listen for error with verification, such as too many attemps
-  //   PhoneVerificationFailed verificationFailed =
-  //       (FirebaseAuthException authException) {
-  //     String error = "";
-  //     print("{ authException CODE ${authException.code} }");
-
-  //     // TODO: Handling other authException
-  //     if (authException.code == 'invalid-phone-number') {
-  //       error = 'The provided phone number is not valid.';
-  //     } else if (authException.code == "too-many-requests") {
-  //       error = 'Too many requests on this phone number.';
-  //     }
-
-  //     progressDialog.dismiss();
-
-  //     CustomToast.showToast(message: error);
-  //   };
-
-  //   // Callback for when the code is sent
-  //   PhoneCodeSent codeSent =
-  //       (String verificationId, [int? forceResendingToken]) async {
-  //     CustomToast.showToast(
-  //         message: "Please check your phone for the verification code.");
-
-  //     progressDialog.dismiss();
-
-  //     CustomNavigator().startScreen(
-  //         context,
-  //         VerificationScreen(
-  //             phoneNumber: "+62" + phoneNumberController.text,
-  //             verificationId: verificationId));
-  //   };
-
-  //   PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-  //       (String verificationId) {
-  //     progressDialog.dismiss();
-  //   };
-
-  //   await firebaseAuth.verifyPhoneNumber(
-  //     phoneNumber: "+62" + phoneNumberController.text,
-  //     verificationCompleted: verificationCompleted,
-  //     verificationFailed: verificationFailed,
-  //     codeSent: codeSent,
-  //     codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
-  //   );
-  // }
+  @override
+  void dispose() {
+    phoneNumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

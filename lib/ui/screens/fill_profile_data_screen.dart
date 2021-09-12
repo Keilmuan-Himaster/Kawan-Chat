@@ -39,6 +39,13 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
   File? selectedProfilePicture;
 
   @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),

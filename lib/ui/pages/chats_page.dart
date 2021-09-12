@@ -58,6 +58,12 @@ class _ChatsPageState extends State<ChatsPage> {
   }
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -92,9 +98,9 @@ class _ChatsPageState extends State<ChatsPage> {
                           userStream = UserServices.getListUserByName(
                               name: searchController.text.toLowerCase(),
                               myName: (context.read<UserCubit>().state
-                                          as UserLoaded)
-                                      .user
-                                      .fullName);
+                                      as UserLoaded)
+                                  .user
+                                  .fullName);
                         });
                       },
                       onTap: () {
