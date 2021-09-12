@@ -15,9 +15,7 @@ class CustomAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
      title,
-      style: CustomTextStyle()
-          .subHeading1
-          .copyWith(color: NeutralColor().active),
+      style: Theme.of(context).textTheme.subtitle1,
     );
   }
 }

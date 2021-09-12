@@ -91,15 +91,10 @@ class _ChatsPageState extends State<ChatsPage> {
                         setState(() {
                           userStream = UserServices.getListUserByName(
                               name: searchController.text.toLowerCase(),
-                              myName: fullName(
-                                  firstName: (context.read<UserCubit>().state
+                              myName: (context.read<UserCubit>().state
                                           as UserLoaded)
                                       .user
-                                      .firstName,
-                                  lastName: (context.read<UserCubit>().state
-                                          as UserLoaded)
-                                      .user
-                                      .lastName));
+                                      .fullName);
                         });
                       },
                       onTap: () {
@@ -204,7 +199,6 @@ class _ChatsPageState extends State<ChatsPage> {
                                     shrinkWrap: true,
                                     itemCount: snapshot.data?.docs.length,
                                     itemBuilder: (_, index) {
-                                      print(snapshot.data!.docs.length);
                                       return CustomListChatCard(
                                         chatRoom: ChatRoomModel.fromJson(
                                             snapshot.data?.docs[index].data()

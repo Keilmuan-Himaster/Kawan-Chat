@@ -40,9 +40,7 @@ class CustomListUserCard extends StatelessWidget {
               children: [
                 Text(
                   user.fullName,
-                  style: CustomTextStyle()
-                      .body1
-                      .copyWith(color: NeutralColor().active),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
                 SizedBox(
                   height: 2,

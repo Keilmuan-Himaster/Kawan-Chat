@@ -48,10 +48,8 @@ class CustomListChatCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                             chatRoom.userReceiver?.fullName ?? "",
-                          style: CustomTextStyle()
-                              .body1
-                              .copyWith(color: NeutralColor().active),
+                          chatRoom.userReceiver?.fullName ?? "",
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         SizedBox(
                           height: 2,

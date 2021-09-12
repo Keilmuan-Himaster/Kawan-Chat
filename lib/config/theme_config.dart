@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // [heading] change to [headline]
 // [subheading] change to [subtitle]
 // [body] change to [bodytext]
-// [headline1] change to [headline4]
+// [metadata] change to [headline4]
 class ThemeConfig {
   static final ThemeData lightTheme = ThemeData(
       fontFamily: "Mulish",
@@ -37,6 +37,8 @@ class ThemeConfig {
             CustomTextStyle().metaData3.copyWith(color: NeutralColor().active),
       ),
       iconTheme: IconThemeData(color: NeutralColor().active),
+      primaryColorLight: NeutralColor().offWhite,
+      primaryColorDark: NeutralColor().active,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().defaultColor)));
 
@@ -73,6 +75,8 @@ class ThemeConfig {
             .copyWith(color: NeutralColor().offWhite),
       ),
       iconTheme: IconThemeData(color: NeutralColor().offWhite),
+      primaryColorLight: NeutralColor().offWhite,
+      primaryColorDark: NeutralColor().active,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().darkMode)));
 }
