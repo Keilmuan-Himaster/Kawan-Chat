@@ -9,6 +9,7 @@ import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
+import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
@@ -190,19 +191,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
         SizedBox(
           height: 32,
         ),
-        Container(
-          color: NeutralColor().offWhite,
-          child: NumericKeyboard(
-              onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor().active,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              rightIcon: Icon(
-                Icons.backspace,
-                color: NeutralColor().active,
-              ),
-              rightButtonFn: () => _onKeyboardBackspaceTap()),
-        )
-      ],
+        CustomNumericalKeyboard(
+          onKeyboardTap: _onKeyboardTap,
+          rightButtonFn: _onKeyboardBackspaceTap,
+        )],
     );
   }
 }

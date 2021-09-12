@@ -7,6 +7,7 @@ import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
+import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
@@ -205,26 +206,9 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 32,
         ),
-        Container(
-          color: (Theme.of(context).scaffoldBackgroundColor ==
-                      NeutralColor().white)
-                  ? NeutralColor().offWhite
-                  : NeutralColor().dark,
-          child: NumericKeyboard(
-              onKeyboardTap: _onKeyboardTap,
-              textColor: (Theme.of(context).scaffoldBackgroundColor ==
-                      NeutralColor().white)
-                  ? NeutralColor().active
-                  : NeutralColor().offWhite,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              rightIcon: Icon(
-                Icons.backspace,
-                color: (Theme.of(context).scaffoldBackgroundColor ==
-                        NeutralColor().white)
-                    ? NeutralColor().active
-                    : NeutralColor().offWhite,
-              ),
-              rightButtonFn: () => _onKeyboardBackspaceTap()),
+        CustomNumericalKeyboard(
+          onKeyboardTap: _onKeyboardTap,
+          rightButtonFn: _onKeyboardBackspaceTap,
         )
       ],
     );
