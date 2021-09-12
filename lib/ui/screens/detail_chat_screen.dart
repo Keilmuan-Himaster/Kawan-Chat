@@ -3,9 +3,11 @@ import 'package:chat_app/models/chat_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
+import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chat_app/models/api_return_value.dart';
@@ -91,8 +93,10 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                           ));
                     });
               } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  height: SizeConfig.screenHeight * 0.8,
+                  child: Center(
+                      child: CustomDialog.showCircularProgressIndicator()),
                 );
               } else {
                 // TODO: Handle this error

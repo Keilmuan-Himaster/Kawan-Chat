@@ -9,6 +9,7 @@ class ChatServices {
   static final CollectionReference chatRoomsCollection =
       firebaseFirestore.collection("chat_rooms");
       
+  // FIXME: Create other stream to handle search user
   static Stream<QuerySnapshot<Object?>> getChatRooms(
       {required UserModel user}) {
     return chatRoomsCollection

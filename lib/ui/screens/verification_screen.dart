@@ -44,7 +44,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   void _onKeyboardTap(String value) async {
     int index = codeVerification.indexOf(null);
     ApiReturnValue<bool>? result;
-    ProgressDialog progressDialog = CustomDialog.customProgressDialog(context,
+    ProgressDialog progressDialog = CustomDialog.showProgressDialog(context,
         message: "Sedang memverifikasi code");
 
     if (index != -1) {

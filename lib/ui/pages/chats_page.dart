@@ -8,6 +8,7 @@ import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/services/user_services.dart';
 import 'package:chat_app/ui/screens/detail_chat_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_list_user_card.dart';
 import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
@@ -186,8 +187,11 @@ class _ChatsPageState extends State<ChatsPage> {
                             }
                           } else if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(
-                              child: CircularProgressIndicator(),
+                            return SizedBox(
+                              height: SizeConfig.screenHeight * 0.8,
+                              child: Center(
+                                  child: CustomDialog
+                                      .showCircularProgressIndicator()),
                             );
                           } else {
                             // TODO: Handle this error
@@ -235,8 +239,11 @@ class _ChatsPageState extends State<ChatsPage> {
                             }
                           } else if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(
-                              child: CircularProgressIndicator(),
+                            return SizedBox(
+                              height: SizeConfig.screenHeight * 0.8,
+                              child: Center(
+                                  child: CustomDialog
+                                      .showCircularProgressIndicator()),
                             );
                           } else {
                             // TODO: Handle this error
@@ -248,8 +255,10 @@ class _ChatsPageState extends State<ChatsPage> {
                   // TODO: Handle this error
                   return Container();
                 } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
+                  return SizedBox(
+                    height: SizeConfig.screenHeight * 0.8,
+                    child: Center(
+                        child: CustomDialog.showCircularProgressIndicator()),
                   );
                 }
               },

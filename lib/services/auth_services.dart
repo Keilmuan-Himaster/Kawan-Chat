@@ -13,7 +13,7 @@ class AuthServices {
 
   static Future<void> verifyPhoneNumber(
       {required String phoneNumber, required BuildContext context}) async {
-    ProgressDialog progressDialog = CustomDialog.customProgressDialog(context,
+    ProgressDialog progressDialog = CustomDialog.showProgressDialog(context,
         message: "Sedang memverifikasi nomor");
     progressDialog.show();
 

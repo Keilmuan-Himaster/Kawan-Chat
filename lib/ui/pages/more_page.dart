@@ -32,16 +32,9 @@ class MorePage extends StatelessWidget {
             builder: (context, state) {
               if (state is UserLoaded) {
                 return buildProfileCard(context: context,user: state.user);
-              } else if (state is UserLoadingFailed) {
-                return buildProfileCard(context: context,);
               } else {
-                return SizedBox(
-                  height: 60,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
+                return buildProfileCard(context: context,);
+              } 
             },
           ),
           SizedBox(

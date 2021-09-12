@@ -110,7 +110,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                   CustomToast.showToast(message: "First name cannot be empty");
                 } else {
                   ProgressDialog progressDialog =
-                      CustomDialog.customProgressDialog(context,
+                      CustomDialog.showProgressDialog(context,
                           message: "Sedang membuat akun");
                   progressDialog.show();
 
