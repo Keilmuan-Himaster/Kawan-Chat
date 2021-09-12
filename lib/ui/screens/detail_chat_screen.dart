@@ -44,7 +44,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
       appBar: CustomAppBar(
         label: widget.userReceiver.fullName,
       ),
-      backgroundColor: NeutralColor().offWhite,
+      backgroundColor: Theme.of(context).accentColor,
       body: buildBody(),
     );
   }
@@ -77,8 +77,6 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                     reverse: true,
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     itemBuilder: (context, index) {
-                      print(snapshot.data?.docs[index].data());
-                      print(widget.userMe.uid);
                       return Padding(
                           padding: EdgeInsets.only(
                               top: 12, bottom: (index == 0) ? 20 : 0),
@@ -105,21 +103,10 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Container buildButtonSendMessage() {
     return Container(
-      color: NeutralColor().white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.add,
-              color: NeutralColor().disabled,
-              size: 20,
-            ),
-          ),
-          SizedBox(
-            width: 12,
-          ),
           Expanded(
             child: CustomTextField(controller: messageController, hintText: ""),
           ),
