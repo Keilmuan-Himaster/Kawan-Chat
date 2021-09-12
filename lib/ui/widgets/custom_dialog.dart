@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 
 class CustomDialog {
+  // FIXME: Update to use ThemeData
   static ProgressDialog customProgressDialog(BuildContext context,
         {String? message, String? title}) =>
     ProgressDialog(context,

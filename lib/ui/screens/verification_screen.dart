@@ -120,7 +120,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor().white,
       body: buildBody(),
     );
   }
@@ -131,13 +130,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Spacer(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-          child: Text(
-            CustomLabel().verificationLabel,
-            textAlign: TextAlign.center,
-            style: CustomTextStyle()
-                .heading2
-                .copyWith(color: NeutralColor().active),
-          ),
+          child: Text(CustomLabel().verificationLabel,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline2),
         ),
         SizedBox(
           height: 8,
@@ -145,11 +140,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
-            CustomLabel().verifitcaionDescription + " " + widget.phoneNumber,
-            textAlign: TextAlign.center,
-            style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor().active),
-          ),
+              CustomLabel().verifitcaionDescription + " " + widget.phoneNumber,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText2),
         ),
         SizedBox(
           height: 42,
@@ -167,18 +160,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               height: 24,
                               width: 24,
                               decoration: BoxDecoration(
-                                  color: NeutralColor().line,
+                                  color: (Theme.of(context)
+                                              .scaffoldBackgroundColor ==
+                                          NeutralColor().white)
+                                      ? NeutralColor().line
+                                      : NeutralColor().dark,
                                   shape: BoxShape.circle),
                             )
                           : SizedBox(
                               height: 24,
                               width: 24,
-                              child: Text(
-                                value,
-                                style: CustomTextStyle().subHeading1.copyWith(
-                                      color: NeutralColor().active,
-                                    ),
-                              ),
+                              child: Text(value,
+                                  style: Theme.of(context).textTheme.subtitle1),
                             )))
                   .values
                   .toList()),
@@ -188,9 +181,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
             child: Text(
               "Resend Code",
-              style: CustomTextStyle()
-                  .subHeading2
-                  .copyWith(color: BrandColor().defaultColor),
+              style: CustomTextStyle().subHeading2.copyWith(
+                  color: (Theme.of(context).scaffoldBackgroundColor ==
+                          NeutralColor().white)
+                      ? BrandColor().defaultColor
+                      : NeutralColor().offWhite),
             )),
         SizedBox(
           height: 32,
