@@ -11,6 +11,7 @@ class ThemeConfig {
       fontFamily: "Mulish",
       appBarTheme: AppBarTheme(
           backgroundColor: NeutralColor().white,
+          brightness: Brightness.light,
           iconTheme: IconThemeData(color: NeutralColor().active)),
       scaffoldBackgroundColor: NeutralColor().white,
       textTheme: TextTheme(
@@ -46,6 +47,7 @@ class ThemeConfig {
   static final ThemeData darkTheme = ThemeData(
       fontFamily: "Mulish",
       appBarTheme: AppBarTheme(
+        brightness: Brightness.dark,
           backgroundColor: NeutralColor().active,
           iconTheme: IconThemeData(color: NeutralColor().offWhite)),
       scaffoldBackgroundColor: NeutralColor().active,
