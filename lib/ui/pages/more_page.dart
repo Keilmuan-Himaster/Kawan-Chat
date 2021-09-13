@@ -1,10 +1,12 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/config/theme_config.dart';
 import 'package:chat_app/cubit/cubit.dart';
 import 'package:chat_app/helper/full_name.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/ui/widgets/custom_profile_card.dart';
+import 'package:chat_app/utils/preferences.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,10 +33,12 @@ class MorePage extends StatelessWidget {
           BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
               if (state is UserLoaded) {
-                return buildProfileCard(context: context,user: state.user);
+                return buildProfileCard(context: context, user: state.user);
               } else {
-                return buildProfileCard(context: context,);
-              } 
+                return buildProfileCard(
+                  context: context,
+                );
+              }
             },
           ),
           SizedBox(
@@ -54,10 +58,21 @@ class MorePage extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           buildMoreListCard(
-            context: context,
-            iconName: "icon_apperance.png",
-            label: "Apperance",
-          ),
+              context: context,
+              iconName: "icon_apperance.png",
+              label: "Appearance",
+              onTap: () => Preferences.instance().then((value) {
+                    bool? isDark = value.isDark;
+                    ThemeData theme;
+                    if (isDark == true) {
+                      value.isDark = false;
+                      theme = ThemeConfig.lightTheme;
+                    } else {
+                      value.isDark = true;
+                      theme = ThemeConfig.darkTheme;
+                    }
+                    context.read<ThemeCubit>().changeTheme(theme);
+                  })),
           buildMoreListCard(
             context: context,
             iconName: "icon_notification.png",
@@ -109,10 +124,8 @@ class MorePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      user?.fullName ?? "",
-                      style: Theme.of(context).textTheme.bodyText1
-                    ),
+                    Text(user?.fullName ?? "",
+                        style: Theme.of(context).textTheme.bodyText1),
                     SizedBox(
                       height: 2,
                     ),
@@ -183,8 +196,6 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  Icon buildIconNext(BuildContext context) => Icon(
-        Icons.chevron_right,
-        color: Theme.of(context).iconTheme.color
-      );
+  Icon buildIconNext(BuildContext context) =>
+      Icon(Icons.chevron_right, color: Theme.of(context).iconTheme.color);
 }
