@@ -201,16 +201,18 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                 message: messageController.text,
                                 timestamp:
                                     date.millisecondsSinceEpoch.toString(),
-                                messageReply: MessageReplyModel(
-                                    timestampMessage: replyMessage?.timestamp,
-                                    userReply: (replyMessage?.uidSender ==
-                                            widget.userMe.uid)
-                                        ? widget.userMe
-                                        : widget.userReceiver),
+                                messageReply: (replyMessage == null)
+                                    ? null
+                                    : MessageReplyModel(
+                                        timestampMessage:
+                                            replyMessage?.timestamp,
+                                        userRepliedUid:
+                                            (replyMessage?.uidSender ==
+                                                    widget.userMe.uid)
+                                                ? widget.userMe.uid
+                                                : widget.userReceiver.uid),
                                 uidSender: widget.userMe.uid,
                                 uidReceiver: widget.userReceiver.uid));
-
-                    cancelReply();
 
                     // write for receiver
                     ChatServices.sendMessage(
@@ -219,14 +221,18 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                         chat: ChatModel(
                             message: messageController.text,
                             timestamp: date.millisecondsSinceEpoch.toString(),
-                            messageReply: MessageReplyModel(
-                                timestampMessage: replyMessage?.timestamp,
-                                userReply: (replyMessage?.uidSender ==
-                                        widget.userMe.uid)
-                                    ? widget.userMe
-                                    : widget.userReceiver),
+                            messageReply: (replyMessage == null)
+                                ? null
+                                : MessageReplyModel(
+                                    timestampMessage: replyMessage?.timestamp,
+                                    userRepliedUid: (replyMessage?.uidSender ==
+                                            widget.userMe.uid)
+                                        ? widget.userMe.uid
+                                        : widget.userReceiver.uid),
                             uidSender: widget.userMe.uid,
                             uidReceiver: widget.userReceiver.uid));
+
+                    cancelReply();
 
                     if (result.value!) {
                       // write for me as sender
