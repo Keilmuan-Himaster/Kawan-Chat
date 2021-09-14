@@ -204,6 +204,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                 messageReply: (replyMessage == null)
                                     ? null
                                     : MessageReplyModel(
+                                      message: replyMessage,
                                         timestampMessage:
                                             replyMessage?.timestamp,
                                         userRepliedUid:
@@ -224,6 +225,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                             messageReply: (replyMessage == null)
                                 ? null
                                 : MessageReplyModel(
+                                   message: replyMessage,
                                     timestampMessage: replyMessage?.timestamp,
                                     userRepliedUid: (replyMessage?.uidSender ==
                                             widget.userMe.uid)

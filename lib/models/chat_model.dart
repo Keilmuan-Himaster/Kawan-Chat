@@ -22,4 +22,15 @@ class ChatModel {
         "uid_receiver": uidReceiver,
         "timestamp": timestamp,
       };
+
+      ChatModel copyWith({
+        MessageReplyModel? messageReply
+      }) => ChatModel(
+        message: this.message,
+        messageReply: messageReply,
+        timestamp: this.timestamp,
+        uidReceiver: this.uidReceiver,
+        uidSender: this.uidSender
+      );
+
 }
