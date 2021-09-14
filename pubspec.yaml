@@ -30,6 +30,7 @@ dev_dependencies:
   ndialog: ^4.1.0
   numeric_keyboard: ^1.1.0
   shared_preferences: ^2.0.7
+  swipe_to: ^0.1.0-nullsafety.1
 
 flutter:
 

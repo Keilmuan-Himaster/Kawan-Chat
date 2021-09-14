@@ -3,18 +3,18 @@ import 'package:chat_app/models/user_model.dart';
 
 class MessageReplyModel {
   UserModel? userReply;
-  ChatModel? message;
+  String? timestampMessage;
 
-  MessageReplyModel({this.message, this.userReply});
+  MessageReplyModel({this.timestampMessage, this.userReply});
 
   factory MessageReplyModel.fromJson(Map<String, dynamic> json) =>
       MessageReplyModel(
-        userReply: json['user_reply'],
-        message: json['message'] ?? "",
+        userReply: (json['user'] == null) ? null : UserModel.fromJson(json['user']),
+        timestampMessage: json['timestamp_message'] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
-        "user_reply": userReply?.toJson(),
-        "message": message,
+        "user": userReply?.toJson(),
+        "timestamp_message": timestampMessage,
       };
 }

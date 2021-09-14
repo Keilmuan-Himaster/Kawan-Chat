@@ -14,6 +14,6 @@ class ChatRoomModel {
   Map<String, dynamic> toJson() => {
         "user_receiver": userReceiver?.toJson(),
         "last_message": lastMessage,
-        "timestamp": DateTime.now().millisecondsSinceEpoch.toString(),
+        "timestamp": timestamp ?? DateTime.now().millisecondsSinceEpoch.toString(),
       };
 }

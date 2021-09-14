@@ -41,6 +41,9 @@ class ThemeConfig {
       primaryColorLight: NeutralColor().offWhite,
       primaryColorDark: NeutralColor().active,
       accentColor: NeutralColor().offWhite,
+      primaryColor: BrandColor().defaultColor,
+
+      splashColor: NeutralColor().line,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().defaultColor)));
 
@@ -81,6 +84,8 @@ class ThemeConfig {
       primaryColorLight: NeutralColor().offWhite,
       primaryColorDark: NeutralColor().active,
       accentColor: NeutralColor().dark,
+      splashColor: NeutralColor().dark,
+      primaryColor: NeutralColor().offWhite,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().darkMode)));
 }
