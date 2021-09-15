@@ -7,6 +7,7 @@ class CustomDialog {
           {String? message, String? title}) =>
       ProgressDialog(context,
           dialogStyle: DialogStyle(
+            backgroundColor: Colors.white,
             borderRadius: BorderRadius.circular(6),
             contentTextStyle: TextStyle(color: NeutralColor().active),
             titleTextStyle: TextStyle(color: NeutralColor().active),
