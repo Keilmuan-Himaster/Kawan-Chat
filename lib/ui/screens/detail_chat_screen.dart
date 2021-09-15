@@ -95,6 +95,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                               focusNode.requestFocus();
                             },
                             child: CustomMessageCardItem(
+                              userReciever: widget.userReceiver,
                               chat: ChatModel.fromJson(
                                   snapshot.data?.docs[index].data()
                                       as Map<String, dynamic>),
