@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 class CustomProfileCard extends StatelessWidget {
   const CustomProfileCard(
-      {Key? key, this.imageUrl, required this.height, required this.padding})
+      {Key? key, this.imageUrl, required this.height, required this.padding, this.imageWidget})
       : super(key: key);
 
   final String? imageUrl;
   final double padding, height;
+  final ImageProvider<Object>? imageWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class CustomProfileCard extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+       Container(
           height: height,
           width: height,
           decoration: BoxDecoration(
@@ -42,7 +43,7 @@ class CustomProfileCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
             child: FadeInImage(
               placeholder: AssetImage(""),
-              image: NetworkImage(imageUrl ?? ""),
+              image: imageWidget ??  NetworkImage(imageUrl ?? ""),
               fit: BoxFit.cover,
             ),
           ),

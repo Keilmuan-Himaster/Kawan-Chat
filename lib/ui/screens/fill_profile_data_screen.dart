@@ -71,7 +71,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                 CustomProfileCard(
                     height: 100,
                     padding: 24,
-                    imageUrl: selectedProfilePicture?.path),
+                    imageWidget: FileImage(File(selectedProfilePicture?.path ?? ""))),
                 Positioned(
                     bottom: 0,
                     right: 0,
@@ -150,7 +150,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
               children: [
                 ListTile(
                   leading: Icon(Icons.camera_alt),
-                  title: Text("Kamera"),
+                  title: Text("Kamera", style: TextStyle(color: NeutralColor().weak),),
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
@@ -175,7 +175,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                 ),
                 ListTile(
                   leading: Icon(Icons.perm_media),
-                  title: Text("Galeri"),
+                  title: Text("Galeri", style: TextStyle(color: NeutralColor().weak),),
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
