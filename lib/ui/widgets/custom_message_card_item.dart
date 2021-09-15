@@ -27,7 +27,7 @@ class CustomMessageCardItem extends StatelessWidget {
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: (isMyMessage)
-                  ? BrandColor().defaultColor
+                  ? Theme.of(context).cardColor
                   : Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
@@ -54,7 +54,9 @@ class CustomMessageCardItem extends StatelessWidget {
                               Container(
                                   width: 4,
                                   decoration: BoxDecoration(
-                                    color: Colors.black,
+                                    color: (isMyMessage)
+                                        ? Theme.of(context).iconTheme.color
+                                        : Theme.of(context).cardColor,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
                                       bottomLeft: Radius.circular(4),

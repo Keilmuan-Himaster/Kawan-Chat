@@ -44,6 +44,8 @@ class ThemeConfig {
       primaryColor: BrandColor().defaultColor,
 
       splashColor: NeutralColor().line,
+
+      cardColor: BrandColor().defaultColor,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().defaultColor)));
 
@@ -86,6 +88,7 @@ class ThemeConfig {
       accentColor: NeutralColor().dark,
       splashColor: NeutralColor().dark,
       primaryColor: NeutralColor().offWhite,
+      cardColor: BrandColor().darkMode,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: BrandColor().darkMode)));
 }
