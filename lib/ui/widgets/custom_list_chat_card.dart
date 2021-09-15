@@ -58,7 +58,7 @@ class CustomListChatCard extends StatelessWidget {
                           chatRoom.lastMessage ?? "-",
                           style: CustomTextStyle()
                               .metaData1
-                              .copyWith(color: NeutralColor().disabled),
+                              .copyWith(color: NeutralColor.disabled),
                         ),
                       ],
                     ),
@@ -70,7 +70,7 @@ class CustomListChatCard extends StatelessWidget {
               timestampToDatetime(chatRoom.timestamp),
               style: CustomTextStyle()
                   .metaData1
-                  .copyWith(color: NeutralColor().disabled),
+                  .copyWith(color: NeutralColor.disabled),
             ),
           ],
         ),

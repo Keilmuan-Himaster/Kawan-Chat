@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
             children: [
               Text(
                 "$label",
-                style: Theme.of(context).textTheme.subtitle2?.copyWith(color: NeutralColor().offWhite),
+                style: Theme.of(context).textTheme.subtitle2?.copyWith(color: NeutralColor.offWhite),
               )
             ],
           )),

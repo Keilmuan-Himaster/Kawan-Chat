@@ -16,22 +16,22 @@ class CustomNumericalKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
           color: (Theme.of(context).scaffoldBackgroundColor ==
-                      NeutralColor().white)
-                  ? NeutralColor().offWhite
-                  : NeutralColor().dark,
+                      NeutralColor.white)
+                  ? NeutralColor.offWhite
+                  : NeutralColor.dark,
           child: NumericKeyboard(
               onKeyboardTap: onKeyboardTap,
               textColor: (Theme.of(context).scaffoldBackgroundColor ==
-                      NeutralColor().white)
-                  ? NeutralColor().active
-                  : NeutralColor().offWhite,
+                      NeutralColor.white)
+                  ? NeutralColor.active
+                  : NeutralColor.offWhite,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightIcon: Icon(
                 Icons.backspace,
                 color: (Theme.of(context).scaffoldBackgroundColor ==
-                        NeutralColor().white)
-                    ? NeutralColor().active
-                    : NeutralColor().offWhite,
+                        NeutralColor.white)
+                    ? NeutralColor.active
+                    : NeutralColor.offWhite,
               ),
               rightButtonFn: () => rightButtonFn()),
         );

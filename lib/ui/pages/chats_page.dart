@@ -90,7 +90,7 @@ class _ChatsPageState extends State<ChatsPage> {
                     child: CustomTextField(
                       prefixIcon: Icon(
                         Icons.search,
-                        color: NeutralColor().disabled,
+                        color: NeutralColor.disabled,
                       ),
                       controller: searchController,
                       hintText: "Search",

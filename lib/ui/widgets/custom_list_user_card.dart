@@ -49,7 +49,7 @@ class CustomListUserCard extends StatelessWidget {
                   user.phoneNumber,
                   style: CustomTextStyle()
                       .metaData1
-                      .copyWith(color: NeutralColor().disabled),
+                      .copyWith(color: NeutralColor.disabled),
                 ),
               ],
             )

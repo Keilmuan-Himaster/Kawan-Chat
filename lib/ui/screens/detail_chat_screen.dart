@@ -136,7 +136,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                           decoration: BoxDecoration(
                               border: Border(
                                   left: BorderSide(
-                                      color: BrandColor().defaultColor,
+                                      color: BrandColor.defaultColor,
                                       width: 4))),
                         ),
                         Expanded(
@@ -264,7 +264,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                 },
                 child: ImageIcon(
                   AssetImage("assets/icons/icon_send_message.png"),
-                  color: BrandColor().defaultColor,
+                  color: BrandColor.defaultColor,
                   size: 20,
                 ),
               ),

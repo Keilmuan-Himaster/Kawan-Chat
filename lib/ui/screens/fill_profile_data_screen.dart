@@ -150,7 +150,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
               children: [
                 ListTile(
                   leading: Icon(Icons.camera_alt),
-                  title: Text("Kamera", style: TextStyle(color: NeutralColor().weak),),
+                  title: Text("Kamera", style: TextStyle(color: NeutralColor.weak),),
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
@@ -175,7 +175,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                 ),
                 ListTile(
                   leading: Icon(Icons.perm_media),
-                  title: Text("Galeri", style: TextStyle(color: NeutralColor().weak),),
+                  title: Text("Galeri", style: TextStyle(color: NeutralColor.weak),),
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =

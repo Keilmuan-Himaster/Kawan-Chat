@@ -92,9 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
                     color: (Theme.of(context).scaffoldBackgroundColor ==
-                            NeutralColor().white)
-                        ? NeutralColor().offWhite
-                        : NeutralColor().dark,
+                            NeutralColor.white)
+                        ? NeutralColor.offWhite
+                        : NeutralColor.dark,
                     borderRadius: BorderRadius.circular(4)),
                 child: Row(
                   children: [
@@ -105,9 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text("+62",
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
                             color: (Theme.of(context).scaffoldBackgroundColor ==
-                                    NeutralColor().white)
-                                ? NeutralColor().disabled
-                                : NeutralColor().offWhite))
+                                    NeutralColor.white)
+                                ? NeutralColor.disabled
+                                : NeutralColor.offWhite))
                   ],
                 ),
               ),

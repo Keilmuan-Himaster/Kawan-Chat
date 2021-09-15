@@ -10,85 +10,85 @@ class ThemeConfig {
   static final ThemeData lightTheme = ThemeData(
       fontFamily: "Mulish",
       appBarTheme: AppBarTheme(
-          backgroundColor: NeutralColor().white,
+          backgroundColor: NeutralColor.white,
           brightness: Brightness.light,
-          iconTheme: IconThemeData(color: NeutralColor().active)),
-      scaffoldBackgroundColor: NeutralColor().white,
+          iconTheme: IconThemeData(color: NeutralColor.active)),
+      scaffoldBackgroundColor: NeutralColor.white,
       textTheme: TextTheme(
         headline1:
-            CustomTextStyle().heading1.copyWith(color: NeutralColor().active),
+            CustomTextStyle().heading1.copyWith(color: NeutralColor.active),
         headline2: CustomTextStyle().heading2.copyWith(
-              color: NeutralColor().active,
+              color: NeutralColor.active,
             ),
         subtitle1: CustomTextStyle()
             .subHeading1
-            .copyWith(color: NeutralColor().active),
+            .copyWith(color: NeutralColor.active),
         subtitle2: CustomTextStyle()
             .subHeading2
-            .copyWith(color: NeutralColor().active),
+            .copyWith(color: NeutralColor.active),
         bodyText1:
-            CustomTextStyle().body1.copyWith(color: NeutralColor().active),
+            CustomTextStyle().body1.copyWith(color: NeutralColor.active),
         bodyText2:
-            CustomTextStyle().body2.copyWith(color: NeutralColor().active),
+            CustomTextStyle().body2.copyWith(color: NeutralColor.active),
         headline4:
-            CustomTextStyle().metaData1.copyWith(color: NeutralColor().active),
+            CustomTextStyle().metaData1.copyWith(color: NeutralColor.active),
         headline5:
-            CustomTextStyle().metaData2.copyWith(color: NeutralColor().active),
+            CustomTextStyle().metaData2.copyWith(color: NeutralColor.active),
         headline6:
-            CustomTextStyle().metaData3.copyWith(color: NeutralColor().active),
+            CustomTextStyle().metaData3.copyWith(color: NeutralColor.active),
       ),
-      iconTheme: IconThemeData(color: NeutralColor().active),
-      primaryColorLight: NeutralColor().offWhite,
-      primaryColorDark: NeutralColor().active,
-      accentColor: NeutralColor().offWhite,
-      primaryColor: BrandColor().defaultColor,
+      iconTheme: IconThemeData(color: NeutralColor.active),
+      primaryColorLight: NeutralColor.offWhite,
+      primaryColorDark: NeutralColor.active,
+      accentColor: NeutralColor.offWhite,
+      primaryColor: BrandColor.defaultColor,
 
-      splashColor: NeutralColor().line,
+      splashColor: NeutralColor.line,
 
-      cardColor: BrandColor().defaultColor,
+      cardColor: BrandColor.defaultColor,
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(primary: BrandColor().defaultColor)));
+          style: ElevatedButton.styleFrom(primary: BrandColor.defaultColor)));
 
   static final ThemeData darkTheme = ThemeData(
       fontFamily: "Mulish",
       appBarTheme: AppBarTheme(
         brightness: Brightness.dark,
-          backgroundColor: NeutralColor().active,
-          iconTheme: IconThemeData(color: NeutralColor().offWhite)),
-      scaffoldBackgroundColor: NeutralColor().active,
+          backgroundColor: NeutralColor.active,
+          iconTheme: IconThemeData(color: NeutralColor.offWhite)),
+      scaffoldBackgroundColor: NeutralColor.active,
       textTheme: TextTheme(
         headline1:
-            CustomTextStyle().heading1.copyWith(color: NeutralColor().offWhite),
+            CustomTextStyle().heading1.copyWith(color: NeutralColor.offWhite),
         headline2: CustomTextStyle().heading2.copyWith(
-              color: NeutralColor().offWhite,
+              color: NeutralColor.offWhite,
             ),
         subtitle1: CustomTextStyle()
             .subHeading1
-            .copyWith(color: NeutralColor().offWhite),
+            .copyWith(color: NeutralColor.offWhite),
         subtitle2: CustomTextStyle()
             .subHeading2
-            .copyWith(color: NeutralColor().offWhite),
+            .copyWith(color: NeutralColor.offWhite),
         bodyText1:
-            CustomTextStyle().body1.copyWith(color: NeutralColor().offWhite),
+            CustomTextStyle().body1.copyWith(color: NeutralColor.offWhite),
         bodyText2:
-            CustomTextStyle().body2.copyWith(color: NeutralColor().offWhite),
+            CustomTextStyle().body2.copyWith(color: NeutralColor.offWhite),
         headline4: CustomTextStyle()
             .metaData1
-            .copyWith(color: NeutralColor().offWhite),
+            .copyWith(color: NeutralColor.offWhite),
         headline5: CustomTextStyle()
             .metaData2
-            .copyWith(color: NeutralColor().offWhite),
+            .copyWith(color: NeutralColor.offWhite),
         headline6: CustomTextStyle()
             .metaData3
-            .copyWith(color: NeutralColor().offWhite),
+            .copyWith(color: NeutralColor.offWhite),
       ),
-      iconTheme: IconThemeData(color: NeutralColor().offWhite),
-      primaryColorLight: NeutralColor().offWhite,
-      primaryColorDark: NeutralColor().active,
-      accentColor: NeutralColor().dark,
-      splashColor: NeutralColor().dark,
-      primaryColor: NeutralColor().offWhite,
-      cardColor: BrandColor().darkMode,
+      iconTheme: IconThemeData(color: NeutralColor.offWhite),
+      primaryColorLight: NeutralColor.offWhite,
+      primaryColorDark: NeutralColor.active,
+      accentColor: NeutralColor.dark,
+      splashColor: NeutralColor.dark,
+      primaryColor: NeutralColor.offWhite,
+      cardColor: BrandColor.darkMode,
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(primary: BrandColor().darkMode)));
+          style: ElevatedButton.styleFrom(primary: BrandColor.darkMode)));
 }

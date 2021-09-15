@@ -16,7 +16,7 @@ class OnboardingScreen extends StatelessWidget {
     // Init Size Config
     SizeConfig().init(context);
     return Scaffold(
-      // backgroundColor: NeutralColor().white,
+      // backgroundColor: NeutralColor.white,
       body: buildBody(context),
     );
   }
@@ -30,7 +30,7 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           Spacer(),
           Image.asset(
-            Theme.of(context).scaffoldBackgroundColor == NeutralColor().white ? "assets/images/illustration_splash_light.png" : "assets/images/illustration_splash_dark.png",
+            Theme.of(context).scaffoldBackgroundColor == NeutralColor.white ? "assets/images/illustration_splash_light.png" : "assets/images/illustration_splash_dark.png",
             height: 271,
           ),
           SizedBox(

@@ -9,8 +9,8 @@ class CustomDialog {
           dialogStyle: DialogStyle(
             backgroundColor: Colors.white,
             borderRadius: BorderRadius.circular(6),
-            contentTextStyle: TextStyle(color: NeutralColor().active),
-            titleTextStyle: TextStyle(color: NeutralColor().active),
+            contentTextStyle: TextStyle(color: NeutralColor.active),
+            titleTextStyle: TextStyle(color: NeutralColor.active),
           ),
           defaultLoadingWidget: showCircularProgressIndicator(),
           message: Text(

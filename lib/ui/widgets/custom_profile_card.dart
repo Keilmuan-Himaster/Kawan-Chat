@@ -26,7 +26,7 @@ class CustomProfileCard extends StatelessWidget {
             child: FadeInImage(
               placeholder: AssetImage(
                   (Theme.of(context).scaffoldBackgroundColor ==
-                          NeutralColor().white)
+                          NeutralColor.white)
                       ? "assets/icons/icon_person_black.png"
                       : "assets/icons/icon_person_white.png"),
               image: NetworkImage(imageUrl ?? ""),
@@ -37,7 +37,7 @@ class CustomProfileCard extends StatelessWidget {
           height: height,
           width: height,
           decoration: BoxDecoration(
-              color: NeutralColor().line.withOpacity(0),
+              color: NeutralColor.line.withOpacity(0),
               shape: BoxShape.circle),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),

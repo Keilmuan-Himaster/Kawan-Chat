@@ -172,9 +172,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               decoration: BoxDecoration(
                                   color: (Theme.of(context)
                                               .scaffoldBackgroundColor ==
-                                          NeutralColor().white)
-                                      ? NeutralColor().line
-                                      : NeutralColor().dark,
+                                          NeutralColor.white)
+                                      ? NeutralColor.line
+                                      : NeutralColor.dark,
                                   shape: BoxShape.circle),
                             )
                           : SizedBox(
@@ -201,9 +201,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 "Resend Code",
                 style: CustomTextStyle().subHeading2.copyWith(
                     color: (Theme.of(context).scaffoldBackgroundColor ==
-                            NeutralColor().white)
-                        ? BrandColor().defaultColor
-                        : NeutralColor().offWhite),
+                            NeutralColor.white)
+                        ? BrandColor.defaultColor
+                        : NeutralColor.offWhite),
               ),
             )),
         SizedBox(
