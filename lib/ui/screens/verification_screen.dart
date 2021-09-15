@@ -140,7 +140,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Spacer(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-          child: Text(CustomLabel().verificationLabel,
+          child: Text(CustomLabel.verificationLabel,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline2),
         ),
@@ -150,7 +150,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
-              CustomLabel().verifitcaionDescription + " " + widget.phoneNumber,
+              CustomLabel.verifitcaionDescription + " " + widget.phoneNumber,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyText2),
         ),

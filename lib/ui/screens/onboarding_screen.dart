@@ -37,7 +37,7 @@ class OnboardingScreen extends StatelessWidget {
             height: 42,
           ),
           Text(
-            CustomLabel().splashLabel,
+            CustomLabel.splashLabel,
             textAlign: TextAlign.center,
             style:
                 Theme.of(context).textTheme.headline2,

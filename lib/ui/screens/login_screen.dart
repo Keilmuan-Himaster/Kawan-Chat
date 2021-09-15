@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
-            CustomLabel().loginLabel,
+            CustomLabel.loginLabel,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline2,
           ),
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
-            CustomLabel().loginDescription,
+            CustomLabel.loginDescription,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText2,
           ),
