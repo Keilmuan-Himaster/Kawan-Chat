@@ -1,7 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/cubit/cubit.dart';
-import 'package:chat_app/helper/full_name.dart';
 import 'package:chat_app/models/chat_room_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/services/chat_services.dart';

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/helper/full_name.dart';
 import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/screens/main_screen.dart';
@@ -13,6 +12,7 @@ import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
+import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:image_picker/image_picker.dart';
@@ -121,7 +121,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                           phoneNumber: widget.phoneNumber,
                           firstName: firstNameController.text,
                           lastName: lastNameController.text,
-                          fullName: fullName(
+                          fullName: Utils.fullName(
                               firstName: firstNameController.text,
                               lastName: lastNameController.text),
                           imageUrl: selectedProfilePicture?.path ?? ""));
