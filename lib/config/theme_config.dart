@@ -16,26 +16,26 @@ class ThemeConfig {
       scaffoldBackgroundColor: NeutralColor.white,
       textTheme: TextTheme(
         headline1:
-            CustomTextStyle().heading1.copyWith(color: NeutralColor.active),
-        headline2: CustomTextStyle().heading2.copyWith(
+            CustomTextStyle.heading1.copyWith(color: NeutralColor.active),
+        headline2: CustomTextStyle.heading2.copyWith(
               color: NeutralColor.active,
             ),
-        subtitle1: CustomTextStyle()
+        subtitle1: CustomTextStyle
             .subHeading1
             .copyWith(color: NeutralColor.active),
-        subtitle2: CustomTextStyle()
+        subtitle2: CustomTextStyle
             .subHeading2
             .copyWith(color: NeutralColor.active),
         bodyText1:
-            CustomTextStyle().body1.copyWith(color: NeutralColor.active),
+            CustomTextStyle.body1.copyWith(color: NeutralColor.active),
         bodyText2:
-            CustomTextStyle().body2.copyWith(color: NeutralColor.active),
+            CustomTextStyle.body2.copyWith(color: NeutralColor.active),
         headline4:
-            CustomTextStyle().metaData1.copyWith(color: NeutralColor.active),
+            CustomTextStyle.metaData1.copyWith(color: NeutralColor.active),
         headline5:
-            CustomTextStyle().metaData2.copyWith(color: NeutralColor.active),
+            CustomTextStyle.metaData2.copyWith(color: NeutralColor.active),
         headline6:
-            CustomTextStyle().metaData3.copyWith(color: NeutralColor.active),
+            CustomTextStyle.metaData3.copyWith(color: NeutralColor.active),
       ),
       iconTheme: IconThemeData(color: NeutralColor.active),
       primaryColorLight: NeutralColor.offWhite,
@@ -58,27 +58,27 @@ class ThemeConfig {
       scaffoldBackgroundColor: NeutralColor.active,
       textTheme: TextTheme(
         headline1:
-            CustomTextStyle().heading1.copyWith(color: NeutralColor.offWhite),
-        headline2: CustomTextStyle().heading2.copyWith(
+            CustomTextStyle.heading1.copyWith(color: NeutralColor.offWhite),
+        headline2: CustomTextStyle.heading2.copyWith(
               color: NeutralColor.offWhite,
             ),
-        subtitle1: CustomTextStyle()
+        subtitle1: CustomTextStyle
             .subHeading1
             .copyWith(color: NeutralColor.offWhite),
-        subtitle2: CustomTextStyle()
+        subtitle2: CustomTextStyle
             .subHeading2
             .copyWith(color: NeutralColor.offWhite),
         bodyText1:
-            CustomTextStyle().body1.copyWith(color: NeutralColor.offWhite),
+            CustomTextStyle.body1.copyWith(color: NeutralColor.offWhite),
         bodyText2:
-            CustomTextStyle().body2.copyWith(color: NeutralColor.offWhite),
-        headline4: CustomTextStyle()
+            CustomTextStyle.body2.copyWith(color: NeutralColor.offWhite),
+        headline4: CustomTextStyle
             .metaData1
             .copyWith(color: NeutralColor.offWhite),
-        headline5: CustomTextStyle()
+        headline5: CustomTextStyle
             .metaData2
             .copyWith(color: NeutralColor.offWhite),
-        headline6: CustomTextStyle()
+        headline6: CustomTextStyle
             .metaData3
             .copyWith(color: NeutralColor.offWhite),
       ),

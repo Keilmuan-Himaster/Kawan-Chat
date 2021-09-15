@@ -106,7 +106,7 @@ class CustomMessageCardItem extends StatelessWidget {
                     children: [
                       Text(
                         chat?.message ?? "",
-                        style: CustomTextStyle().body2.copyWith(
+                        style: CustomTextStyle.body2.copyWith(
                             color: (isMyMessage)
                                 ? NeutralColor.white
                                 : Theme.of(context).iconTheme.color),
@@ -115,7 +115,7 @@ class CustomMessageCardItem extends StatelessWidget {
                         height: 4,
                       ),
                       Text(timestampToDatetime(chat?.timestamp),
-                          style: CustomTextStyle().body2.copyWith(
+                          style: CustomTextStyle.body2.copyWith(
                               color: (isMyMessage)
                                   ? NeutralColor.white
                                   : NeutralColor.disabled,

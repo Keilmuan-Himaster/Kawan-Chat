@@ -199,7 +199,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               },
               child: Text(
                 "Resend Code",
-                style: CustomTextStyle().subHeading2.copyWith(
+                style: CustomTextStyle.subHeading2.copyWith(
                     color: (Theme.of(context).scaffoldBackgroundColor ==
                             NeutralColor.white)
                         ? BrandColor.defaultColor

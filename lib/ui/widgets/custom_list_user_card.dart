@@ -47,7 +47,7 @@ class CustomListUserCard extends StatelessWidget {
                 ),
                 Text(
                   user.phoneNumber,
-                  style: CustomTextStyle()
+                  style: CustomTextStyle
                       .metaData1
                       .copyWith(color: NeutralColor.disabled),
                 ),
