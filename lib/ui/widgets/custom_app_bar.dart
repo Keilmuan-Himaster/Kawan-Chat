@@ -18,9 +18,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             label ?? "",
             style: CustomTextStyle()
                 .subHeading1
-                .copyWith(color: NeutralColor().active),
+                .copyWith(color: NeutralColor.active),
           ),
-          iconTheme: IconThemeData(color: NeutralColor().active),
+          iconTheme: IconThemeData(color: NeutralColor.active),
           leading: GestureDetector(
               onTap: () {
                 CustomNavigator().closeScreen(context);

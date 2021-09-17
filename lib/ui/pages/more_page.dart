@@ -35,7 +35,7 @@ class MorePage extends StatelessWidget {
             label: "Chats",
           ),
           Divider(
-            color: NeutralColor().line,
+            color: NeutralColor.line,
           ),
           buildMoreListCard(
             iconName: "icon_apperance.png",
@@ -54,7 +54,7 @@ class MorePage extends StatelessWidget {
             label: "Data Usage",
           ),
           Divider(
-            color: NeutralColor().line,
+            color: NeutralColor.line,
           ),
           buildMoreListCard(
             iconName: "icon_help.png",
@@ -81,7 +81,7 @@ class MorePage extends StatelessWidget {
                   width: 50,
                   padding: EdgeInsets.all(13),
                   decoration: BoxDecoration(
-                      color: NeutralColor().line, shape: BoxShape.circle),
+                      color: NeutralColor.line, shape: BoxShape.circle),
                   child: Image.asset("assets/icons/icon_person_black.png"),
                 ),
                 SizedBox(
@@ -94,7 +94,7 @@ class MorePage extends StatelessWidget {
                       "Almayra Zamzamy",
                       style: CustomTextStyle()
                           .body1
-                          .copyWith(color: NeutralColor().active),
+                          .copyWith(color: NeutralColor.active),
                     ),
                     SizedBox(
                       height: 2,
@@ -103,7 +103,7 @@ class MorePage extends StatelessWidget {
                       "+62 1309 - 1710 - 1920",
                       style: CustomTextStyle()
                           .metaData1
-                          .copyWith(color: NeutralColor().disabled),
+                          .copyWith(color: NeutralColor.disabled),
                     ),
                   ],
                 )
@@ -141,7 +141,7 @@ class MorePage extends StatelessWidget {
                   label,
                   style: CustomTextStyle()
                       .body1
-                      .copyWith(color: NeutralColor().active),
+                      .copyWith(color: NeutralColor.active),
                 ),
               ],
             ),
@@ -166,6 +166,6 @@ class MorePage extends StatelessWidget {
 
   Icon buildIconNext() => Icon(
         Icons.chevron_right,
-        color: NeutralColor().active,
+        color: NeutralColor.active,
       );
 }

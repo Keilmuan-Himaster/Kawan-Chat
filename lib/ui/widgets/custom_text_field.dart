@@ -66,8 +66,8 @@ class CustomTextField extends StatelessWidget {
             filled: true,
             contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             hintStyle:
-                CustomTextStyle().body1.copyWith(color: NeutralColor().disabled),
-            fillColor: NeutralColor().offWhite,
+                CustomTextStyle().body1.copyWith(color: NeutralColor.disabled),
+            fillColor: NeutralColor.offWhite,
             suffixText: suffixText ?? "",
           )),
     );
@@ -77,13 +77,13 @@ class CustomTextField extends StatelessWidget {
 InputBorder? outlineInputFocusedBorder() => OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
       borderSide: BorderSide(
-        color: NeutralColor().offWhite,
+        color: NeutralColor.offWhite,
       ),
     );
 
 InputBorder? outlineInputEnableBorder() => OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
       borderSide: BorderSide(
-        color: NeutralColor().offWhite,
+        color: NeutralColor.offWhite,
       ),
     );

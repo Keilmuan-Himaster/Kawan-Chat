@@ -24,7 +24,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
           appBar: CustomAppBar(),
-          backgroundColor: NeutralColor().white,
+          backgroundColor: NeutralColor.white,
           body: buildBody()),
     );
   }
@@ -42,7 +42,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                 width: 100,
                 padding: EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: NeutralColor().offWhite,
+                  color: NeutralColor.offWhite,
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(

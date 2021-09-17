@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Mulish",
-        backgroundColor: NeutralColor().white,
+        backgroundColor: NeutralColor.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: NeutralColor().white
+          backgroundColor: NeutralColor.white
         )
       ),
       home: OnboardingScreen(),

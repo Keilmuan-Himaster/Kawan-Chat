@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor().white,
+      backgroundColor: NeutralColor.white,
       body: buildBody(),
     );
   }
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
             textAlign: TextAlign.center,
             style: CustomTextStyle()
                 .heading2
-                .copyWith(color: NeutralColor().active),
+                .copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomLabel().loginDescription,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor().active),
+                CustomTextStyle().body2.copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
-                    color: NeutralColor().offWhite,
+                    color: NeutralColor.offWhite,
                     borderRadius: BorderRadius.circular(4)),
                 child: Row(
                   children: [
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "+62",
                       style: CustomTextStyle()
                           .body1
-                          .copyWith(color: NeutralColor().disabled),
+                          .copyWith(color: NeutralColor.disabled),
                     )
                   ],
                 ),
@@ -133,14 +133,14 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 32,
         ),
         Container(
-          color: NeutralColor().offWhite,
+          color: NeutralColor.offWhite,
           child: NumericKeyboard(
               onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor().active,
+              textColor: NeutralColor.active,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightIcon: Icon(
                 Icons.backspace,
-                color: NeutralColor().active,
+                color: NeutralColor.active,
               ),
               rightButtonFn: () => _onKeyboardBackspaceTap()),
         )

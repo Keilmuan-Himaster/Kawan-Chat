@@ -51,7 +51,7 @@ class _ChatsPageState extends State<ChatsPage> {
                     child: CustomTextField(
                       prefixIcon: Icon(
                         Icons.search,
-                        color: NeutralColor().disabled,
+                        color: NeutralColor.disabled,
                       ),
                       controller: searchController,
                       hintText: "Search",
@@ -87,7 +87,7 @@ class _ChatsPageState extends State<ChatsPage> {
                         (index == 0)
                             ? SizedBox.shrink()
                             : Divider(
-                                color: NeutralColor().line,
+                                color: NeutralColor.line,
                                 height: 0,
                               ),
                         CustomListChatCard(),

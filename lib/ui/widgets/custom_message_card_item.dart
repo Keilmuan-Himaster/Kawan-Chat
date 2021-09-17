@@ -25,7 +25,7 @@ class CustomMessageCardItem extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: SizeConfig.screenWidth * 0.6),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: (isMyMessage) ? BrandColor().defaultColor : NeutralColor().white,
+              color: (isMyMessage) ? BrandColor.defaultColor : NeutralColor.white,
               boxShadow: [customBoxShadow()],
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
@@ -42,8 +42,8 @@ class CustomMessageCardItem extends StatelessWidget {
                 chat?.content ?? "",
                 style: CustomTextStyle().body2.copyWith(
                     color: (isMyMessage)
-                        ? NeutralColor().white
-                        : NeutralColor().active),
+                        ? NeutralColor.white
+                        : NeutralColor.active),
               ),
               SizedBox(
                 height: 4,
@@ -51,8 +51,8 @@ class CustomMessageCardItem extends StatelessWidget {
               Text(timestampToDatetime(chat?.timestamp),
                   style: CustomTextStyle().body2.copyWith(
                       color: (isMyMessage)
-                          ? NeutralColor().white
-                          : NeutralColor().disabled,
+                          ? NeutralColor.white
+                          : NeutralColor.disabled,
                       fontFamily: "Lato",
                       fontSize: 10,
                       fontWeight: FontWeight.w400)),

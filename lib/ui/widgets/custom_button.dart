@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 12),
           width: SizeConfig.screenWidth,
           decoration: BoxDecoration(
-            color: backgroundColor ?? BrandColor().defaultColor,
+            color: backgroundColor ?? BrandColor.defaultColor,
             borderRadius: BorderRadius.circular(100),
           ),
           child: Row(
@@ -44,7 +44,7 @@ class CustomButton extends StatelessWidget {
                 "$label",
                 style: CustomTextStyle()
                     .subHeading2
-                    .copyWith(color: labelColor ?? NeutralColor().white),
+                    .copyWith(color: labelColor ?? NeutralColor.white),
               )
             ],
           )),

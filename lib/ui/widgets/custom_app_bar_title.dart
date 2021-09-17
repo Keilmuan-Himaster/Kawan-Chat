@@ -17,7 +17,7 @@ class CustomAppBarTitle extends StatelessWidget {
      title,
       style: CustomTextStyle()
           .subHeading1
-          .copyWith(color: NeutralColor().active),
+          .copyWith(color: NeutralColor.active),
     );
   }
 }

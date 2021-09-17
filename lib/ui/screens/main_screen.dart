@@ -40,8 +40,8 @@ class _MainScreenState extends State<MainScreen> {
         showUnselectedLabels: false,
         backgroundColor: Colors.white,
         iconSize: 25,
-        selectedItemColor: NeutralColor().active,
-        unselectedItemColor: NeutralColor().active,
+        selectedItemColor: NeutralColor.active,
+        unselectedItemColor: NeutralColor.active,
         items: [
           buildBottomNavigationbarItem(
               icon: "icon_chat.png",
@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
                     height: 4,
                     width: 4,
                     decoration: BoxDecoration(
-                        color: NeutralColor().active, shape: BoxShape.circle),
+                        color: NeutralColor.active, shape: BoxShape.circle),
                   )
                 ],
               )

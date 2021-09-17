@@ -47,7 +47,7 @@ class CustomListChatCard extends StatelessWidget {
                       style: CustomTextStyle()
                           .body1
                           .copyWith(
-                              color: NeutralColor().active),
+                              color: NeutralColor.active),
                     ),
                     SizedBox(
                       height: 2,
@@ -58,7 +58,7 @@ class CustomListChatCard extends StatelessWidget {
                           .metaData1
                           .copyWith(
                               color:
-                                  NeutralColor().disabled),
+                                  NeutralColor.disabled),
                     ),
                   ],
                 )
@@ -68,7 +68,7 @@ class CustomListChatCard extends StatelessWidget {
               "16.00",
               style: CustomTextStyle()
                   .metaData1
-                  .copyWith(color: NeutralColor().disabled),
+                  .copyWith(color: NeutralColor.disabled),
             ),
           ],
         ),

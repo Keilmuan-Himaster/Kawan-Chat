@@ -53,7 +53,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor().white,
+      backgroundColor: NeutralColor.white,
       body: buildBody(),
     );
   }
@@ -69,7 +69,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             textAlign: TextAlign.center,
             style: CustomTextStyle()
                 .heading2
-                .copyWith(color: NeutralColor().active),
+                .copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -81,7 +81,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             CustomLabel().verifitcaionDescription + " " + widget.phoneNumber,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor().active),
+                CustomTextStyle().body2.copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -100,7 +100,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               height: 24,
                               width: 24,
                               decoration: BoxDecoration(
-                                  color: NeutralColor().line,
+                                  color: NeutralColor.line,
                                   shape: BoxShape.circle),
                             )
                           : SizedBox(
@@ -109,7 +109,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               child: Text(
                                 value,
                                 style: CustomTextStyle().subHeading1.copyWith(
-                                      color: NeutralColor().active,
+                                      color: NeutralColor.active,
                                     ),
                               ),
                             )))
@@ -123,20 +123,20 @@ class _VerificationScreenState extends State<VerificationScreen> {
               "Resend Code",
               style: CustomTextStyle()
                   .subHeading2
-                  .copyWith(color: BrandColor().defaultColor),
+                  .copyWith(color: BrandColor.defaultColor),
             )),
         SizedBox(
           height: 32,
         ),
         Container(
-          color: NeutralColor().offWhite,
+          color: NeutralColor.offWhite,
           child: NumericKeyboard(
               onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor().active,
+              textColor: NeutralColor.active,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightIcon: Icon(
                 Icons.backspace,
-                color: NeutralColor().active,
+                color: NeutralColor.active,
               ),
               rightButtonFn: () => _onKeyboardBackspaceTap()),
         )

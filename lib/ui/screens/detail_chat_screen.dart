@@ -27,7 +27,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
       appBar: CustomAppBar(
         label: "Athalia Putri",
       ),
-      backgroundColor: NeutralColor().offWhite,
+      backgroundColor: NeutralColor.offWhite,
       body: buildBody(),
     );
   }
@@ -67,7 +67,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Container buildButtonSendMessage() {
     return Container(
-      color: NeutralColor().white,
+      color: NeutralColor.white,
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       child: Row(
         children: [
@@ -75,7 +75,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
             onTap: () {},
             child: Icon(
               Icons.add,
-              color: NeutralColor().disabled,
+              color: NeutralColor.disabled,
               size: 20,
             ),
           ),
@@ -92,7 +92,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
             onTap: () {},
             child: ImageIcon(
               AssetImage("assets/icons/icon_send_message.png"),
-              color: BrandColor().defaultColor,
+              color: BrandColor.defaultColor,
               size: 20,
             ),
           ),
