@@ -3,6 +3,7 @@ import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
+import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
 import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ class VerificationScreen extends StatefulWidget {
 
 class _VerificationScreenState extends State<VerificationScreen> {
   List<String?> codeVerification = [null, null, null, null, null, null];
+
+  // change value [isExpired] from the result of signInWithPhoneNumber
+  bool isExpired = false;
 
   void _onKeyboardTap(String value) {
     int index = codeVerification.indexOf(null);
@@ -53,7 +57,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor.white,
       body: buildBody(),
     );
   }
@@ -64,13 +67,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Spacer(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-          child: Text(
-            CustomLabel.verificationLabel,
-            textAlign: TextAlign.center,
-            style: CustomTextStyle
-                .heading2
-                .copyWith(color: NeutralColor.active),
-          ),
+          child: Text(CustomLabel.verificationLabel,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline2),
         ),
         SizedBox(
           height: 8,
@@ -78,11 +77,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
-            CustomLabel.verifitcaionDescription + " " + widget.phoneNumber,
-            textAlign: TextAlign.center,
-            style:
-                CustomTextStyle.body2.copyWith(color: NeutralColor.active),
-          ),
+              CustomLabel.verifitcaionDescription + " " + widget.phoneNumber,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText2),
         ),
         SizedBox(
           height: 42,
@@ -100,18 +97,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               height: 24,
                               width: 24,
                               decoration: BoxDecoration(
-                                  color: NeutralColor.line,
+                                  color: Theme.of(context).splashColor,
                                   shape: BoxShape.circle),
                             )
                           : SizedBox(
                               height: 24,
                               width: 24,
-                              child: Text(
-                                value,
-                                style: CustomTextStyle.subHeading1.copyWith(
-                                      color: NeutralColor.active,
-                                    ),
-                              ),
+                              child: Text(value,
+                                  style: Theme.of(context).textTheme.subtitle1),
                             )))
                   .values
                   .toList()),
@@ -119,26 +112,26 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Spacer(),
         Padding(
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
-            child: Text(
-              "Resend Code",
-              style: CustomTextStyle
-                  .subHeading2
-                  .copyWith(color: BrandColor.defaultColor),
+            child: TextButton(
+              onPressed: () {
+                // TODO: Find the best way to handle this
+                if (isExpired) {
+                  // Code expired
+                  ScreenNavigator.closeScreen(context);
+                }
+              },
+              child: Text(
+                "Resend Code",
+                style: CustomTextStyle.subHeading2
+                    .copyWith(color: Theme.of(context).primaryColor),
+              ),
             )),
         SizedBox(
           height: 32,
         ),
-        Container(
-          color: NeutralColor.offWhite,
-          child: NumericKeyboard(
-              onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor.active,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              rightIcon: Icon(
-                Icons.backspace,
-                color: NeutralColor.active,
-              ),
-              rightButtonFn: () => _onKeyboardBackspaceTap()),
+        CustomNumericalKeyboard(
+          onKeyboardTap: _onKeyboardTap,
+          rightButtonFn: _onKeyboardBackspaceTap,
         )
       ],
     );

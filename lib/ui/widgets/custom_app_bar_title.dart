@@ -1,7 +1,4 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
 import 'package:flutter/material.dart';
-
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({
@@ -15,9 +12,7 @@ class CustomAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
      title,
-      style: CustomTextStyle
-          .subHeading1
-          .copyWith(color: NeutralColor.active),
+      style: Theme.of(context).textTheme.subtitle1,
     );
   }
 }
