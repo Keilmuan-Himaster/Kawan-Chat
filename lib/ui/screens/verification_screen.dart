@@ -4,6 +4,7 @@ import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/cubit/user_cubit/user_cubit.dart';
 import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/services/auth_services.dart';
 import 'package:chat_app/services/user_services.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/screens/main_screen.dart';
@@ -37,10 +38,6 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   List<String?> codeVerification = [null, null, null, null, null, null];
 
-  // change value [isExpired] from the result of signInWithPhoneNumber
-  bool isExpired = false;
-
-  // TODO: Find best practices for this code
   void _onKeyboardTap(String value) async {
     int index = codeVerification.indexOf(null);
     ApiReturnValue<bool>? result;
@@ -54,13 +51,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
       if (!codeVerification.contains(null)) {
         // Code Verification filled
         progressDialog.show();
-        result = await signInWithPhoneNumber();
+        result = await AuthServices.signInWithCredential(
+            codeVerification: codeVerification,
+            verificationId: widget.verificationId);
         progressDialog.dismiss();
       }
     } else {
       // Code Verification filled
       progressDialog.show();
-      result = await signInWithPhoneNumber();
+      result = await AuthServices.signInWithCredential(
+          codeVerification: codeVerification,
+          verificationId: widget.verificationId);
       progressDialog.dismiss();
     }
 
@@ -94,35 +95,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
         codeVerification[index - 1] = null;
       }
       setState(() {});
-    }
-  }
-
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
-  // TODO: Find best practice for this code
-  Future<ApiReturnValue<bool>> signInWithPhoneNumber() async {
-    String code = "";
-    for (var i in codeVerification) {
-      code += i ?? "";
-    }
-
-    try {
-      final AuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: widget.verificationId, smsCode: code);
-
-      final User user =
-          (await firebaseAuth.signInWithCredential(credential)).user!;
-
-      return ApiReturnValue(isSuccess: true, result: user.uid);
-    } catch (e) {
-      // TODO: Find how to handle error message code
-      // session-expired -> for message if [code verification] is expired
-      if (e.toString().contains("session-expired")) {
-        setState(() {
-          isExpired = true;
-        });
-      }
-      return ApiReturnValue(isSuccess: false, message: e.toString());
     }
   }
 
@@ -186,17 +158,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Padding(
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
             child: TextButton(
-              onPressed: () {
-                // TODO: Find the best way to handle this
-                if (isExpired) {
-                  // Code expired
-                  CustomNavigator().closeScreen(context);
-                }
-              },
+              onPressed: () => CustomNavigator().closeScreen(context),
               child: Text(
                 "Resend Code",
-                style: CustomTextStyle.subHeading2.copyWith(
-                    color: Theme.of(context).primaryColor),
+                style: CustomTextStyle.subHeading2
+                    .copyWith(color: Theme.of(context).primaryColor),
               ),
             )),
         SizedBox(

@@ -31,13 +31,11 @@ class AuthServices {
       CustomNavigator().removeAllScreen(
           context,
           FillProfileDataScreen(
-              uid: firebaseAuth.currentUser!.uid,
-              phoneNumber: phoneNumber));
+              uid: firebaseAuth.currentUser!.uid, phoneNumber: phoneNumber));
     };
 
     PhoneVerificationFailed verificationFailed =
         (FirebaseAuthException authException) {
-
       print("{ PHONE VERIFY FAILED [${authException.message}] }");
 
       String errorMessage = "";
@@ -64,8 +62,7 @@ class AuthServices {
       CustomNavigator().startScreen(
           context,
           VerificationScreen(
-              phoneNumber: phoneNumber,
-              verificationId: verificationId));
+              phoneNumber: phoneNumber, verificationId: verificationId));
     };
 
     PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
@@ -80,5 +77,29 @@ class AuthServices {
         verificationFailed: verificationFailed,
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
+  }
+
+  static Future<ApiReturnValue<bool>> signInWithCredential(
+      {required List<String?> codeVerification,
+      required String verificationId}) async {
+    String code = "";
+    for (var i in codeVerification) {
+      code += i ?? "";
+    }
+
+    try {
+      final AuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: code);
+
+      final User user =
+          (await firebaseAuth.signInWithCredential(credential)).user!;
+
+      return ApiReturnValue(isSuccess: true, result: user.uid);
+    } catch (e) {
+      // TODO: Find how to handle error message code
+      // session-expired -> for message if [code verification] is expired
+      if (e.toString().contains("session-expired")) {}
+      return ApiReturnValue(isSuccess: false, message: e.toString());
+    }
   }
 }
