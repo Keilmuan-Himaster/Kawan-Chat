@@ -1,7 +1,7 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
+import '../../utils/size_config.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

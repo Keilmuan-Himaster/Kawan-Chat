@@ -1,25 +1,24 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/cubit/cubit.dart';
-import 'package:chat_app/models/chat_room_model.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/services/chat_services.dart';
-import 'package:chat_app/services/user_services.dart';
-import 'package:chat_app/ui/screens/detail_chat_screen.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
-import 'package:chat_app/ui/widgets/custom_dialog.dart';
-import 'package:chat_app/ui/widgets/custom_list_user_card.dart';
-import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:chat_app/models/api_return_value.dart';
-import 'package:chat_app/services/chat_services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../config/custom_color.dart';
+import '../../cubit/cubit.dart';
+import '../../models/api_return_value.dart';
+import '../../models/chat_room_model.dart';
+import '../../models/user_model.dart';
+import '../../services/chat_services.dart';
+import '../../services/user_services.dart';
+import '../../utils/custom_navigator.dart';
+import '../../utils/size_config.dart';
+import '../screens/detail_chat_screen.dart';
+import '../widgets/custom_app_bar_title.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/custom_list_chat_card.dart';
+import '../widgets/custom_list_user_card.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/custom_toast.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({Key? key}) : super(key: key);

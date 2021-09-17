@@ -1,6 +1,6 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/models/user_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
 
 class CustomProfileCard extends StatelessWidget {
   const CustomProfileCard(

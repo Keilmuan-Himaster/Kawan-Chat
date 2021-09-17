@@ -1,22 +1,14 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_label.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/models/api_return_value.dart';
-import 'package:chat_app/services/auth_services.dart';
-import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
-import 'package:chat_app/ui/screens/verification_screen.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_button.dart';
-import 'package:chat_app/ui/widgets/custom_dialog.dart';
-import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ndialog/ndialog.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/custom_label.dart';
+import '../../services/auth_services.dart';
+import '../../utils/size_config.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_numerical_keyboard.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/custom_toast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

@@ -1,11 +1,11 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/models/chat_room_model.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/ui/widgets/custom_profile_card.dart';
-import 'package:chat_app/utils/size_config.dart';
-import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/custom_text_style.dart';
+import '../../models/chat_room_model.dart';
+import '../../utils/size_config.dart';
+import '../../utils/utils.dart';
+import 'custom_profile_card.dart';
 
 class CustomListChatCard extends StatelessWidget {
   const CustomListChatCard({

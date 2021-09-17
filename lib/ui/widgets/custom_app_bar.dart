@@ -1,7 +1,6 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/custom_navigator.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   const CustomAppBar({Key? key, this.label}) : super(key: key);

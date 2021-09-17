@@ -1,24 +1,20 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_label.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/cubit/user_cubit/user_cubit.dart';
-import 'package:chat_app/models/api_return_value.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/services/auth_services.dart';
-import 'package:chat_app/services/user_services.dart';
-import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
-import 'package:chat_app/ui/screens/main_screen.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_dialog.dart';
-import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ndialog/ndialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ndialog/ndialog.dart';
+
+import '../../config/custom_label.dart';
+import '../../config/custom_text_style.dart';
+import '../../cubit/user_cubit/user_cubit.dart';
+import '../../models/api_return_value.dart';
+import '../../services/auth_services.dart';
+import '../../utils/custom_navigator.dart';
+import '../../utils/size_config.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/custom_numerical_keyboard.dart';
+import '../widgets/custom_toast.dart';
+import 'fill_profile_data_screen.dart';
+import 'main_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen(

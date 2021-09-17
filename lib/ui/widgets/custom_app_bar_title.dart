@@ -1,7 +1,4 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
 import 'package:flutter/material.dart';
-
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({

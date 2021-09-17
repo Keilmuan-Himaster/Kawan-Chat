@@ -1,9 +1,8 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/ui/pages/chats_page.dart';
-import 'package:chat_app/ui/pages/more_page.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/size_config.dart';
+import '../pages/chats_page.dart';
+import '../pages/more_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

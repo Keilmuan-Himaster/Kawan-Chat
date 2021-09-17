@@ -1,11 +1,10 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/ui/screens/detail_chat_screen.dart';
-import 'package:chat_app/ui/widgets/custom_profile_card.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/custom_text_style.dart';
+import '../../models/user_model.dart';
+import '../../utils/size_config.dart';
+import 'custom_profile_card.dart';
 
 class CustomListUserCard extends StatelessWidget {
   const CustomListUserCard({Key? key, this.onTap, required this.user})

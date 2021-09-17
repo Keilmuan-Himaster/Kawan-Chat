@@ -1,6 +1,4 @@
-import 'package:chat_app/models/chat_room_model.dart';
-import 'package:chat_app/models/message_reply_model.dart';
-import 'package:chat_app/models/user_model.dart';
+import 'message_reply_model.dart';
 
 class ChatModel {
   MessageReplyModel? messageReply;

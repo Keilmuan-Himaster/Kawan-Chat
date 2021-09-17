@@ -1,5 +1,4 @@
-import 'package:chat_app/models/chat_model.dart';
-import 'package:chat_app/models/user_model.dart';
+import 'chat_model.dart';
 
 class MessageReplyModel {
   String? userRepliedUid, timestampMessage;

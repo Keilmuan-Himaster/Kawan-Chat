@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
 import '../../config/custom_label.dart';
-import '../../config/custom_text_style.dart';
 import '../../utils/size_config.dart';
 import '../widgets/custom_button.dart';
 
