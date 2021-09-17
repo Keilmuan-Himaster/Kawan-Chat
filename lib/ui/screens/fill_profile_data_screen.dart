@@ -51,7 +51,6 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
           appBar: CustomAppBar(),
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           body: buildBody()),
     );
   }

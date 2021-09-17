@@ -67,7 +67,7 @@ class _ChatsPageState extends State<ChatsPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // hideKeyboard();
+        hideKeyboard();
       },
       child: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

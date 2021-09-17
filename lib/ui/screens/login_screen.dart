@@ -91,10 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
-                    color: (Theme.of(context).scaffoldBackgroundColor ==
-                            NeutralColor.white)
-                        ? NeutralColor.offWhite
-                        : NeutralColor.dark,
+                    color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.circular(4)),
                 child: Row(
                   children: [

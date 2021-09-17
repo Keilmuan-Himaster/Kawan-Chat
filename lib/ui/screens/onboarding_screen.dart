@@ -16,7 +16,6 @@ class OnboardingScreen extends StatelessWidget {
     // Init Size Config
     SizeConfig().init(context);
     return Scaffold(
-      // backgroundColor: NeutralColor.white,
       body: buildBody(context),
     );
   }
