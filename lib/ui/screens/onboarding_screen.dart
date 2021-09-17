@@ -1,5 +1,5 @@
 import 'package:chat_app/ui/screens/login_screen.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
@@ -52,7 +52,7 @@ class OnboardingScreen extends StatelessWidget {
           ),
           CustomButton(
             label: "Start Messaging",
-            onTap: () => CustomNavigator().startScreen(context, LoginScreen()),
+            onTap: () => ScreenNavigator.startScreen(context, LoginScreen()),
           ),
           SizedBox(
             height: 30,

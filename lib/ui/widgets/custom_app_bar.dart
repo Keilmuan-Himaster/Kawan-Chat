@@ -1,6 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           iconTheme: IconThemeData(color: NeutralColor.active),
           leading: GestureDetector(
               onTap: () {
-                CustomNavigator().closeScreen(context);
+                ScreenNavigator.closeScreen(context);
               },
               child: Icon(
                 Icons.chevron_left,

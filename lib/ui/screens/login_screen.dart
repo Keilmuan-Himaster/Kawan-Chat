@@ -6,7 +6,7 @@ import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
               label: "Continue",
               onTap: () {
                 if (phoneNumberController.text.trim().length > 0) {
-                  CustomNavigator().startScreen(
+                  ScreenNavigator.startScreen(
                       context,
                       VerificationScreen(
                         phoneNumber: "+62" + phoneNumberController.text,

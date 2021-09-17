@@ -1,7 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/screens/detail_chat_screen.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class CustomListChatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomNavigator().startScreen(context, DetailChatScreen());
+        ScreenNavigator.startScreen(context, DetailChatScreen());
         if (onTap != null) {
           onTap!();
         }

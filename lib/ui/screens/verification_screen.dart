@@ -3,7 +3,7 @@ import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/utils/custom_navigator.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -29,11 +29,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
       });
       if (!codeVerification.contains(null)) {
         // Code Verification filled
-        CustomNavigator().removeScreen(context, FillProfileDataScreen());
+        ScreenNavigator.removeScreen(context, FillProfileDataScreen());
       }
     } else {
       // Code Verification filled
-      CustomNavigator().removeScreen(context, FillProfileDataScreen());
+      ScreenNavigator.removeScreen(context, FillProfileDataScreen());
     }
   }
 
