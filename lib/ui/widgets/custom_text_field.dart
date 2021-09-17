@@ -61,29 +61,28 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             prefixIcon: prefixIcon,
-            focusedBorder: outlineInputFocusedBorder(),
-            enabledBorder: outlineInputEnableBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderSide: BorderSide(
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderSide: BorderSide(
+                color: Theme.of(context).accentColor,
+              ),
+            ),
             filled: true,
             contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            hintStyle:
-                CustomTextStyle.body1.copyWith(color: NeutralColor.disabled),
-            fillColor: NeutralColor.offWhite,
+            hintStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
+                color: (Theme.of(context).scaffoldBackgroundColor ==
+                        NeutralColor.white)
+                    ? NeutralColor.disabled
+                    : NeutralColor.offWhite),
+            fillColor: Theme.of(context).accentColor,
             suffixText: suffixText ?? "",
           )),
     );
   }
 }
-
-InputBorder? outlineInputFocusedBorder() => OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
-      borderSide: BorderSide(
-        color: NeutralColor.offWhite,
-      ),
-    );
-
-InputBorder? outlineInputEnableBorder() => OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
-      borderSide: BorderSide(
-        color: NeutralColor.offWhite,
-      ),
-    );

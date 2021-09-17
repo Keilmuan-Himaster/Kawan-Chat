@@ -25,6 +25,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Init Size Config
+    SizeConfig().init(context);
     return Scaffold(
       body: pages[currentTab],
       backgroundColor: Colors.white,
@@ -62,8 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   Text(
                     label,
-                    style: CustomTextStyle
-                        .metaData3
+                    style: CustomTextStyle.metaData3
                         .copyWith(fontSize: 14, fontFamily: "Lato"),
                   ),
                   SizedBox(

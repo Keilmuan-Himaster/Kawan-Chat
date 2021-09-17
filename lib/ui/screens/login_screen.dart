@@ -4,6 +4,7 @@ import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_button.dart';
+import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/screen_navigator.dart';
@@ -38,10 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
+  void dispose() {
+    phoneNumberController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: NeutralColor.white,
       body: buildBody(),
     );
   }
@@ -50,14 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       children: [
         Spacer(),
-        Padding(
+         Padding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: Text(
             CustomLabel.loginLabel,
             textAlign: TextAlign.center,
-            style: CustomTextStyle
-                .heading2
-                .copyWith(color: NeutralColor.active),
+            style: Theme.of(context).textTheme.headline2,
           ),
         ),
         SizedBox(
@@ -68,8 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             CustomLabel.loginDescription,
             textAlign: TextAlign.center,
-            style:
-                CustomTextStyle.body2.copyWith(color: NeutralColor.active),
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
         SizedBox(
@@ -83,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
-                    color: NeutralColor.offWhite,
+                    color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.circular(4)),
                 child: Row(
                   children: [
@@ -91,12 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: 8,
                     ),
-                    Text(
-                      "+62",
-                      style: CustomTextStyle
-                          .body1
-                          .copyWith(color: NeutralColor.disabled),
-                    )
+                    Text("+62",
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: (Theme.of(context).scaffoldBackgroundColor ==
+                                    NeutralColor.white)
+                                ? NeutralColor.disabled
+                                : NeutralColor.offWhite))
                   ],
                 ),
               ),
@@ -132,17 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 32,
         ),
-        Container(
-          color: NeutralColor.offWhite,
-          child: NumericKeyboard(
-              onKeyboardTap: _onKeyboardTap,
-              textColor: NeutralColor.active,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              rightIcon: Icon(
-                Icons.backspace,
-                color: NeutralColor.active,
-              ),
-              rightButtonFn: () => _onKeyboardBackspaceTap()),
+        CustomNumericalKeyboard(
+          onKeyboardTap: _onKeyboardTap,
+          rightButtonFn: _onKeyboardBackspaceTap,
         )
       ],
     );
