@@ -1,6 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
+import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -22,45 +23,55 @@ class MorePage extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          buildProfileCard(),
+          // TODO: Day 2
+          buildProfileCard(context: context),
           SizedBox(
             height: 10,
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_person_black.png",
             label: "Account",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_chat.png",
             label: "Chats",
           ),
           Divider(
-            color: NeutralColor.line,
+            color: Theme.of(context).accentColor,
           ),
+          // TODO: Day 1
           buildMoreListCard(
+            context: context,
             iconName: "icon_apperance.png",
             label: "Apperance",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_notification.png",
             label: "Notification",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_privacy.png",
             label: "Privacy",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_data_usage.png",
             label: "Data Usage",
           ),
           Divider(
-            color: NeutralColor.line,
+            color: Theme.of(context).accentColor,
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_help.png",
             label: "Help",
           ),
           buildMoreListCard(
+            context: context,
             iconName: "icon_email.png",
             label: "Invite Your Friends",
           ),
@@ -69,20 +80,18 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  InkWell buildProfileCard() {
+  // TODO: Day 2
+  InkWell buildProfileCard({required BuildContext context}) {
     return buildContainerCard(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                Container(
+                CustomProfileCard(
                   height: 50,
-                  width: 50,
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                      color: NeutralColor.line, shape: BoxShape.circle),
-                  child: Image.asset("assets/icons/icon_person_black.png"),
+                  padding: 13,
+                  imageUrl: "",
                 ),
                 SizedBox(
                   width: 20,
@@ -92,31 +101,31 @@ class MorePage extends StatelessWidget {
                   children: [
                     Text(
                       "Almayra Zamzamy",
-                      style: CustomTextStyle
-                          .body1
-                          .copyWith(color: NeutralColor.active),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     SizedBox(
                       height: 2,
                     ),
                     Text(
                       "+62 1309 - 1710 - 1920",
-                      style: CustomTextStyle
-                          .metaData1
+                      style: CustomTextStyle.metaData1
                           .copyWith(color: NeutralColor.disabled),
                     ),
                   ],
                 )
               ],
             ),
-            buildIconNext(),
+            buildIconNext(context),
           ],
         ),
         onTap: () {});
   }
 
   InkWell buildMoreListCard(
-      {required String iconName, required String label, Function? onTap}) {
+      {required String iconName,
+      required String label,
+      Function? onTap,
+      required BuildContext context}) {
     return buildContainerCard(
         onTap: () {
           if (onTap != null) {
@@ -133,19 +142,18 @@ class MorePage extends StatelessWidget {
                     "assets/icons/$iconName",
                   ),
                   size: 24,
+                  color: Theme.of(context).iconTheme.color,
                 ),
                 SizedBox(
                   width: 6,
                 ),
                 Text(
                   label,
-                  style: CustomTextStyle
-                      .body1
-                      .copyWith(color: NeutralColor.active),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
             ),
-            buildIconNext(),
+            buildIconNext(context),
           ],
         ));
   }
@@ -164,8 +172,6 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  Icon buildIconNext() => Icon(
-        Icons.chevron_right,
-        color: NeutralColor.active,
-      );
+  Icon buildIconNext(BuildContext context) =>
+      Icon(Icons.chevron_right, color: Theme.of(context).iconTheme.color);
 }

@@ -29,7 +29,6 @@ class _MainScreenState extends State<MainScreen> {
     SizeConfig().init(context);
     return Scaffold(
       body: pages[currentTab],
-      backgroundColor: Colors.white,
       bottomNavigationBar: buildBottomNavigationBar(),
     );
   }
@@ -40,10 +39,10 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: currentTab,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconSize: 25,
-        selectedItemColor: NeutralColor.active,
-        unselectedItemColor: NeutralColor.active,
+        selectedItemColor: Theme.of(context).primaryColorLight,
+        unselectedItemColor: Theme.of(context).iconTheme.color,
         items: [
           buildBottomNavigationbarItem(
               icon: "icon_chat.png",
@@ -64,8 +63,10 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   Text(
                     label,
-                    style: CustomTextStyle.metaData3
-                        .copyWith(fontSize: 14, fontFamily: "Lato"),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        ?.copyWith(fontSize: 14, fontFamily: "Lato"),
                   ),
                   SizedBox(
                     height: 4,
@@ -74,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                     height: 4,
                     width: 4,
                     decoration: BoxDecoration(
-                        color: NeutralColor.active, shape: BoxShape.circle),
+                        color: Theme.of(context).iconTheme.color, shape: BoxShape.circle),
                   )
                 ],
               )
