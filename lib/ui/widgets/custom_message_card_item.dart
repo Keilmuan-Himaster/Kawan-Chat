@@ -6,7 +6,6 @@ import 'package:chat_app/utils/size_config.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-
 class CustomMessageCardItem extends StatelessWidget {
   const CustomMessageCardItem({Key? key, this.chat, required this.isMyMessage})
       : super(key: key);
@@ -25,8 +24,8 @@ class CustomMessageCardItem extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: SizeConfig.screenWidth * 0.6),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: (isMyMessage) ? BrandColor.defaultColor : NeutralColor.white,
-              boxShadow: [customBoxShadow()],
+              color:
+                  (isMyMessage) ? BrandColor.defaultColor : NeutralColor.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
                 bottomLeft: Radius.circular((isMyMessage) ? 16 : 0),
@@ -43,7 +42,7 @@ class CustomMessageCardItem extends StatelessWidget {
                 style: CustomTextStyle.body2.copyWith(
                     color: (isMyMessage)
                         ? NeutralColor.white
-                        : NeutralColor.active),
+                        : Theme.of(context).iconTheme.color),
               ),
               SizedBox(
                 height: 4,
