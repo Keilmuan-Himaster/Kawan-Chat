@@ -1,9 +1,9 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/helper/timestamp_to_string_datetime.dart';
 import 'package:chat_app/models/chat_model.dart';
 import 'package:chat_app/ui/widgets/custom_box_shadow.dart';
 import 'package:chat_app/utils/size_config.dart';
+import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 
@@ -48,7 +48,7 @@ class CustomMessageCardItem extends StatelessWidget {
               SizedBox(
                 height: 4,
               ),
-              Text(timestampToDatetime(chat?.timestamp),
+              Text(Utils.timestampToDatetime(chat?.timestamp),
                   style: CustomTextStyle.body2.copyWith(
                       color: (isMyMessage)
                           ? NeutralColor.white
