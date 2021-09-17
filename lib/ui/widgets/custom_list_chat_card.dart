@@ -44,7 +44,7 @@ class CustomListChatCard extends StatelessWidget {
                   children: [
                     Text(
                       "Athalia Putri",
-                      style: CustomTextStyle()
+                      style: CustomTextStyle
                           .body1
                           .copyWith(
                               color: NeutralColor.active),
@@ -54,7 +54,7 @@ class CustomListChatCard extends StatelessWidget {
                     ),
                     Text(
                       "Good morning, did you sleep well?",
-                      style: CustomTextStyle()
+                      style: CustomTextStyle
                           .metaData1
                           .copyWith(
                               color:
@@ -66,7 +66,7 @@ class CustomListChatCard extends StatelessWidget {
             ),
             Text(
               "16.00",
-              style: CustomTextStyle()
+              style: CustomTextStyle
                   .metaData1
                   .copyWith(color: NeutralColor.disabled),
             ),

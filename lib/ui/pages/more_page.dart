@@ -92,7 +92,7 @@ class MorePage extends StatelessWidget {
                   children: [
                     Text(
                       "Almayra Zamzamy",
-                      style: CustomTextStyle()
+                      style: CustomTextStyle
                           .body1
                           .copyWith(color: NeutralColor.active),
                     ),
@@ -101,7 +101,7 @@ class MorePage extends StatelessWidget {
                     ),
                     Text(
                       "+62 1309 - 1710 - 1920",
-                      style: CustomTextStyle()
+                      style: CustomTextStyle
                           .metaData1
                           .copyWith(color: NeutralColor.disabled),
                     ),
@@ -139,7 +139,7 @@ class MorePage extends StatelessWidget {
                 ),
                 Text(
                   label,
-                  style: CustomTextStyle()
+                  style: CustomTextStyle
                       .body1
                       .copyWith(color: NeutralColor.active),
                 ),

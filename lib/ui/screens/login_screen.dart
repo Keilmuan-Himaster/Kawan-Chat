@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             CustomLabel.loginLabel,
             textAlign: TextAlign.center,
-            style: CustomTextStyle()
+            style: CustomTextStyle
                 .heading2
                 .copyWith(color: NeutralColor.active),
           ),
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomLabel.loginDescription,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor.active),
+                CustomTextStyle.body2.copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Text(
                       "+62",
-                      style: CustomTextStyle()
+                      style: CustomTextStyle
                           .body1
                           .copyWith(color: NeutralColor.disabled),
                     )

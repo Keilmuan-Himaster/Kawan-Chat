@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   Text(
                     label,
-                    style: CustomTextStyle()
+                    style: CustomTextStyle
                         .metaData3
                         .copyWith(fontSize: 14, fontFamily: "Lato"),
                   ),

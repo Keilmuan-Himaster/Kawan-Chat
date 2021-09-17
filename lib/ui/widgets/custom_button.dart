@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
             children: [
               Text(
                 "$label",
-                style: CustomTextStyle()
+                style: CustomTextStyle
                     .subHeading2
                     .copyWith(color: labelColor ?? NeutralColor.white),
               )

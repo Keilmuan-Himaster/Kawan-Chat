@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           elevation: 0,
           title: Text(
             label ?? "",
-            style: CustomTextStyle()
+            style: CustomTextStyle
                 .subHeading1
                 .copyWith(color: NeutralColor.active),
           ),

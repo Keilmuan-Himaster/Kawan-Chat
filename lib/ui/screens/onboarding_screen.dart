@@ -40,12 +40,12 @@ class OnboardingScreen extends StatelessWidget {
             CustomLabel.splashLabel,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().heading2.copyWith(color: NeutralColor.dark),
+                CustomTextStyle.heading2.copyWith(color: NeutralColor.dark),
           ),
           Spacer(),
           Text(
             "Terms & Privacy Policy",
-            style: CustomTextStyle().body1.copyWith(color: NeutralColor.dark),
+            style: CustomTextStyle.body1.copyWith(color: NeutralColor.dark),
           ),
           SizedBox(
             height: 18,

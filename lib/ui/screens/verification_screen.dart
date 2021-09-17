@@ -67,7 +67,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
           child: Text(
             CustomLabel.verificationLabel,
             textAlign: TextAlign.center,
-            style: CustomTextStyle()
+            style: CustomTextStyle
                 .heading2
                 .copyWith(color: NeutralColor.active),
           ),
@@ -81,7 +81,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             CustomLabel.verifitcaionDescription + " " + widget.phoneNumber,
             textAlign: TextAlign.center,
             style:
-                CustomTextStyle().body2.copyWith(color: NeutralColor.active),
+                CustomTextStyle.body2.copyWith(color: NeutralColor.active),
           ),
         ),
         SizedBox(
@@ -108,7 +108,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               width: 24,
                               child: Text(
                                 value,
-                                style: CustomTextStyle().subHeading1.copyWith(
+                                style: CustomTextStyle.subHeading1.copyWith(
                                       color: NeutralColor.active,
                                     ),
                               ),
@@ -121,7 +121,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
             child: Text(
               "Resend Code",
-              style: CustomTextStyle()
+              style: CustomTextStyle
                   .subHeading2
                   .copyWith(color: BrandColor.defaultColor),
             )),
