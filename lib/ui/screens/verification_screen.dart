@@ -33,11 +33,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
       });
       if (!codeVerification.contains(null)) {
         // Code Verification filled
-        ScreenNavigator.removeScreen(context, FillProfileDataScreen());
+        ScreenNavigator.removeScreen(context, FillProfileDataScreen(phoneNumber: "",uid: "",));
       }
     } else {
       // Code Verification filled
-      ScreenNavigator.removeScreen(context, FillProfileDataScreen());
+      ScreenNavigator.removeScreen(context, FillProfileDataScreen(uid: "",phoneNumber: "",));
     }
   }
 
