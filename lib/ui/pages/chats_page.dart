@@ -18,6 +18,12 @@ class _ChatsPageState extends State<ChatsPage> {
 
   bool isSearching = false;
 
+  @override
+    void initState() {
+      // TODO: Day 2
+      super.initState();
+    }
+
   void hideKeyboard() {
     setState(() {
       isSearching = false;
@@ -27,10 +33,16 @@ class _ChatsPageState extends State<ChatsPage> {
   }
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // hideKeyboard();
+        hideKeyboard();
       },
       child: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -60,6 +72,9 @@ class _ChatsPageState extends State<ChatsPage> {
                           isSearching = true;
                         });
                       },
+                      onChanged: () {
+                        // TODO: Day 3
+                      },
                     ),
                   ),
                   (isSearching)
@@ -79,6 +94,7 @@ class _ChatsPageState extends State<ChatsPage> {
             SizedBox(
               height: 16,
             ),
+            // TODO: Day 3
             ...List.generate(
                 20,
                 (index) => Column(
@@ -86,9 +102,13 @@ class _ChatsPageState extends State<ChatsPage> {
                       children: [
                         (index == 0)
                             ? SizedBox.shrink()
-                            : Divider(
-                                color: NeutralColor.line,
-                                height: 0,
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: SizeConfig.defaultMargin),
+                                child: Divider(
+                                  color: Theme.of(context).accentColor,
+                                  height: 0,
+                                ),
                               ),
                         CustomListChatCard(),
                       ],
