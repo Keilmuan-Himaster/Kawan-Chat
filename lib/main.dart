@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
           builder: (context, state) {
             return MaterialApp(
               theme: state.themeData,
-              // TODO: Day 2.14 - Inisialisasi halaman menyesuikan status login
+              // TODO: Day 2.16 - Inisialisasi halaman menyesuikan status login
               initialRoute: (FirebaseAuth.instance.currentUser == null)
                   ? "onboarding_screen"
                   : "main_screen",

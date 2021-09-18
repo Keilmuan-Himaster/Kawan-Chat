@@ -29,7 +29,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   @override
   void initState() {
-    // TODO: Day 2.15 - Dapatkan detail User detail
+    // TODO: Day 2.17 - Dapatkan detail User detail
     if (context.read<UserCubit>().state is UserInitial) {
       context
           .read<UserCubit>()
