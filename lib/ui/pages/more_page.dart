@@ -1,4 +1,5 @@
 import 'package:chat_app/config/theme_config.dart';
+import 'package:chat_app/cubit/cubits.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chat_app/cubit/theme_cubit/theme_cubit.dart';
@@ -29,8 +30,18 @@ class MorePage extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          // TODO: Day 2 - Tampilkan User Detail dari UserCubit
-          buildProfileCard(context: context, user: userMock),
+          // TODO: Day 2.15 - Tampilkan User Detail dari UserCubit
+          BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              if (state is UserLoaded) {
+                return buildProfileCard(context: context, user: state.user);
+              } else {
+                return buildProfileCard(
+                  context: context,
+                );
+              }
+            },
+          ),
           SizedBox(
             height: 10,
           ),
