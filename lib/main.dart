@@ -4,10 +4,11 @@ import 'config/theme_config.dart';
 import 'ui/screens/main_screen.dart';
 import 'ui/screens/onboarding_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // TODO: Day 2 - Init Firebase
 
-  // TODO: Day 1 - Listen data Thema dari SharedPreference
+  // TODO: Day 1.3 - Listen data Thema dari SharedPreference
   bool isDark = true;
 
   runApp(MyApp(
@@ -25,18 +26,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    // TODO: Day 1 - Ganti data ThemeCubit sesuai dengan data dari SharedPreference
-
-    super.initState();
-  }
+  // TODO: Day 1.4 - Buat variabel themeCubit dan InitState untuk Ganti data ThemeCubit sesuai dengan data dari SharedPreference
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Day 1 - Inisialisasi Cubit
+    // TODO: Day 1.5 - Inisialisasi Cubit
 
-    // TODO: Day 1 - ThemeCubit
+    // TODO: Day 1.6 - BlocBuilder dan BlocProvider ThemeCubit
     return MaterialApp(
       theme: (widget.isDark) ? ThemeConfig.darkTheme : ThemeConfig.lightTheme,
       // TODO: Day 2 - Inisialisasi halaman menyesuikan status login

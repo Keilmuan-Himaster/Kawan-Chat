@@ -43,12 +43,13 @@ class MorePage extends StatelessWidget {
           Divider(
             color: Theme.of(context).accentColor,
           ),
-          // TODO: Day 1 - Ganti Tema
           buildMoreListCard(
-            context: context,
-            iconName: "icon_apperance.png",
-            label: "Apperance",
-          ),
+              context: context,
+              iconName: "icon_apperance.png",
+              label: "Apperance",
+              onTap: () {
+                // TODO: Day 1.2 - Ganti Tema
+              }),
           buildMoreListCard(
             context: context,
             iconName: "icon_notification.png",
