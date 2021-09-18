@@ -25,7 +25,7 @@ class MorePage extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          // TODO: Day 2 - Tampilkan User Detail dari UserCubit
+          // TODO: Day 2.18 - Tampilkan User Detail dari UserCubit
           buildProfileCard(context: context, user: userMock),
           SizedBox(
             height: 10,

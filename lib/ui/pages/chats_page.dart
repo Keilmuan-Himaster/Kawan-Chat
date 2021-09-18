@@ -26,7 +26,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   @override
   void initState() {
-    // TODO: Day 2 - Dapatkan detail User detail
+    // TODO: Day 2.17 - Dapatkan detail User detail
     super.initState();
   }
 

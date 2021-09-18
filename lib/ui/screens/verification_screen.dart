@@ -58,7 +58,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     if (result != null) {
       if (result.isSuccess!) {
-        // TODO: Day 2 - Chat user exist in firebase
+        // TODO: Day 2.14 - Chat user exist in firebase
         ApiReturnValue<bool> userIsExists = ApiReturnValue(value: false);
 
         if (userIsExists.value!) {
