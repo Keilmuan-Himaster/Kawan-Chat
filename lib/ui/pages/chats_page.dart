@@ -1,14 +1,14 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/models/chat_room_model.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
-import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/utils/screen_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/ui/screens/detail_chat_screen.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/size_config.dart';
+import '../../models/chat_room_model.dart';
+import '../../models/user_model.dart';
+import '../../utils/screen_navigator.dart';
+import '../screens/detail_chat_screen.dart';
+import '../widgets/custom_app_bar_title.dart';
+import '../widgets/custom_list_chat_card.dart';
+import '../widgets/custom_text_field.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({Key? key}) : super(key: key);

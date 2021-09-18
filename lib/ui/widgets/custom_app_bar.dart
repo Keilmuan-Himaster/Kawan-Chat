@@ -1,5 +1,6 @@
-import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/screen_navigator.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   const CustomAppBar({Key? key, this.label}) : super(key: key);

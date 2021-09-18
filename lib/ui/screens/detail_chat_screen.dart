@@ -1,11 +1,12 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/models/chat_model.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
+
+import '../../config/custom_color.dart';
+import '../../models/chat_model.dart';
+import '../../models/user_model.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_message_card_item.dart';
+import '../widgets/custom_text_field.dart';
 
 class DetailChatScreen extends StatefulWidget {
   const DetailChatScreen({

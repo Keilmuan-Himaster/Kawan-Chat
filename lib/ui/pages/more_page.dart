@@ -1,10 +1,11 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
-import 'package:chat_app/ui/widgets/custom_profile_card.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/custom_text_style.dart';
+import '../../config/size_config.dart';
+import '../../models/user_model.dart';
+import '../widgets/custom_app_bar_title.dart';
+import '../widgets/custom_profile_card.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({Key? key}) : super(key: key);

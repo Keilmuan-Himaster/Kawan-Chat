@@ -1,8 +1,8 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/theme_config.dart';
-import 'package:chat_app/ui/screens/main_screen.dart';
-import 'package:chat_app/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'config/theme_config.dart';
+import 'ui/screens/main_screen.dart';
+import 'ui/screens/onboarding_screen.dart';
 
 void main() {
   // TODO: Day 2 - Init Firebase

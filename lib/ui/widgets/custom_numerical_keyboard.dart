@@ -1,6 +1,7 @@
-import 'package:chat_app/config/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+
+import '../../config/custom_color.dart';
 
 class CustomNumericalKeyboard extends StatelessWidget {
   const CustomNumericalKeyboard({

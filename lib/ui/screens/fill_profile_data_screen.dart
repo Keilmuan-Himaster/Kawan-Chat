@@ -1,20 +1,20 @@
 import 'dart:io';
 
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/models/api_return_value.dart';
-import 'package:chat_app/ui/screens/main_screen.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_button.dart';
-import 'package:chat_app/ui/widgets/custom_dialog.dart';
-import 'package:chat_app/ui/widgets/custom_profile_card.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/screen_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ndialog/ndialog.dart';
-import 'package:flutter_native_image/flutter_native_image.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/size_config.dart';
+import '../../models/api_return_value.dart';
+import '../../utils/screen_navigator.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/custom_profile_card.dart';
+import '../widgets/custom_text_field.dart';
+import 'main_screen.dart';
 
 class FillProfileDataScreen extends StatefulWidget {
   const FillProfileDataScreen(
@@ -100,7 +100,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
             label: "Save",
             onTap: () async {
               if (firstNameController.text.trim() == "") {
-                CustomToast.showToast(message: "First name cannot be empty");
+                CustomDialog.showToast(message: "First name cannot be empty");
               } else {
                 ProgressDialog progressDialog = CustomDialog.showProgressDialog(
                     context,
@@ -116,7 +116,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                 if (result.value!) {
                   ScreenNavigator.removeAllScreen(context, MainScreen());
                 } else {
-                  CustomToast.showToast(
+                  CustomDialog.showToast(
                       message: "Gagal membuat akun, silahkan coba kembali");
                 }
               }

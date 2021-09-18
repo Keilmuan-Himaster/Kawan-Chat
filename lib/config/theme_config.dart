@@ -1,12 +1,12 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_color.dart';
+import 'custom_text_style.dart';
 
 // [heading] change to [headline]
 // [subheading] change to [subtitle]
 // [body] change to [bodytext]
 // [metadata] change to [headline4]
-
 class ThemeConfig {
   static final ThemeData lightTheme = ThemeData(
       fontFamily: "Mulish",

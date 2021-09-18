@@ -1,6 +1,6 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_text_style.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/custom_color.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

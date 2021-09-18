@@ -1,6 +1,13 @@
 import 'package:intl/intl.dart';
 
 class Utils {
+  static String fullName({String? firstName, String? lastName}) {
+    if (firstName == null && lastName == null) {
+      return "pengguna";
+    }
+    return (firstName ?? '') + ' ' + (lastName ?? '');
+  }
+
   // return `just time` if timestamp == today
   // return `date & time` if timestamp != today
   static String timestampToDatetime(String? timestamp) {

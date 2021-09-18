@@ -1,12 +1,11 @@
-import 'package:chat_app/ui/screens/login_screen.dart';
-import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
 import '../../config/custom_label.dart';
-import '../../config/custom_text_style.dart';
-import '../../utils/size_config.dart';
+import '../../config/size_config.dart';
+import '../../utils/screen_navigator.dart';
 import '../widgets/custom_button.dart';
+import 'login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);

@@ -1,17 +1,15 @@
-import 'package:chat_app/config/custom_color.dart';
-import 'package:chat_app/config/custom_label.dart';
-import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/ui/screens/verification_screen.dart';
-import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_button.dart';
-import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
-import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
-import 'package:chat_app/utils/screen_navigator.dart';
-import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../config/custom_color.dart';
+import '../../config/custom_label.dart';
+import '../../config/size_config.dart';
+import '../../utils/screen_navigator.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/custom_numerical_keyboard.dart';
+import '../widgets/custom_text_field.dart';
+import 'verification_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -131,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         code: "",
                       ));
                 } else {
-                  CustomToast.showToast(message: "Masukan nomor dengan benar!");
+                  CustomDialog.showToast(message: "Masukan nomor dengan benar!");
                 }
               }),
         ),
