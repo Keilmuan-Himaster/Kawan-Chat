@@ -1,3 +1,4 @@
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
@@ -8,7 +9,6 @@ import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_numerical_keyboard.dart';
 import '../widgets/custom_text_field.dart';
-import '../widgets/custom_toast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     phoneNumber: "+62" + phoneNumberController.text,
                   );
                 } else {
-                  CustomToast.showToast(message: "Masukan nomor dengan benar!");
+                  CustomDialog.showToast(message: "Masukan nomor dengan benar!");
                 }
               }),
         ),

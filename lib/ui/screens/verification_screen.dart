@@ -12,7 +12,6 @@ import '../../utils/size_config.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_dialog.dart';
 import '../widgets/custom_numerical_keyboard.dart';
-import '../widgets/custom_toast.dart';
 import 'fill_profile_data_screen.dart';
 import 'main_screen.dart';
 
@@ -77,7 +76,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               ));
         }
       } else {
-        CustomToast.showToast(message: result.message);
+        CustomDialog.showToast(message: result.message);
       }
     }
   }

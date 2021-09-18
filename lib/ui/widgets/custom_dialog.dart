@@ -1,6 +1,7 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomDialog {
   static ProgressDialog showProgressDialog(BuildContext context,
@@ -30,4 +31,8 @@ class CustomDialog {
           strokeWidth: 3,
         ),
       );
+
+  static void showToast({String? message}) {
+    Fluttertoast.showToast(msg: message ?? "", backgroundColor: Colors.black);
+  }
 }

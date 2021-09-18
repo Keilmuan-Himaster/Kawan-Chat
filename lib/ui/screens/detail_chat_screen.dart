@@ -7,7 +7,6 @@ import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -258,7 +257,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
                       messageController.clear();
                     } else {
-                      CustomToast.showToast(message: result.message);
+                      CustomDialog.showToast(message: result.message);
                     }
                   }
                 },

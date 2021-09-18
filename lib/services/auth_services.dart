@@ -2,7 +2,6 @@ import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
 import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class AuthServices {
 
       print("{ PHONE VERIFY [VERIFICATION COMPLETED] }");
 
-      CustomToast.showToast(
+      CustomDialog.showToast(
           message: "Phone number automatically verified and user signed");
 
       progressDialog.dismiss();
@@ -49,7 +48,7 @@ class AuthServices {
 
       progressDialog.dismiss();
 
-      CustomToast.showToast(message: errorMessage);
+      CustomDialog.showToast(message: errorMessage);
     };
 
     PhoneCodeSent codeSent =

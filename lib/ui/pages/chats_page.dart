@@ -18,7 +18,6 @@ import '../widgets/custom_dialog.dart';
 import '../widgets/custom_list_chat_card.dart';
 import '../widgets/custom_list_user_card.dart';
 import '../widgets/custom_text_field.dart';
-import '../widgets/custom_toast.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({Key? key}) : super(key: key);
@@ -173,7 +172,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                               chatRoomModel: ChatRoomModel(
                                                   userReceiver: state.user));
                                         } else {
-                                          CustomToast.showToast(
+                                          CustomDialog.showToast(
                                               message: result.message);
                                         }
                                       },

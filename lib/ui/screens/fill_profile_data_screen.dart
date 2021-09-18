@@ -9,7 +9,6 @@ import 'package:chat_app/ui/widgets/custom_button.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
-import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:chat_app/utils/utils.dart';
@@ -106,7 +105,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
               label: "Save",
               onTap: () async {
                 if (firstNameController.text.trim() == "") {
-                  CustomToast.showToast(message: "First name cannot be empty");
+                  CustomDialog.showToast(message: "First name cannot be empty");
                 } else {
                   ProgressDialog progressDialog =
                       CustomDialog.showProgressDialog(context,
@@ -129,7 +128,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                   if (result.value!) {
                     CustomNavigator().removeAllScreen(context, MainScreen());
                   } else {
-                    CustomToast.showToast(
+                    CustomDialog.showToast(
                         message: "Gagal membuat akun, silahkan coba kembali");
                   }
                 }
