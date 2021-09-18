@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 
@@ -42,23 +43,25 @@ class _VerificationScreenState extends State<VerificationScreen> {
       if (!codeVerification.contains(null)) {
         // Code Verification filled
         progressDialog.show();
-        // TODO: Day 2 - Check code Verification
-        result = await Future.delayed(Duration(seconds: 1)).then((value) =>
-            ApiReturnValue(value: true, isSuccess: true, result: ""));
+        // TODO: Day 2.6 - Check code Verification
+        result = await AuthServices.signInWithCredential(
+            codeVerification: codeVerification,
+            verificationId: widget.verificationId);
         progressDialog.dismiss();
       }
     } else {
       // Code Verification filled
       progressDialog.show();
-      // TODO: Day 2 - Check code Verification
-      result = await Future.delayed(Duration(seconds: 1)).then(
-          (value) => ApiReturnValue(value: true, isSuccess: true, result: ""));
+      // TODO: Day 2.7 - Check code Verification
+      result = await AuthServices.signInWithCredential(
+          codeVerification: codeVerification,
+          verificationId: widget.verificationId);
       progressDialog.dismiss();
     }
 
     if (result != null) {
       if (result.isSuccess!) {
-        // TODO: Day 2 - Chat user exist in firebase
+        // TODO: Day 2 - User exist in firebase
         ApiReturnValue<bool> userIsExists = ApiReturnValue(value: false);
 
         if (userIsExists.value!) {

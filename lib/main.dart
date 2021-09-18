@@ -1,7 +1,9 @@
-import 'package:chat_app/cubit/theme_cubit/theme_cubit.dart';
 import 'package:chat_app/utils/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:chat_app/cubit/cubits.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'config/theme_config.dart';
 import 'ui/screens/main_screen.dart';
@@ -9,7 +11,8 @@ import 'ui/screens/onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // TODO: Day 2 - Init Firebase
+  // TODO: Day 2.1 - Init Firebase
+  await Firebase.initializeApp();
 
   // TODO: Day 1.3 - Listen data Thema dari SharedPreference
   bool isDark =
@@ -45,12 +48,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // TODO: Day 1.5 - Inisialisasi Cubit
 
-    // TODO: Day 1 - ThemeCubit
+    // TODO: Day 1.6 - BlocBuilder dan BlocProvider ThemeCubit
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => ThemeCubit(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => UserCubit(),
+        ),
       ],
       child: BlocProvider(
         create: (context) => themeCubit,
@@ -58,8 +64,10 @@ class _MyAppState extends State<MyApp> {
           builder: (context, state) {
             return MaterialApp(
               theme: state.themeData,
-              // TODO: Day 2 - Inisialisasi halaman menyesuikan status login
-              initialRoute: "main_screen",
+              // TODO: Day 2.14 - Inisialisasi halaman menyesuikan status login
+              initialRoute: (FirebaseAuth.instance.currentUser == null)
+                  ? "onboardingScreen"
+                  : "mainScreen",
               routes: {
                 "onboarding_screen": (context) => OnboardingScreen(),
                 "main_screen": (context) => MainScreen()

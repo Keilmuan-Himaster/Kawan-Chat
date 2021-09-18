@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "309845046057",
+    "project_id": "kawan-chat",
+    "storage_bucket": "kawan-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309845046057:android:d69da4e834ea8fa1407d38",
+        "android_client_info": {
+          "package_name": "com.hutomosaktikartiko.kawanchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309845046057-6bofuusng5i3vldgh380bc3goikp6ku3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hutomosaktikartiko.kawanchat",
+            "certificate_hash": "ad0ea01bc2639d64f1299f971a762f5f6f3fe918"
+          }
+        },
+        {
+          "client_id": "309845046057-fc1fpgafr9rccm21bnlpotvaoa6rpq1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBocTj4CTwp-jDvU2v0BdSdpaLBkIRNe4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309845046057-fc1fpgafr9rccm21bnlpotvaoa6rpq1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

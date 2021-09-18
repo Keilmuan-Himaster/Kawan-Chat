@@ -1,9 +1,13 @@
 import 'dart:io';
 
+import 'package:chat_app/cubit/user_cubit/user_cubit.dart';
+import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/custom_color.dart';
 import '../../config/size_config.dart';
@@ -107,10 +111,18 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                     message: "Sedang membuat akun");
                 progressDialog.show();
 
-                // TODO: Day 2 - Post User to Firebase
-                ApiReturnValue<bool> result =
-                    await Future.delayed(Duration(seconds: 2))
-                        .then((value) => ApiReturnValue(value: true));
+                // TODO: Day 2.14 - Post User to Firebase
+                ApiReturnValue<bool> result = await context
+                      .read<UserCubit>()
+                      .addUser(UserModel(
+                          uid: widget.uid,
+                          phoneNumber: widget.phoneNumber,
+                          firstName: firstNameController.text,
+                          lastName: lastNameController.text,
+                          fullName: Utils.fullName(
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text),
+                          imageUrl: selectedProfilePicture?.path ?? ""));
 
                 progressDialog.dismiss();
                 if (result.value!) {

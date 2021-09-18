@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/custom_color.dart';
@@ -118,16 +119,13 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
           child: CustomButton(
               label: "Continue",
-              onTap: () {
+              onTap: () async {
                 if (phoneNumberController.text.trim().length > 0) {
-                  // TODO: Day 2 - Verifikasi Nomor HP
-                  ScreenNavigator.startScreen(
-                      context,
-                      VerificationScreen(
-                        phoneNumber: "+62" + phoneNumberController.text,
-                        verificationId: "",
-                        code: "",
-                      ));
+                  // TODO: Day 2.4 - Verifikasi Nomor HP
+                  await AuthServices.verifyPhoneNumber(
+                    context: context,
+                    phoneNumber: "+62" + phoneNumberController.text,
+                  );
                 } else {
                   CustomDialog.showToast(message: "Masukan nomor dengan benar!");
                 }
