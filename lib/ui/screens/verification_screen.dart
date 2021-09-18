@@ -1,6 +1,8 @@
+import 'package:chat_app/cubit/cubits.dart';
 import 'package:chat_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/custom_label.dart';
 import '../../config/custom_text_style.dart';
@@ -61,8 +63,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     if (result != null) {
       if (result.isSuccess!) {
-        // TODO: Day 2 - User exist in firebase
-        ApiReturnValue<bool> userIsExists = ApiReturnValue(value: false);
+        // TODO: Day 2.14 - User exist in firebase
+        ApiReturnValue<bool> userIsExists =
+            await context.read<UserCubit>().checkUserExists(result.result!);
 
         if (userIsExists.value!) {
           // User exist
