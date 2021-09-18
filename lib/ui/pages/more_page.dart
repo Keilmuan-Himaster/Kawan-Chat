@@ -30,7 +30,7 @@ class MorePage extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          // TODO: Day 2.15 - Tampilkan User Detail dari UserCubit
+          // TODO: Day 2.16 - Tampilkan User Detail dari UserCubit
           BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
               if (state is UserLoaded) {

@@ -1,4 +1,7 @@
+import 'package:chat_app/cubit/cubits.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/custom_color.dart';
 import '../../config/size_config.dart';
@@ -26,7 +29,12 @@ class _ChatsPageState extends State<ChatsPage> {
 
   @override
   void initState() {
-    // TODO: Day 2 - Dapatkan detail User detail
+    // TODO: Day 2.15 - Dapatkan detail User detail
+    if (context.read<UserCubit>().state is UserInitial) {
+      context
+          .read<UserCubit>()
+          .getUserDetail(FirebaseAuth.instance.currentUser!.uid);
+    }
     super.initState();
   }
 
