@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: Day 1.6 - BlocBuilder dan BlocProvider ThemeCubit
     return MaterialApp(
       theme: (widget.isDark) ? ThemeConfig.darkTheme : ThemeConfig.lightTheme,
-      // TODO: Day 2 - Inisialisasi halaman menyesuikan status login
+      // TODO: Day 2.14 - Inisialisasi halaman menyesuikan status login
       initialRoute: "main_screen",
       routes: {
         "onboarding_screen": (context) => OnboardingScreen(),

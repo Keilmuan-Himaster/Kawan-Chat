@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
               label: "Continue",
               onTap: () {
                 if (phoneNumberController.text.trim().length > 0) {
-                  // TODO: Day 2 - Verifikasi Nomor HP
+                  // TODO: Day 2.4 - Verifikasi Nomor HP
                   ScreenNavigator.startScreen(
                       context,
                       VerificationScreen(

@@ -42,7 +42,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       if (!codeVerification.contains(null)) {
         // Code Verification filled
         progressDialog.show();
-        // TODO: Day 2 - Check code Verification
+        // TODO: Day 2.6 - Check code Verification
         result = await Future.delayed(Duration(seconds: 1)).then((value) =>
             ApiReturnValue(value: true, isSuccess: true, result: ""));
         progressDialog.dismiss();
@@ -50,7 +50,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     } else {
       // Code Verification filled
       progressDialog.show();
-      // TODO: Day 2 - Check code Verification
+      // TODO: Day 2.7 - Check code Verification
       result = await Future.delayed(Duration(seconds: 1)).then(
           (value) => ApiReturnValue(value: true, isSuccess: true, result: ""));
       progressDialog.dismiss();
