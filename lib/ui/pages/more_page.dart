@@ -1,4 +1,8 @@
+import 'package:chat_app/config/theme_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:chat_app/cubit/theme_cubit/theme_cubit.dart';
+import 'package:chat_app/utils/preferences.dart';
 
 import '../../config/custom_color.dart';
 import '../../config/custom_text_style.dart';
@@ -43,12 +47,25 @@ class MorePage extends StatelessWidget {
           Divider(
             color: Theme.of(context).accentColor,
           ),
-          // TODO: Day 1 - Ganti Tema
           buildMoreListCard(
-            context: context,
-            iconName: "icon_apperance.png",
-            label: "Apperance",
-          ),
+              context: context,
+              iconName: "icon_apperance.png",
+              label: "Apperance",
+              onTap: () {
+                // TODO: Day 1.3 - Ganti Tema
+                Preferences.instance().then((value) {
+                  bool? isDark = value.isDark;
+                  ThemeData theme;
+                  if (isDark == true) {
+                    value.isDark = false;
+                    theme = ThemeConfig.lightTheme;
+                  } else {
+                    value.isDark = true;
+                    theme = ThemeConfig.darkTheme;
+                  }
+                  context.read<ThemeCubit>().changeTheme(theme);
+                });
+              }),
           buildMoreListCard(
             context: context,
             iconName: "icon_notification.png",
