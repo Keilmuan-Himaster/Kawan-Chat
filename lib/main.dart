@@ -34,12 +34,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Day 1 - Initial Cubit
+    // TODO: Day 1 - Inisialisasi Cubit
 
     // TODO: Day 1 - ThemeCubit
     return MaterialApp(
       theme: (widget.isDark) ? ThemeConfig.darkTheme : ThemeConfig.lightTheme,
-      // TODO: Day 2 - InitalRoput menyesuikan status login
+      // TODO: Day 2 - Inisialisasi halaman menyesuikan status login
       initialRoute: "main_screen",
       routes: {
         "onboarding_screen": (context) => OnboardingScreen(),
