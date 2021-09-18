@@ -1,5 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/utils/size_config.dart';
@@ -23,8 +24,8 @@ class MorePage extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          // TODO: Day 2
-          buildProfileCard(context: context),
+          // TODO: Day 2 - Tampilkan User Detail dari UserCubit
+          buildProfileCard(context: context, user: userMock),
           SizedBox(
             height: 10,
           ),
@@ -41,7 +42,7 @@ class MorePage extends StatelessWidget {
           Divider(
             color: Theme.of(context).accentColor,
           ),
-          // TODO: Day 1
+          // TODO: Day 1 - Ganti Tema
           buildMoreListCard(
             context: context,
             iconName: "icon_apperance.png",
@@ -80,8 +81,7 @@ class MorePage extends StatelessWidget {
     );
   }
 
-  // TODO: Day 2
-  InkWell buildProfileCard({required BuildContext context}) {
+  InkWell buildProfileCard({required BuildContext context, UserModel? user}) {
     return buildContainerCard(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +91,7 @@ class MorePage extends StatelessWidget {
                 CustomProfileCard(
                   height: 50,
                   padding: 13,
-                  imageUrl: "",
+                  imageUrl: user?.imageUrl,
                 ),
                 SizedBox(
                   width: 20,
@@ -100,14 +100,14 @@ class MorePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Almayra Zamzamy",
+                      user?.fullName ?? "-",
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     SizedBox(
                       height: 2,
                     ),
                     Text(
-                      "+62 1309 - 1710 - 1920",
+                      user?.phoneNumber ?? "-",
                       style: CustomTextStyle.metaData1
                           .copyWith(color: NeutralColor.disabled),
                     ),

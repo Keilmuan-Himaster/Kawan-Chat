@@ -1,5 +1,6 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/models/chat_model.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
@@ -7,7 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
 
 class DetailChatScreen extends StatefulWidget {
-  const DetailChatScreen({Key? key}) : super(key: key);
+  const DetailChatScreen({
+    Key? key,
+    required this.userMe,
+    required this.userReceiver,
+  }) : super(key: key);
+
+  final UserModel userMe, userReceiver;
 
   @override
   _DetailChatScreenState createState() => _DetailChatScreenState();
@@ -17,20 +24,23 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
   TextEditingController messageController = TextEditingController();
   final focusNode = FocusNode();
 
-  int myId = 1;
-
-  // TODO: Day 4
-  bool replyMessage = false;
+  ChatModel? replyMessage;
 
   void hideKeyboard() {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
   @override
+  void dispose() {
+    messageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        label: "Athalia Putri",
+        label: widget.userReceiver.fullName,
       ),
       backgroundColor: Theme.of(context).accentColor,
       body: buildBody(),
@@ -54,6 +64,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Flexible buildListMessage() {
     return Flexible(
+        // TODO: Day 4 - Menampilkan List Chat
         child: ListView.builder(
             itemCount: listChats.length,
             physics: BouncingScrollPhysics(),
@@ -65,12 +76,14 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                       EdgeInsets.only(top: 12, bottom: (index == 0) ? 20 : 0),
                   child: SwipeTo(
                     onRightSwipe: () {
-                      replyToMessage();
+                      replyToMessage(listChats[index]);
                       focusNode.requestFocus();
                     },
                     child: CustomMessageCardItem(
+                      userReceiver: widget.userReceiver,
                       chat: listChats[index],
-                      isMyMessage: listChats[index].senderId == myId,
+                      isMyMessage:
+                          listChats[index].uidSender == widget.userMe.uid,
                     ),
                   ));
             }));
@@ -82,7 +95,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       child: Column(
         children: [
-          (replyMessage)
+          (replyMessage != null)
               ? Container(
                   margin: EdgeInsets.only(bottom: 10),
                   child: IntrinsicHeight(
@@ -102,7 +115,9 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "You",
+                                  (replyMessage?.uidSender == widget.userMe.uid)
+                                      ? "You"
+                                      : widget.userReceiver.fullName,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6
@@ -110,7 +125,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                           color:
                                               Theme.of(context).primaryColor),
                                 ),
-                                Text("Makan bang",
+                                Text(replyMessage!.message ?? "",
                                     style:
                                         Theme.of(context).textTheme.bodyText2)
                               ],
@@ -161,15 +176,15 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
     );
   }
 
-  void replyToMessage() {
+  void replyToMessage(ChatModel chat) {
     setState(() {
-      replyMessage = true;
+      replyMessage = chat;
     });
   }
 
   void cancelReply() {
     setState(() {
-      replyMessage = false;
+      replyMessage = null;
     });
   }
 }

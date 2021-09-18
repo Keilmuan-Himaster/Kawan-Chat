@@ -1,10 +1,14 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/models/chat_room_model.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar_title.dart';
 import 'package:chat_app/ui/widgets/custom_list_chat_card.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
+import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/ui/screens/detail_chat_screen.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({Key? key}) : super(key: key);
@@ -18,11 +22,13 @@ class _ChatsPageState extends State<ChatsPage> {
 
   bool isSearching = false;
 
+  // TODO: Day 3 - Deklarasi variabel UserStream untuk pencarian user
+
   @override
-    void initState() {
-      // TODO: Day 2
-      super.initState();
-    }
+  void initState() {
+    // TODO: Day 2 - Dapatkan detail User detail
+    super.initState();
+  }
 
   void hideKeyboard() {
     setState(() {
@@ -73,7 +79,7 @@ class _ChatsPageState extends State<ChatsPage> {
                         });
                       },
                       onChanged: () {
-                        // TODO: Day 3
+                        // TODO: Day 3 - Update UserStream Pencarian User
                       },
                     ),
                   ),
@@ -91,27 +97,35 @@ class _ChatsPageState extends State<ChatsPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 16,
-            ),
-            // TODO: Day 3
+            // TODO: Day 3 - UserCubit, Stream Pencarian User / List Chats Room
             ...List.generate(
                 20,
-                (index) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        (index == 0)
-                            ? SizedBox.shrink()
-                            : Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: SizeConfig.defaultMargin),
-                                child: Divider(
-                                  color: Theme.of(context).accentColor,
-                                  height: 0,
+                (index) => Padding(
+                      padding: EdgeInsets.only(top: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          (index == 0)
+                              ? SizedBox.shrink()
+                              : Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: SizeConfig.defaultMargin),
+                                  child: Divider(
+                                    color: Theme.of(context).accentColor,
+                                    height: 0,
+                                  ),
                                 ),
-                              ),
-                        CustomListChatCard(),
-                      ],
+                          CustomListChatCard(
+                            chatRoom: chatRoomMock,
+                            onTap: () => ScreenNavigator.startScreen(
+                                context,
+                                DetailChatScreen(
+                                  userMe: userMock,
+                                  userReceiver: chatRoomMock.userReceiver!,
+                                )),
+                          ),
+                        ],
+                      ),
                     )),
           ]))
         ],

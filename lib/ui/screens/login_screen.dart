@@ -122,10 +122,13 @@ class _LoginScreenState extends State<LoginScreen> {
               label: "Continue",
               onTap: () {
                 if (phoneNumberController.text.trim().length > 0) {
+                  // TODO: Day 2 - Verifikasi Nomor HP
                   ScreenNavigator.startScreen(
                       context,
                       VerificationScreen(
                         phoneNumber: "+62" + phoneNumberController.text,
+                        verificationId: "",
+                        code: "",
                       ));
                 } else {
                   CustomToast.showToast(message: "Masukan nomor dengan benar!");

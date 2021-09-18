@@ -1,19 +1,28 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_label.dart';
 import 'package:chat_app/config/custom_text_style.dart';
+import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
+import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_numerical_keyboard.dart';
+import 'package:chat_app/ui/widgets/custom_toast.dart';
 import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
+import 'package:ndialog/ndialog.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key, required this.phoneNumber})
+  const VerificationScreen(
+      {Key? key,
+      required this.phoneNumber,
+      required this.verificationId,
+      this.code})
       : super(key: key);
 
-  final String phoneNumber;
+  final String phoneNumber, verificationId;
+  final String? code;
 
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
@@ -22,22 +31,52 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   List<String?> codeVerification = [null, null, null, null, null, null];
 
-  // change value [isExpired] from the result of signInWithPhoneNumber
-  bool isExpired = false;
-
-  void _onKeyboardTap(String value) {
+  void _onKeyboardTap(String value) async {
     int index = codeVerification.indexOf(null);
+    ApiReturnValue<bool>? result;
+    ProgressDialog progressDialog = CustomDialog.showProgressDialog(context,
+        message: "Sedang memverifikasi code");
     if (index != -1) {
       setState(() {
         codeVerification[index] = value;
       });
       if (!codeVerification.contains(null)) {
         // Code Verification filled
-        ScreenNavigator.removeScreen(context, FillProfileDataScreen(phoneNumber: "",uid: "",));
+        progressDialog.show();
+        // TODO: Day 2 - Check code Verification
+        result = await Future.delayed(Duration(seconds: 1)).then((value) =>
+            ApiReturnValue(value: true, isSuccess: true, result: ""));
+        progressDialog.dismiss();
       }
     } else {
       // Code Verification filled
-      ScreenNavigator.removeScreen(context, FillProfileDataScreen(uid: "",phoneNumber: "",));
+      progressDialog.show();
+      // TODO: Day 2 - Check code Verification
+      result = await Future.delayed(Duration(seconds: 1)).then(
+          (value) => ApiReturnValue(value: true, isSuccess: true, result: ""));
+      progressDialog.dismiss();
+    }
+
+    if (result != null) {
+      if (result.isSuccess!) {
+        // TODO: Day 2 - Chat user exist in firebase
+        ApiReturnValue<bool> userIsExists = ApiReturnValue(value: false);
+
+        if (userIsExists.value!) {
+          // User exist
+          ScreenNavigator.removeAllScreen(context, MainScreen());
+        } else {
+          // User not exist
+          ScreenNavigator.removeScreen(
+              context,
+              FillProfileDataScreen(
+                phoneNumber: widget.phoneNumber,
+                uid: result.result!,
+              ));
+        }
+      } else {
+        CustomToast.showToast(message: result.message);
+      }
     }
   }
 
@@ -113,13 +152,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Padding(
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultMargin),
             child: TextButton(
-              onPressed: () {
-                // TODO: Find the best way to handle this
-                if (isExpired) {
-                  // Code expired
-                  ScreenNavigator.closeScreen(context);
-                }
-              },
+              onPressed: () => ScreenNavigator.closeScreen(context),
               child: Text(
                 "Resend Code",
                 style: CustomTextStyle.subHeading2

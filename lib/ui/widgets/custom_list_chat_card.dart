@@ -1,26 +1,26 @@
 import 'package:chat_app/config/custom_color.dart';
 import 'package:chat_app/config/custom_text_style.dart';
-import 'package:chat_app/ui/screens/detail_chat_screen.dart';
+import 'package:chat_app/models/chat_room_model.dart';
 import 'package:chat_app/ui/widgets/custom_profile_card.dart';
 import 'package:chat_app/utils/screen_navigator.dart';
 import 'package:chat_app/utils/size_config.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-// TODO: Day 3
 class CustomListChatCard extends StatelessWidget {
   const CustomListChatCard({
     Key? key,
     this.onTap,
+    required this.chatRoom
   }) : super(key: key);
 
   final Function? onTap;
+  final ChatRoomModel chatRoom;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        ScreenNavigator.startScreen(context, DetailChatScreen());
         if (onTap != null) {
           onTap!();
         }
@@ -36,7 +36,7 @@ class CustomListChatCard extends StatelessWidget {
                 CustomProfileCard(
                   height: 48,
                   padding: 12,
-                  imageUrl: "",
+                  imageUrl:chatRoom.userReceiver?.imageUrl,
                 ),
                 SizedBox(
                   width: 12,
@@ -45,14 +45,14 @@ class CustomListChatCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Athalia Putri",
+                      chatRoom.userReceiver?.fullName ?? "-",
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     SizedBox(
                       height: 2,
                     ),
                     Text(
-                      "Good morning, did you sleep well?",
+                     chatRoom.lastMessage ?? "-",
                       style: CustomTextStyle.metaData1
                           .copyWith(color: NeutralColor.disabled),
                     ),
@@ -61,7 +61,7 @@ class CustomListChatCard extends StatelessWidget {
               ],
             ),
             Text(
-              Utils.timestampToDatetime("1631689790240"),
+              Utils.timestampToDatetime(chatRoom.timestamp),
               style: CustomTextStyle.metaData1
                   .copyWith(color: NeutralColor.disabled),
             ),

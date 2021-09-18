@@ -107,7 +107,7 @@ class _FillProfileDataScreenState extends State<FillProfileDataScreen> {
                     message: "Sedang membuat akun");
                 progressDialog.show();
 
-                // TODO: Fetch Firebase Here
+                // TODO: Day 2 - Post User to Firebase
                 ApiReturnValue<bool> result =
                     await Future.delayed(Duration(seconds: 2))
                         .then((value) => ApiReturnValue(value: true));
