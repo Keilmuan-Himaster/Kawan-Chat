@@ -112,5 +112,11 @@ class UserServices {
     return result;
   }
 
-  // TODO: Day 3 - Search User by name
+  // TODO: Day 3.1 - Search User by name
+  static Stream<QuerySnapshot> getListUserByName(
+      {required String name, required String myName}) {
+    return userCollection
+        .where("full_name", isGreaterThanOrEqualTo: name, isNotEqualTo: myName)
+        .snapshots();
+  }
 }
