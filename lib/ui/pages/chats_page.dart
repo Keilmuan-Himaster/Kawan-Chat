@@ -22,7 +22,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   bool isSearching = false;
 
-  // TODO: Day 3 - Deklarasi variabel UserStream untuk pencarian user
+  // TODO: Day 3.5 - Deklarasi variabel UserStream untuk pencarian user
 
   @override
   void initState() {
@@ -79,7 +79,7 @@ class _ChatsPageState extends State<ChatsPage> {
                         });
                       },
                       onChanged: () {
-                        // TODO: Day 3 - Update UserStream Pencarian User
+                        // TODO: Day 3.6 - Update UserStream Pencarian User
                       },
                     ),
                   ),
@@ -97,7 +97,7 @@ class _ChatsPageState extends State<ChatsPage> {
                 ],
               ),
             ),
-            // TODO: Day 3 - UserCubit, Stream Pencarian User / List Chats Room
+            // TODO: Day 3.7- UserCubit, Stream Pencarian User / List Chats Room
             ...List.generate(
                 20,
                 (index) => Padding(

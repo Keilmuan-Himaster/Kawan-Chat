@@ -11,5 +11,5 @@ class UserServices {
 
   // TODO: Day 2.13 - Daptkan user detail
 
-  // TODO: Day 3 - Search User by name
+  // TODO: Day 3.1 - Search User by name
 }
