@@ -1,5 +1,11 @@
+import 'package:chat_app/config/size_config.dart';
+import 'package:chat_app/models/api_return_value.dart';
+import 'package:chat_app/models/message_reply_model.dart';
+import 'package:chat_app/services/chat_services.dart';
+import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../config/custom_color.dart';
 import '../../models/chat_model.dart';
@@ -65,28 +71,51 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Flexible buildListMessage() {
     return Flexible(
-        // TODO: Day 4 - Menampilkan List Chat
-        child: ListView.builder(
-            itemCount: listChats.length,
-            physics: BouncingScrollPhysics(),
-            reverse: true,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            itemBuilder: (context, index) {
-              return Padding(
-                  padding:
-                      EdgeInsets.only(top: 12, bottom: (index == 0) ? 20 : 0),
-                  child: SwipeTo(
-                    onRightSwipe: () {
-                      replyToMessage(listChats[index]);
-                      focusNode.requestFocus();
-                    },
-                    child: CustomMessageCardItem(
-                      userReceiver: widget.userReceiver,
-                      chat: listChats[index],
-                      isMyMessage:
-                          listChats[index].uidSender == widget.userMe.uid,
-                    ),
-                  ));
+        // TODO: Day 4.4 - Menampilkan List Chat
+        child: StreamBuilder<QuerySnapshot>(
+            stream: ChatServices.getListMessages(
+                userMe: widget.userMe, userReceiver: widget.userReceiver),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data?.docs.length,
+                    physics: BouncingScrollPhysics(),
+                    reverse: true,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: EdgeInsets.only(
+                              top: 12, bottom: (index == 0) ? 20 : 0),
+                          child: SwipeTo(
+                            onRightSwipe: () {
+                              replyToMessage(ChatModel.fromJson(
+                                  snapshot.data?.docs[index].data()
+                                      as Map<String, dynamic>));
+                              focusNode.requestFocus();
+                            },
+                            child: CustomMessageCardItem(
+                              userReceiver: widget.userReceiver,
+                              chat: ChatModel.fromJson(
+                                  snapshot.data?.docs[index].data()
+                                      as Map<String, dynamic>),
+                              isMyMessage: ChatModel.fromJson(
+                                          snapshot.data?.docs[index].data()
+                                              as Map<String, dynamic>)
+                                      .uidSender ==
+                                  widget.userMe.uid,
+                            ),
+                          ));
+                    });
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return SizedBox(
+                  height: SizeConfig.screenHeight * 0.8,
+                  child: Center(
+                      child: CustomDialog.showCircularProgressIndicator()),
+                );
+              } else {
+                // TODO: Handle this error
+                return Container();
+              }
             }));
   }
 
@@ -163,7 +192,79 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                 width: 12,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  //TODO: Day 4.5 Button send message
+                  if (messageController.text.trim() != "") {
+                    DateTime date = DateTime.now();
+                    // write message for me as sender
+                    ApiReturnValue<bool> result =
+                        await ChatServices.sendMessage(
+                            userMe: widget.userMe,
+                            userReceiver: widget.userReceiver,
+                            chat: ChatModel(
+                                message: messageController.text,
+                                timestamp:
+                                    date.millisecondsSinceEpoch.toString(),
+                                messageReply: (replyMessage == null)
+                                    ? null
+                                    : MessageReplyModel(
+                                        message: replyMessage,
+                                        timestampMessage:
+                                            replyMessage?.timestamp,
+                                        userRepliedUid:
+                                            (replyMessage?.uidSender ==
+                                                    widget.userMe.uid)
+                                                ? widget.userMe.uid
+                                                : widget.userReceiver.uid),
+                                uidSender: widget.userMe.uid,
+                                uidReceiver: widget.userReceiver.uid));
+
+                    // write for receiver
+                    ChatServices.sendMessage(
+                        userMe: widget.userReceiver,
+                        userReceiver: widget.userMe,
+                        chat: ChatModel(
+                            message: messageController.text,
+                            timestamp: date.millisecondsSinceEpoch.toString(),
+                            messageReply: (replyMessage == null)
+                                ? null
+                                : MessageReplyModel(
+                                    message: replyMessage,
+                                    timestampMessage: replyMessage?.timestamp,
+                                    userRepliedUid: (replyMessage?.uidSender ==
+                                            widget.userMe.uid)
+                                        ? widget.userMe.uid
+                                        : widget.userReceiver.uid),
+                            uidSender: widget.userMe.uid,
+                            uidReceiver: widget.userReceiver.uid));
+
+                    cancelReply();
+
+                    if (result.value!) {
+                      // write for me as sender
+                      ChatServices.updateLastMessage(
+                          userMe: widget.userMe,
+                          userReceiver: widget.userReceiver,
+                          chat: ChatModel(
+                              message: messageController.text,
+                              timestamp:
+                                  date.millisecondsSinceEpoch.toString()));
+
+                      // write for receiver
+                      ChatServices.updateLastMessage(
+                          userMe: widget.userReceiver,
+                          userReceiver: widget.userMe,
+                          chat: ChatModel(
+                              message: messageController.text,
+                              timestamp:
+                                  date.millisecondsSinceEpoch.toString()));
+
+                      messageController.clear();
+                    } else {
+                      CustomDialog.showToast(message: result.message);
+                    }
+                  }
+                },
                 child: ImageIcon(
                   AssetImage("assets/icons/icon_send_message.png"),
                   color: BrandColor.defaultColor,
