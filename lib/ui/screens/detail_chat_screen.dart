@@ -65,7 +65,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   Flexible buildListMessage() {
     return Flexible(
-        // TODO: Day 4 - Menampilkan List Chat
+        // TODO: Day 4.4 - Menampilkan List Chat
         child: ListView.builder(
             itemCount: listChats.length,
             physics: BouncingScrollPhysics(),
@@ -163,7 +163,9 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                 width: 12,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  //TODO: Day 4.5 Button send message
+                },
                 child: ImageIcon(
                   AssetImage("assets/icons/icon_send_message.png"),
                   color: BrandColor.defaultColor,
