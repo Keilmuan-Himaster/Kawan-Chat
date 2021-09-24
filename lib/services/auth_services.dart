@@ -1,5 +1,6 @@
 import 'package:chat_app/models/api_return_value.dart';
 import 'package:chat_app/ui/screens/fill_profile_data_screen.dart';
+import 'package:chat_app/ui/screens/main_screen.dart';
 import 'package:chat_app/ui/screens/verification_screen.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/utils/custom_navigator.dart';
@@ -27,10 +28,7 @@ class AuthServices {
 
       progressDialog.dismiss();
 
-      CustomNavigator().removeAllScreen(
-          context,
-          FillProfileDataScreen(
-              uid: firebaseAuth.currentUser!.uid, phoneNumber: phoneNumber));
+      CustomNavigator().removeAllScreen(context, MainScreen());
     };
 
     PhoneVerificationFailed verificationFailed =
@@ -99,6 +97,21 @@ class AuthServices {
       // session-expired -> for message if [code verification] is expired
       if (e.toString().contains("session-expired")) {}
       return ApiReturnValue(isSuccess: false, message: e.toString());
+    }
+  }
+
+  // Logout
+  static Future<ApiReturnValue<bool>> signOut() async {
+    try {
+      await firebaseAuth.signOut();
+
+      print("{ LOGOUT SUCCESS }");
+
+      return ApiReturnValue(value: true);
+    } catch (e) {
+      print("{ LOGOUT ERROR $e }");
+      return ApiReturnValue(
+          value: false, message: "Logout failed, please try again");
     }
   }
 }

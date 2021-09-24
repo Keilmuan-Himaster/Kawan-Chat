@@ -191,6 +191,9 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
               GestureDetector(
                 onTap: () async {
                   if (messageController.text.trim() != "") {
+                    String message = messageController.text;
+                    messageController.clear();
+                    cancelReply();
                     DateTime date = DateTime.now();
                     // write message for me as sender
                     ApiReturnValue<bool> result =
@@ -198,7 +201,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                             userMe: widget.userMe,
                             userReceiver: widget.userReceiver,
                             chat: ChatModel(
-                                message: messageController.text,
+                                message: message,
                                 timestamp:
                                     date.millisecondsSinceEpoch.toString(),
                                 messageReply: (replyMessage == null)
@@ -220,7 +223,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                         userMe: widget.userReceiver,
                         userReceiver: widget.userMe,
                         chat: ChatModel(
-                            message: messageController.text,
+                            message: message,
                             timestamp: date.millisecondsSinceEpoch.toString(),
                             messageReply: (replyMessage == null)
                                 ? null
@@ -234,7 +237,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                             uidSender: widget.userMe.uid,
                             uidReceiver: widget.userReceiver.uid));
 
-                    cancelReply();
+                    
 
                     if (result.value!) {
                       // write for me as sender
@@ -242,7 +245,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                           userMe: widget.userMe,
                           userReceiver: widget.userReceiver,
                           chat: ChatModel(
-                              message: messageController.text,
+                              message: message,
                               timestamp:
                                   date.millisecondsSinceEpoch.toString()));
 
@@ -251,11 +254,11 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                           userMe: widget.userReceiver,
                           userReceiver: widget.userMe,
                           chat: ChatModel(
-                              message: messageController.text,
+                              message: message,
                               timestamp:
                                   date.millisecondsSinceEpoch.toString()));
 
-                      messageController.clear();
+                      
                     } else {
                       CustomDialog.showToast(message: result.message);
                     }
