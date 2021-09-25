@@ -1,4 +1,4 @@
-import 'package:chat_app/ui/widgets/custom_connection_error.dart';
+import 'package:chat_app/ui/widgets/custom_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -179,14 +179,28 @@ class _ChatsPageState extends State<ChatsPage> {
                                       },
                                     );
                                   });
-                            } else {
-                              // TODO: Handle if data []
-                              return Container();
+                            } else {SizedBox(
+                              height: SizeConfig.screenHeight * 0.75,
+                              child: CustomConnectionError(
+                                imageName: "search_data_empty.png",
+                                message: "Tidak menemukan user",
+                                showButton: false,
+                                subtitle: "Ketika nama dengan benar",
+                              ),
+                            );
+                              return SizedBox(
+                              height: SizeConfig.screenHeight * 0.75,
+                              child: CustomConnectionError(
+                                imageName: "connection_error.png",
+                                message: "Gagal mendapatkan list user",
+                                showButton: true,
+                              ),
+                            );
                             }
                           } else if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return SizedBox(
-                              height: SizeConfig.screenHeight * 0.8,
+                              height: SizeConfig.screenHeight * 0.75,
                               child: Center(
                                   child: CustomDialog
                                       .showCircularProgressIndicator()),
@@ -195,6 +209,8 @@ class _ChatsPageState extends State<ChatsPage> {
                             return SizedBox(
                               height: SizeConfig.screenHeight * 0.75,
                               child: CustomConnectionError(
+                                imageName: "connection_error.png",
+                                showButton: true,
                                 message: "Gagal mendapatkan list user",
                               ),
                             );
@@ -251,7 +267,9 @@ class _ChatsPageState extends State<ChatsPage> {
                             return SizedBox(
                               height: SizeConfig.screenHeight * 0.75,
                               child: CustomConnectionError(
+                                imageName: "connection_error.png",
                                 message: "Gagal mendapatkan chat",
+                                showButton: true,
                               ),
                             );
                           }
@@ -261,7 +279,9 @@ class _ChatsPageState extends State<ChatsPage> {
                   return SizedBox(
                     height: SizeConfig.screenHeight * 0.75,
                     child: CustomConnectionError(
+                      imageName: "connection_error.png",
                       message: "Gagal mendapatkan data user",
+                      showButton: true,
                     ),
                   );
                 } else {

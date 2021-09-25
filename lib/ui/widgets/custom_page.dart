@@ -3,11 +3,13 @@ import 'package:chat_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CustomConnectionError extends StatelessWidget {
-  const CustomConnectionError({Key? key, this.onTap, this.message})
+  const CustomConnectionError({Key? key, this.onTap, required this.showButton, this.subtitle, this.message, required this.imageName})
       : super(key: key);
 
   final Function? onTap;
-  final String? message;
+  final String? message, subtitle;
+  final String imageName;
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class CustomConnectionError extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          "assets/images/connection_error.png",
+          "assets/images/$imageName",
           height: 176,
           width: 176,
         ),
@@ -34,17 +36,19 @@ class CustomConnectionError extends StatelessWidget {
         SizedBox(
           width: SizeConfig.screenWidth * 0.45,
           child: Text(
-            "Mohon periksa koneksi internet anda",
+            subtitle ?? "",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
-        SizedBox(height: 20,),
-        CustomButton(
-          label: "Refresh",
-          width: SizeConfig.screenWidth * 0.5,
-          onTap: () => onTap,
-        ),
+       (showButton) ? Padding(
+         padding:  EdgeInsets.only(top: 20),
+         child: CustomButton(
+            label: "Refresh",
+            width: SizeConfig.screenWidth * 0.5,
+            onTap: () => onTap,
+          ),
+       ) : SizedBox.shrink(),
       ],
     );
   }

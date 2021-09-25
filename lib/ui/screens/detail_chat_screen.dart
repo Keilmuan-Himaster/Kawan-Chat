@@ -4,7 +4,7 @@ import 'package:chat_app/models/message_reply_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
-import 'package:chat_app/ui/widgets/custom_connection_error.dart';
+import 'package:chat_app/ui/widgets/custom_page.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
@@ -118,7 +118,9 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                   width: SizeConfig.screenWidth,
                   height: SizeConfig.screenHeight * 0.75,
                   child: CustomConnectionError(
+                    imageName: "connection_error.png",
                     message: "Gagal mendapatkan chat",
+                    showButton: true,
                   ),
                 );
               }
