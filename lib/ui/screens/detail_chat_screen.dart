@@ -4,6 +4,7 @@ import 'package:chat_app/models/message_reply_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/services/chat_services.dart';
 import 'package:chat_app/ui/widgets/custom_app_bar.dart';
+import 'package:chat_app/ui/widgets/custom_connection_error.dart';
 import 'package:chat_app/ui/widgets/custom_dialog.dart';
 import 'package:chat_app/ui/widgets/custom_message_card_item.dart';
 import 'package:chat_app/ui/widgets/custom_text_field.dart';
@@ -113,8 +114,13 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                       child: CustomDialog.showCircularProgressIndicator()),
                 );
               } else {
-                // TODO: Handle this error
-                return Container();
+                return SizedBox(
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight * 0.75,
+                  child: CustomConnectionError(
+                    message: "Gagal mendapatkan chat",
+                  ),
+                );
               }
             }));
   }
@@ -207,7 +213,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                 messageReply: (replyMessage == null)
                                     ? null
                                     : MessageReplyModel(
-                                      message: replyMessage,
+                                        message: replyMessage,
                                         timestampMessage:
                                             replyMessage?.timestamp,
                                         userRepliedUid:
@@ -228,7 +234,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                             messageReply: (replyMessage == null)
                                 ? null
                                 : MessageReplyModel(
-                                   message: replyMessage,
+                                    message: replyMessage,
                                     timestampMessage: replyMessage?.timestamp,
                                     userRepliedUid: (replyMessage?.uidSender ==
                                             widget.userMe.uid)
@@ -236,8 +242,6 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                         : widget.userReceiver.uid),
                             uidSender: widget.userMe.uid,
                             uidReceiver: widget.userReceiver.uid));
-
-                    
 
                     if (result.value!) {
                       // write for me as sender
@@ -257,8 +261,6 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                               message: message,
                               timestamp:
                                   date.millisecondsSinceEpoch.toString()));
-
-                      
                     } else {
                       CustomDialog.showToast(message: result.message);
                     }

@@ -1,3 +1,4 @@
+import 'package:chat_app/ui/widgets/custom_connection_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -191,8 +192,12 @@ class _ChatsPageState extends State<ChatsPage> {
                                       .showCircularProgressIndicator()),
                             );
                           } else {
-                            // TODO: Handle this error
-                            return Container();
+                            return SizedBox(
+                              height: SizeConfig.screenHeight * 0.75,
+                              child: CustomConnectionError(
+                                message: "Gagal mendapatkan list user",
+                              ),
+                            );
                           }
                         });
                   } else {
@@ -243,14 +248,22 @@ class _ChatsPageState extends State<ChatsPage> {
                                       .showCircularProgressIndicator()),
                             );
                           } else {
-                            // TODO: Handle this error
-                            return Container();
+                            return SizedBox(
+                              height: SizeConfig.screenHeight * 0.75,
+                              child: CustomConnectionError(
+                                message: "Gagal mendapatkan chat",
+                              ),
+                            );
                           }
                         });
                   }
-                } else if (state is UserLoadingFailed) {
-                  // TODO: Handle this error
-                  return Container();
+                } else if (state is UserLoaded) {
+                  return SizedBox(
+                    height: SizeConfig.screenHeight * 0.75,
+                    child: CustomConnectionError(
+                      message: "Gagal mendapatkan data user",
+                    ),
+                  );
                 } else {
                   return SizedBox(
                     height: SizeConfig.screenHeight * 0.8,
