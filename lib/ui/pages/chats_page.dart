@@ -183,7 +183,7 @@ class _ChatsPageState extends State<ChatsPage> {
                               height: SizeConfig.screenHeight * 0.75,
                               child: CustomConnectionError(
                                 imageName: "search_data_empty.png",
-                                message: "Tidak menemukan user",
+                                message: "User tidak ditemukan",
                                 showButton: false,
                                 subtitle: "Ketika nama dengan benar",
                               ),
@@ -194,6 +194,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                 imageName: "connection_error.png",
                                 message: "Gagal mendapatkan list user",
                                 showButton: true,
+                                subtitle: "Mohon periksa koneksi internet anda",
                               ),
                             );
                             }
@@ -212,6 +213,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                 imageName: "connection_error.png",
                                 showButton: true,
                                 message: "Gagal mendapatkan list user",
+                                subtitle: "Mohon periksa koneksi internet anda",
                               ),
                             );
                           }
@@ -270,6 +272,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                 imageName: "connection_error.png",
                                 message: "Gagal mendapatkan chat",
                                 showButton: true,
+                                subtitle: "Mohon periksa koneksi internet anda",
                               ),
                             );
                           }
